@@ -2,7 +2,6 @@
 import React, {useState} from 'react'
 import { FaCheck } from "react-icons/fa6";
 import { useRouter, useSearchParams } from 'next/navigation'
-import { Suspense } from 'react';
 
 interface OnboardingOptionsProps {
   onboardingStatusOption: boolean; 
@@ -29,8 +28,9 @@ const OnboardingOptions: React.FC<OnboardingOptionsProps> = ({onboardingStatusOp
 
 const Onboarding = () => {
 	const router = useRouter()
-	const searchParams = useSearchParams()
-    const role = searchParams.get('user')
+	//const searchParams = useSearchParams()
+    //const role = searchParams.get('user')
+    const [role, setRole] = useState<string>('child')
 
 	interface Status {
 	    account: boolean,
@@ -57,7 +57,6 @@ const Onboarding = () => {
 
 
 	return (
-		<Suspense fallback={<div>Loading...</div>}>
 		<div className="bg-[#EEF3FE] py-20 pb-60 flex flex-col items-center gap-12 min-h-screen max-h-full px-5">
 		    <div>
 				<h1 className="text-[#000D26] font-bold font-nunitosans text-[2rem] text-center">Welcome Jane Doe</h1>
@@ -94,7 +93,6 @@ const Onboarding = () => {
 			    </div>}
 			</div>
 		</div>
-		</Suspense>
 	)
 }
 
