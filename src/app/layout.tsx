@@ -36,7 +36,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${nunito.variable} ${nunitosans.variable} ${inter.variable} ${figtree.variable}`}>{children}</body>
+      <body className={`${nunito.variable} ${inter.variable} ${figtree.variable}`}>{children}</body>
     </html>
   );
 }
