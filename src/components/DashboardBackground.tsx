@@ -16,8 +16,8 @@ import circle from '../../public/icons/circle.svg'
 const DashboardBackground = () => {
 	return (
 		<div className="-z-50 ">
-			<Image src={Ellipse1231} width={56.59} height={293.48} quality={100} alt="stroke" className="absolute top-[7.9rem] right-0" />
-			<Image src={UTube} width={75.35} height={191.16} quality={100} alt="stroke" className="absolute top-[8.8rem] left-0" />
+			<Image src={Ellipse1231} width={56.59} height={293.48} quality={100} alt="stroke" className="w-[50px] md:w-[56.59px] absolute top-[7.9rem] right-0" />
+			<Image src={UTube} width={75.35} height={191.16} quality={100} alt="stroke" className="w-[50px] md:w-[75.35px] absolute top-[8.8rem] left-0" />
 			<div className="flex justify-center items-center -z-50">
 				<Image src={Star} width={15.4} height={15.4} quality={100} alt="star" className="absolute top-[20rem] right-[30rem]" />
 				<Image src={Starr} width={22.4} height={22.4} quality={100} alt="star" className="absolute top-[10rem] left-[10rem]" />
@@ -31,8 +31,8 @@ const DashboardBackground = () => {
 				<Image src={circle} width={14.2} height={14.2} quality={100} alt="circle" className="absolute bottom-[40%] left-[4rem]" />
 			</div>
 			<div className="relative">
-				<Image src={curve} width={149.84} height={248.25} quality={100} alt="stroke" className="absolute bottom-0 left-0"/>
-				<Image src={Periwinkle2} width={132.34} height={176.78} quality={100} alt="stroke" className="absolute bottom-0 right-0"/>
+				<Image src={curve} width={149.84} height={248.25} quality={100} alt="stroke" className="w-[90px] md:w-[149.84px] absolute bottom-0 left-0"/>
+				<Image src={Periwinkle2} width={132.34} height={176.78} quality={100} alt="stroke" className="w-[70px] md:w-[132.34px] absolute bottom-0 right-0"/>
 			</div>
 		</div>
 	)

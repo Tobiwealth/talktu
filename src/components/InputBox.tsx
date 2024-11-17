@@ -20,7 +20,7 @@ const InputBox: React.FC<InputProps> = ({inputValue, onChange, placeholder, labe
 			        w-full md:w-[27rem] lg:w-[31.4rem] h-[3.5rem] bg-neutral-200 rounded-[12px] border-[1px] border-neutral-300 placeholder:text-neutral-600
 			        placeholder:text-sm font-normal font-nunito text-base px-4 focus:bg-sunglow-100 focus:border-[1px] focus:border-sunglow-main focus:outline-none
 			    "
-			    value= {inputValue}
+			    // value= {inputValue}
 			    onChange={onChange}
 			/>
 		</div>

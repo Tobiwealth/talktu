@@ -30,13 +30,29 @@ const OnboardingRole = () => {
 		plan: false
 	})
 
+	const handleAssessment = () => {
+		// if(!onboardingStatus.childProfile){
+		// 	return;
+		// }
+		router.push('/onboarding/parent-assessment'); 
+		setOnboardingStatus({...onboardingStatus, assessment:true })
+	}
+
+	const handleSubscription = () => {
+		// if(!onboardingStatus.childProfile || !onboardingStatus.assessment){
+		// 	return;
+		// }
+		router.push('/subscription'); 
+		setOnboardingStatus({...onboardingStatus, plan:true })
+	}
+
 	return (
 		<div>
 			{ role === 'parent' && <div className="pt-6">
 		        <OnboardingOptions handleClick={() => setOnboardingStatus({...onboardingStatus, account:true })} onboardingStatusOption={onboardingStatus.account} title="Create an Account" details=<p>Lorem ipsum dolor sit amet consectetur. <br className="md:hidden"/>Semper ipsum.</p> buttonTitle="Create Profile"/>
 		        <OnboardingOptions handleClick={() => {router.push('/create-child-profile'); setOnboardingStatus({...onboardingStatus, childProfile:true })}} onboardingStatusOption={onboardingStatus.childProfile} title="Create Child’s profile" details=<p>Lorem ipsum dolor sit amet consectetur. <br className="md:hidden"/>Id mollis.</p> buttonTitle="Create Profile"/>
-		        <OnboardingOptions handleClick={() => {router.push('/onboarding/parent-assessment'); setOnboardingStatus({...onboardingStatus, assessment:true });}} onboardingStatusOption={onboardingStatus.assessment} title="Complete Assessment" details=<p>Lorem ipsum dolor sit amet consectetur. <br className="md:hidden"/>Semper ipsum.</p> buttonTitle="Complete Assessment"/>
-		        <OnboardingOptions handleClick={() => {router.push('/subscription'); setOnboardingStatus({...onboardingStatus, plan:true })}} onboardingStatusOption={onboardingStatus.plan} title="Subscribe to a plan" details=<p>Lorem ipsum dolor sit amet consectetur. <br className="md:hidden"/>Egestas.</p> buttonTitle="Select a plan"/>
+		        <OnboardingOptions handleClick={handleAssessment} onboardingStatusOption={onboardingStatus.assessment} title="Complete Assessment" details=<p>Lorem ipsum dolor sit amet consectetur. <br className="md:hidden"/>Semper ipsum.</p> buttonTitle="Complete Assessment"/>
+		        <OnboardingOptions handleClick={handleSubscription} onboardingStatusOption={onboardingStatus.plan} title="Subscribe to a plan" details=<p>Lorem ipsum dolor sit amet consectetur. <br className="md:hidden"/>Egestas.</p> buttonTitle="Select a plan"/>
 		    </div>}
 
 		   {/*slp onboarding*/}
