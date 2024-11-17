@@ -26,7 +26,6 @@ export default function SignUp() {
 	const [activeTab, setActiveTab] = useState(tabs[0].id);
 	const inputRef = useRef<HTMLInputElement>(null);
 
-
 	useEffect(() => {
 		// Focus the input field and update the URL query parameter
 		if (inputRef.current) {
@@ -35,9 +34,13 @@ export default function SignUp() {
 		router.push(`?user=${activeTab}`, { scroll: false });
 	}, [router, activeTab]);
 
+	const handleSignup = () => {
+		router.push(`/onboarding?user=${activeTab}`);
+	};
+
 	return (
 		<RegistrationLayout>
-			<div className="space-y-4 auth-box min-[1300px]:scale-[0.9] sm:scale-[0.8] max-sm:px-4 max-sm:py-5 max-sm:space-y-6  max-sm:rounded-2xl">
+			<div className="space-y-4 auth-box min-[1300px]:scale-[0.9] sm:scale-[0.8] max-sm:px-4 max-sm:py-5 max-sm:space-y-6  max-sm:rounded-2xl min-[1060px]:translate-y-8">
 				<div className="space-y-5">
 					<div className="space-y-2">
 						<h2 className="text-2xl font-bold sm:text-4xl text-dark-800 font-nunitosans">

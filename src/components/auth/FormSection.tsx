@@ -7,7 +7,7 @@ interface Props {
 
 export default function FormSection({ children }: Props) {
 	return (
-		<div className="relative flex justify-center w-full min-h-screen px-4 pt-4 pb-20 overflow-hidden sm:grid sm:place-content-center min-[1060px]:w-1/2 xl:w-[54.17%]">
+		<div className="relative flex justify-center w-full min-h-screen px-4 pt-4 pb-20 overflow-hidden min-[1060px]:grid min-[1060px]:place-content-center min-[1060px]:w-1/2 xl:w-[54.17%]">
 			{children}
 
 			{/* Illustrations */}

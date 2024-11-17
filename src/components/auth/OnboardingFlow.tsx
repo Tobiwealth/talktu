@@ -21,7 +21,7 @@ const onboardingFlow = [
 
 export default function OnboardingFlow() {
 	return (
-		<div className="w-[45.83%] max-[1060px]:hidden h-full bg-deep_blue relative grid place-content-center px-[59px] max-[1400px]:px-[0px] max-[1280px]:w-1/2">
+		<div className="w-[45.83%] max-[1059px]:hidden h-full bg-deep_blue relative grid place-content-center px-[59px] max-[1400px]:px-[0px] max-[1280px]:w-1/2">
 			<div className="content space-y-[35px] max-[1400px]:scale-[0.9] max-[1300px]:scale-[0.85]">
 				<div className="space-y-[30px] max-w-[510px]">
 					{/* Logo */}

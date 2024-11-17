@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { forwardRef } from "react";
 
 const SchoolForm = forwardRef<HTMLInputElement, {}>((props, ref) => {
@@ -65,15 +66,16 @@ const SchoolForm = forwardRef<HTMLInputElement, {}>((props, ref) => {
 					</label>
 				</div>
 			</div>
-			<button
-				className="bg-sunglow-main w-3/5 min-[1060px]:w-full text-deep_blue font-semibold min-[1060px]:font-bold text-lg rounded-xl py-3 shadow-[0px_4px_0px] min-[1060px]:shadow-[0px_7px_0px] shadow-sunglow-900 min-[1060px]:shadow-sunglow-900"
+			<Link
+				href={"/auth/verify-email"}
+				className="block text-center bg-sunglow-main w-3/5 min-[1060px]:w-full text-deep_blue font-semibold min-[1060px]:font-bold text-lg rounded-xl py-3 shadow-[0px_4px_0px] min-[1060px]:shadow-[0px_7px_0px] shadow-sunglow-900 min-[1060px]:shadow-sunglow-900"
 				type="submit"
 			>
 				<span className="hidden min-[1060px]:block ">
 					Create Account
 				</span>
 				<span className="min-[1060px]:hidden">Next</span>
-			</button>
+			</Link>
 		</form>
 	);
 });

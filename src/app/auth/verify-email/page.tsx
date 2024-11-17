@@ -1,5 +1,6 @@
 "use client";
 import RegistrationLayout from "@/components/auth/RegistrationLayout";
+import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 
 const otpLength = 6;
@@ -73,7 +74,7 @@ export default function VerifyEmail() {
 
 	return (
 		<RegistrationLayout>
-			<div className="auth-box min-[1300px]:scale-[0.9] sm:scale-[0.8] max-sm:mt-28 max-sm:px-5">
+			<div className="auth-box min-[1300px]:scale-[0.9] sm:scale-[0.8] max-[1060px]:mt-28 max-sm:px-5">
 				<div className="space-y-[1.875rem]">
 					<div className="space-y-2">
 						<h2 className="text-2xl font-bold sm:text-4xl text-dark-800 font-nunitosans">
@@ -102,9 +103,13 @@ export default function VerifyEmail() {
 								/>
 							))}
 						</div>
-						<button className="form-btn" type="submit">
+						<Link
+							href={"/auth/login"}
+							className="form-btn block text-center"
+							type="submit"
+						>
 							Verify
-						</button>
+						</Link>
 					</form>
 				</div>
 			</div>

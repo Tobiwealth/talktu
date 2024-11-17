@@ -1,12 +1,10 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useEffect, useRef } from "react";
-
 
 export default function Login() {
 	const inputRef = useRef<HTMLInputElement | null>(null);
-
-
 
 	useEffect(() => {
 		inputRef.current?.focus();
@@ -23,7 +21,7 @@ export default function Login() {
 					className="w-24"
 				/>
 			</div>
-			<div className="relative flex justify-center flex-1 overflow-hidden xl:items-center px-4 pt-16 md:pt-24 xl:pt-0">
+			<div className="relative flex justify-center flex-1 overflow-hidden px-4 pt-16 md:pt-24">
 				<div className="relative z-50 space-y-4 auth-box min-[1300px]:scale-[0.9] sm:scale-[0.8] max-sm:rounded-2xl max-sm:px-4">
 					<div className="space-y-2">
 						<h2 className="text-2xl font-bold sm:text-4xl text-dark-800 font-nunitosans">
@@ -33,7 +31,7 @@ export default function Login() {
 							Enter your email address and password to continue
 						</p>
 					</div>
-					<form className="space-y-6" >
+					<form className="space-y-6">
 						<div className="space-y-4">
 							<div className="form-field">
 								<label htmlFor="email">Email Address</label>
@@ -57,7 +55,7 @@ export default function Login() {
 								<input
 									type="password"
 									id="password"
-									placeholder="Create Password"
+									placeholder="Enter Password"
 									className="input-box"
 								/>
 							</div>
@@ -79,9 +77,13 @@ export default function Login() {
 								</label>
 							</div>
 						</div>
-						<button className="form-btn" type="submit">
-							Create Account
-						</button>
+						<Link
+							href={"/onboarding?user=parent"}
+							className="form-btn block text-center"
+							type="submit"
+						>
+							Sign In
+						</Link>
 					</form>
 				</div>
 
