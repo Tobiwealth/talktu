@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import flag from '../../../public/icons/flag.svg'
 import cards from '../../../public/icons/cards.svg'
 import video from '../../../public/icons/video.svg'
+import Button from '@/components/Button'
 
 const FlashCards = () => {
 	const router = useRouter();
@@ -22,12 +23,49 @@ const FlashCards = () => {
 				<h2 className="font-nunito font-semibold text-xl text-white mb-3">Flashcards</h2>
 				<Image src={video} width={741} height={348} quality={100} alt="video" className="" />
 			</div>
-			<div className="p-2 bg-[#0A1835] mt-12 rounded-t-[16px]">
-				<h2 className="font-nunito font-semibold text-xl text-white pl-5 pt-3">Flashcards</h2>
-				<div className="flex justify-between items-center ">
-					<Image onClick={() => router.push('/dashboard/02/03/04')} src={cards} width={327} height={336} quality={100} alt="cards" className="p-4 cursor-pointer" />
-					<Image src={cards} width={327} height={336} quality={100} alt="cards" className="p-4" />
+			<div className="p-5 bg-[#0A1835] mt-12 rounded-[16px]">
+				<h2 className="font-nunito font-semibold text-xl text-white pb-5">Flashcards</h2>
+				<div className="flex flex-col lg:flex-row justify-between items-center gap-6 ">
+				    <div className="p-4 bg-[#112349] rounded-[16px]">
+					    <Image 
+					        src={cards} 
+					        width={327} 
+					        height={336} 
+					        quality={100} 
+					        alt="cards" 
+					        className="" 
+					    />
+					    <p className="font-nunito font-semibold text-xl text-white pt-2 pb-5">Common Objects</p>
+					    <button 
+					        onClick={() => router.push('/dashboard/activity/02/03/04')} 
+					        className="font-nunito font-semibold text-sm text-deep_blue bg-neutral-200 rounded-[12px] h-[42.51px] w-full"
+					    >Start</button>
+					</div>
+					<div className="p-4 bg-[#112349] rounded-[16px]">
+					    <Image 
+					        src={cards} 
+					        width={327} 
+					        height={336} 
+					        quality={100} 
+					        alt="cards" 
+					        className="" 
+					    />
+					    <p className="font-nunito font-semibold text-xl text-white pt-2 pb-5">Common Objects</p>
+					    <button className="font-nunito font-semibold text-sm text-deep_blue bg-neutral-200 rounded-[12px] h-[42.51px] w-full">Start</button>
+					</div>
 				</div>
+			</div>
+			<div className="p-5 bg-[#0A1835] mt-6 rounded-[16px]">
+				<p className="font-nunito font-semibold text-white text-xl pb-4">Comment</p>
+				<textarea name="Comment" id="Comment"
+				    placeholder="Leave a comment or feedback about this lesson"
+				    className="bg-[#11244842] border-[1px] border-[#112448] h-[215px] w-full py-3 px-5 rounded-[16px] 
+				    placeholder:text-[#3E64AB] placeholder:font-light font-nunito placeholder:italic text-white focus:border-[3px] focus:outline-none"
+				>	
+				</textarea>
+			</div>
+			<div className="pt-6 pb-12 px-1">
+				<Button title="Finish" buttonClass="w-full h-[48.68px] font-bold text-deep_blue text-base" onClick={() => console.log("")}/>
 			</div>
 		</div>
 	)

@@ -20,11 +20,6 @@ const ParentSidebar: React.FC<ParentSidebarProps> = ({currentPage}) => {
 					    className={`${pathname.includes("/profile") ? "text-white rounded-[8px] bg-[#112448] py-2 py-2 w-[80%] text-center" : "text-[#3E64AB]"}  `} 
 					    href={currentPage === 'dashboard' ? "/dashboard/parents/profile" : currentPage === 'slp' ? "/slp": "/school/profile"}
 					>Profile</Link>
-					{currentPage === 'dashboard' &&
-					 <Link 
-					    className={`${pathname==="/dashboard/parents/report" ? "text-white rounded-[8px] bg-[#112448] py-2 py-2 w-[80%] text-center" : "text-[#3E64AB]"}  `} 
-					    href="/dashboard/parents/report"
-					>Report</Link>}
 					<Link 
 					    className={`${pathname.includes("/feedback") ? "text-white rounded-[8px] bg-[#112448] py-2 w-[80%] text-center" : "text-[#3E64AB]"}  `} 
 					    href={currentPage === 'dashboard' ? "/dashboard/parents/feedback" : currentPage === 'slp' ? "/slp/feedback": "/school/feedback"}

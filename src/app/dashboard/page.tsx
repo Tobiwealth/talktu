@@ -26,7 +26,7 @@ const Dashboard = () => {
 			</div>
 			<div className="mt-12 lg:mt-20 mb-8 -ml-28 md:-ml-64 lg:-ml-24">
 				<button 
-				    onClick={() => router.push('/dashboard/02')} 
+				    onClick={() => router.push('/dashboard/activity/02')} 
 				    className="text-white font-nunito font-medium text-sm flex justify-center items-center gap-1 bg-retro_blue-main h-[2.25rem] w-[5.9rem] rounded-[9px] shadowbox3"
 			    >Start here</button>
 			</div>
