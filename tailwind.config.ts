@@ -191,6 +191,9 @@ const config: Config = {
 				h3: ["var(--fs-h3)", { lineHeight: "var(--lh-default)" }],
 				h4: ["var(--fs-h4)", { lineHeight: "var(--lh-default)" }],
 			},
+			screens: {
+		        'sl': '400px',
+		    }
 		},
 	},
 	plugins: [],

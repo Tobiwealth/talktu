@@ -8,12 +8,16 @@ import { useRouter } from 'next/navigation'
 const Dashboard = () => {
 	const list = [1,2,3,4,5,6,7,8,9,10,11]
 	const position = [
-	                    '-translate-x-16 md:-translate-x-2 lg:-translate-x-6 lg:pt-10', '-translate-x-[85px] md:-translate-x-[180px] lg:-translate-x-[155px]', 'translate-x-20 md:-translate-x-[155px] lg:translate-x-40', 'translate-x-6 md:translate-x-32 lg:translate-x-36', '-translate-x-[100px] md:translate-x-[124px] lg:-translate-x-[120px]', '-translate-x-4 md:-translate-x-16 lg:-translate-x-14',
-	                    'translate-x-[88px] md:-translate-x-48 lg:translate-x-44', 'translate-x-6 md:-translate-x-[55px] lg:translate-x-[138px]', '-translate-x-[88px] md:translate-x-[114px] lg:-translate-x-[74px]', '-translate-x-32 md:translate-x-32 lg:-translate-x-52', '-translate-x-8 lg:-translate-x-[95px]'
+	                    '-translate-x-12 sl:-translate-x-16 md:-translate-x-2 lg:-translate-x-6 lg:pt-10', '-translate-x-[65px] sl:-translate-x-[85px] md:-translate-x-[180px] lg:-translate-x-[155px]', 'translate-x-[110px] sl:translate-x-20 md:-translate-x-[155px] lg:translate-x-40', 'translate-x-10 sl:translate-x-6 md:translate-x-32 lg:translate-x-36', 
+	                    '-translate-x-[80px] sl:-translate-x-[100px] md:translate-x-[124px] lg:-translate-x-[120px]', 'translate-x-2 sl:-translate-x-4 md:-translate-x-16 lg:-translate-x-14',
+	                    'translate-x-[108px] sl:translate-x-[88px] md:-translate-x-48 lg:translate-x-44', 'translate-x-12 sl:translate-x-6 md:-translate-x-[55px] lg:translate-x-[138px]', 
+	                    '-translate-x-[68px] sl:-translate-x-[88px] md:translate-x-[114px] lg:-translate-x-[74px]', '-translate-x-28 sl:-translate-x-32 md:translate-x-32 lg:-translate-x-52', '-translate-x-2 sl:-translate-x-8 lg:-translate-x-[95px]'
 	                ]
 	const wordPosition = [
-	                    '-translate-x-28 md:-translate-x-10 lg:-translate-x-20', '-translate-x-[38px] md:-translate-x-48 lg:-translate-x-24', 'translate-x-20 md:-translate-x-12 lg:translate-x-52', '-translate-x-8 md:translate-x-40 lg:translate-x-20', '-translate-x-28 md:translate-x-16 lg:-translate-x-36', 'translate-x-4 md:-translate-x-40 lg:translate-x-6',
-	                    'translate-x-[70px] md:-translate-x-36 lg:translate-x-52', '-translate-x-4 md:translate-x-16 lg:translate-x-24', '-translate-x-32 md:translate-x-40 lg:-translate-x-32', '-translate-x-32 md:translate-x-16 lg:-translate-x-48', 'md:-translate-x-28 lg:-translate-x-4'
+	                    '-translate-x-[90px] sl:-translate-x-28 md:-translate-x-10 lg:-translate-x-20', '-translate-x-[25px] sl:-translate-x-[38px] md:-translate-x-48 lg:-translate-x-24', 'translate-x-24 sl:translate-x-20 md:-translate-x-12 lg:translate-x-52', '-translate-x-4 sl:-translate-x-8 md:translate-x-40 lg:translate-x-20', 
+	                    '-translate-x-[88px] sl:-translate-x-28 md:translate-x-16 lg:-translate-x-36', 'translate-x-8 sl:translate-x-4 md:-translate-x-40 lg:translate-x-6',
+	                    'translate-x-[93px] sl:translate-x-[70px] md:-translate-x-36 lg:translate-x-52', '-translate-x-0 sl:-translate-x-4 md:translate-x-16 lg:translate-x-24', 
+	                    '-translate-x-[106px] sl:-translate-x-32 md:translate-x-40 lg:-translate-x-32', '-translate-x-[100px] sl:-translate-x-32 md:translate-x-16 lg:-translate-x-48', 'translate-x-5 sl:translate-x-0 md:-translate-x-28 lg:-translate-x-4'
 	                ]
 	const router = useRouter()
 	return (
@@ -24,7 +28,7 @@ const Dashboard = () => {
 				    Sammy’s learning plan is spread over a period of 12 months, each <br className="hidden md:block"/>months plan is broken down into different lessons
 				</h3>
 			</div>
-			<div className="mt-12 lg:mt-20 mb-8 -ml-28 md:-ml-64 lg:-ml-24">
+			<div className="mt-12 lg:mt-20 mb-8 -ml-16 sl:-ml-28 md:-ml-64 lg:-ml-24">
 				<button 
 				    onClick={() => router.push('/dashboard/activity/02')} 
 				    className="text-white font-nunito font-medium text-sm flex justify-center items-center gap-1 bg-retro_blue-main h-[2.25rem] w-[5.9rem] rounded-[9px] shadowbox3"
@@ -41,7 +45,7 @@ const Dashboard = () => {
 						className="rounded-[100%] p-2"
 				    />
 				</div>
-				<div className="md:hidden border-[5px] border-[#243B67] flex justify-center items-center lp-1 rounded-[100%] -ml-8 ">
+				<div className="md:hidden border-[5px] border-[#243B67] flex justify-center items-center lp-1 rounded-[100%] ml-4 sl:-ml-5 ">
 					<Image
 						src={dashboard_image}
 						width={112.32}
@@ -52,7 +56,7 @@ const Dashboard = () => {
 				    />
 				</div>	
 			</div>
-			<p className="font-nunito font-semibold text-base md:text-xl text-white pt-4 text-center lg:text-left lg:ml-24">Forming Basic <br className="md:hidden"/>Sentences</p>
+			<p className="font-nunito font-semibold text-base md:text-xl text-white pt-4 text-center lg:text-left ml-12 sl:ml-0 lg:ml-24">Forming Basic <br className="md:hidden"/>Sentences</p>
 			<div className="">
 				{list.map((item, i) => <div key={item}>
 					<div className={`mt-32 lg:mt-56 ${position[i]} `}>
