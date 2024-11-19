@@ -4,6 +4,7 @@ import Image from 'next/image'
 import dashboard_image from '../../../public/icons/dashboard_image.svg'
 import locked_module from '../../../public/icons/locked_module.svg'
 import { useRouter } from 'next/navigation'
+import StarComponent from '@/components/StarComponent'
 
 const Dashboard = () => {
 	const list = [1,2,3,4,5,6,7,8,9,10,11]
@@ -84,6 +85,7 @@ const Dashboard = () => {
 				    <p className={`font-nunito font-semibold text-xs md:text-xl text-white pt-4 ${wordPosition[i]}`}>Forming Basic Sentences</p>
 				</div>)}
 			</div>
+			<StarComponent/>
 		</div>
 	)
 }

@@ -45,7 +45,7 @@ const StepOne: React.FC<StepOneProps> = ({onClick}) => {
 					</div>
 					{toggleArrow.month && <div className="bg-white rounded-[10px] dropdownshadow w-[104.05px] h-[300px] text-center flex flex-col gap-1 py-4 absolute top-[70px] overflow-y-scroll">
 						{
-							months.map((item,i) => (<p key={i} onClick={() => setSelectedMonth(item)} className={`font-nunito font-medium text-lg text-neutral-800 py-2 cursor-pointer ${selectedMonth === item ? "bg-retro_blue-300": ""}`}>{item}</p>
+							months.map((item,i) => (<p key={i} onClick={() =>{setToggleArrow({...toggleArrow, month:false}); setSelectedMonth(item)}} className={`font-nunito font-medium text-lg text-neutral-800 py-2 cursor-pointer ${selectedMonth === item ? "bg-retro_blue-300": ""}`}>{item}</p>
 						))}
 					</div>}
 				</div>
@@ -59,7 +59,7 @@ const StepOne: React.FC<StepOneProps> = ({onClick}) => {
 					</div>
 					{toggleArrow.day && <div className="bg-white rounded-[10px] dropdownshadow w-[104.05px] h-[300px] text-center flex flex-col gap-1 py-4 absolute top-[70px] overflow-y-scroll">
 						{
-							Day.map((item,i) => (<p key={i} onClick={() => setSelectedDay(item)} className={`font-nunito font-medium text-lg text-neutral-800 py-2 cursor-pointer ${selectedDay === item ? "bg-retro_blue-300": ""}`}>{item}</p>
+							Day.map((item,i) => (<p key={i} onClick={() =>{setToggleArrow({...toggleArrow, day:false}); setSelectedDay(item)}} className={`font-nunito font-medium text-lg text-neutral-800 py-2 cursor-pointer ${selectedDay === item ? "bg-retro_blue-300": ""}`}>{item}</p>
 						))}
 					</div>}
 				</div>
@@ -73,7 +73,7 @@ const StepOne: React.FC<StepOneProps> = ({onClick}) => {
 					</div>
 					{toggleArrow.year && <div className="bg-white rounded-[10px] dropdownshadow w-[104.05px] h-[300px] text-center flex flex-col gap-1 py-4 absolute top-[70px] overflow-y-scroll">
 						{
-							year.map((item,i) => (<p key={i} onClick={() => setSelectedYear(item)} className={`font-nunito font-medium text-lg text-neutral-800 py-2 cursor-pointer ${selectedYear === item ? "bg-retro_blue-300": ""}`}>{item}</p>
+							year.map((item,i) => (<p key={i} onClick={() =>{setToggleArrow({...toggleArrow, year:false}); setSelectedYear(item)}} className={`font-nunito font-medium text-lg text-neutral-800 py-2 cursor-pointer ${selectedYear === item ? "bg-retro_blue-300": ""}`}>{item}</p>
 						))}
 					</div>}
 				</div>
