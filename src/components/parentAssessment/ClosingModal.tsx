@@ -1,11 +1,15 @@
+'use client'
 import React from 'react'
 import Image from 'next/image'
 import congrats from '../../../public/icons/congrats.svg'
 import Button from '@/components/Button'
+import { useRouter } from 'next/navigation'
+
 
 const ClosingModal= () => {
+	const router = useRouter()
 	const handleClick =() =>{
-		console.log("something")
+		router.push('/onboarding?user=parent')
 	}
 	return (
 		<div className="min-h-screen max-h-full w-full flex flex-col items-center justify-center bg-[#EEF3FE] py-24 px-6 relative">

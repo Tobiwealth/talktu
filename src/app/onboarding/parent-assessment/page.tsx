@@ -11,6 +11,7 @@ import ClosingModal from '@/components/parentAssessment/ClosingModal'
 import axios from '@/api/useAxios'
 import {useChildStore} from '@/store/childStore'
 import {useAuthStore} from '@/store/authStore'
+import {useAssessmentResponseStore} from '@/store/assessmentResponseStore'
 
 interface Q{
 	hasFollowUp: boolean;
@@ -52,85 +53,17 @@ const ParentAssessment = () => {
 	const [assessment, setAssessment] = useState<Steps[]>([]); // assessment questions
 	const [assessmentId, setAssessmentId] = useState<string>("")
 	const childId = useChildStore((state) => state.childProfile?.childrenId[0]);
-	const initialResponse = {
-		assessmentId: '', 
-		childId: '', 
-		steps: [],
-	};
-	const [assessmentResponse, setAssessmentResponse] = useState<AssessmentResponse >(initialResponse) // assessment response collected
+	//const childId = "dj9ediid"
 	const [selectedAnswer, setSelectedAnswer] = useState<string|number|null>(null);
+	const addResponse = useAssessmentResponseStore((state) => state.addAssessmentResponse);//
+	const responsess = useAssessmentResponseStore((state) => state.assessmentResponse); 
 	
 
 	const setReponse = (stepId:string, qstnId:string, type:string, hasFollowUp:boolean) => {
-		// setAssessmentResponse((prev) => {
-		// 	//if (!prev) return null
-		// 	prev.assessmentId = assessmentId;
-		// 	prev.childId = childId;
-		// 	const existingStep = prev.steps?.find((item) => item.stepId === stepId);
-		// 	if (existingStep) {
-		//         // If the step exists, check if the questionId exists in answers
-		//         const questionExists = existingStep.answers.find(
-		//             (answer) => answer.questionId === qstnId
-		//         );
-
-		//         // If question exists, update its response; otherwise, add a new question
-		//         const updatedAnswers = questionExists
-		//             ? existingStep.answers.map((answer) =>
-		//                 answer.questionId === qstnId
-		//                 ? {
-		//                     ...answer,
-		//                     response: {
-		//                         key: type, 
-		//                         value: type === 'text' ? selectedAnswer : type === 'scale' ? rating : pickedOption, 
-		//                         followUpAnswer: hasFollowUp ? selectedAnswer : null
-		//                     },
-		//                 }
-		//                 : answer
-		//                 )
-		//             : [
-		// 	            ...existingStep.answers,
-		// 	            {
-		// 	                questionId: qstnId,
-		// 	                response: {
-		// 	                    key: type, // Replace dynamically
-		// 	                    value: type === 'text' ? selectedAnswer : type === 'scale' ? rating : pickedOption, // Replace dynamically
-		// 	                    followUpAnswer: hasFollowUp ? selectedAnswer : null
-		// 	                },
-		// 	            },
-		//             ];
-
-		//         // Return updated state with the modified step
-		//         return {
-		// 	        ...prev,
-		// 	        steps: prev.steps.map((s) =>
-		// 	            s.stepId === stepId
-		// 	                ? { ...s, answers: updatedAnswers }
-		// 	                : s
-		// 	        ),
-		//         };
-		//     } else {
-		//         // If the step doesn't exist, create a new step with the current question
-		//         return {
-		// 	        ...prev,
-		// 	        steps: [
-		// 	            ...prev.steps,
-		// 	            {
-		// 		            stepId: stepId,
-		// 		            answers: [
-		// 		                {
-		// 			                questionId: qstnId,
-		// 			                response: {
-		// 			                    key: type, // Replace dynamically
-		// 			                    value: type === 'text' ? selectedAnswer : type === 'scale' ? rating : pickedOption, // Replace dynamically
-		// 			                    followUpAnswer: hasFollowUp ? selectedAnswer : null
-		// 			                },
-		// 		                },
-		// 		            ],
-		// 	            },
-		// 	        ],
-		//         };
-		//     }
-		// })
+		if(!childId || !assessmentId || !qstnId || !type ){
+			return;
+		}
+		addResponse({childId, assessmentId, stepId, questionId:qstnId, type, value: type === 'text' ? selectedAnswer : type === 'scale' ? rating : pickedOption, followUpAnswer: selectedAnswer });
 		setSelectedAnswer(null);
 		setPickedOption("");
 		setRating(1)
@@ -138,23 +71,24 @@ const ParentAssessment = () => {
 	const handleClick = async (maxLevel:number, currentLevel:number, currentStep:number, stepId:string, questionId:string, type:string, hasFollowUp:boolean) => {
 		setReponse(stepId, questionId, type, hasFollowUp);
 		if(currentLevel === maxLevel && currentStep === 10){
-			try {
-	            const response = await axios.post('assessment-responses',
-	                JSON.stringify({ assessmentResponse}),
-	                {
-	                    headers: { 
-	                    	'Content-Type': 'application/json',
-	                    	'Authorization':`Bearer ${token}` 
-	                    }
-	                    // withCredentials: true
-	                }
-	            );
-	            console.log(response.data);
-	            handleCloseMobile()
+			// try {
+	  //           const response = await axios.post('assessment-responses',
+	  //               JSON.stringify({ assessmentResponse}),
+	  //               {
+	  //                   headers: { 
+	  //                   	'Content-Type': 'application/json',
+	  //                   	'Authorization':`Bearer ${token}` 
+	  //                   }
+	  //                   // withCredentials: true
+	  //               }
+	  //           );
+	  //           console.log(response.data);
+	  //           handleCloseMobile()
 
-	        } catch (err) {
-	            console.log(err);
-	        }
+	  //       } catch (err) {
+	  //           console.log(err);
+	  //       }
+	        handleCloseMobile()
 		}
 		if(currentLevel < maxLevel){
 			setLevel(prev => prev + 1);
@@ -187,7 +121,7 @@ const ParentAssessment = () => {
         }
 	}
 	console.log(assessment, assessmentId)
-	console.log('assessResponse',assessmentResponse);
+	console.log('asest response', responsess);
 
 	return (
 		<main>
