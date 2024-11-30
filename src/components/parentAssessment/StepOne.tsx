@@ -1,13 +1,19 @@
+'use client'
 import React, {useState} from 'react'
 import InputBox from '@/components/InputBox'
 import Button from '@/components/Button'
 import { GoChevronDown } from "react-icons/go";
 
 interface StepOneProps{
-	onClick: () => void
+	onClick: () => void 
+	title: string;
+	description: string;
+	answer: string | number | null;
+	setAnswer: React.Dispatch<React.SetStateAction<string | number | null>>;
+
 }
 
-const StepOne: React.FC<StepOneProps> = ({onClick}) => {
+const StepOne: React.FC<StepOneProps> = ({onClick, title, description, answer, setAnswer}) => {
 	interface ActiveBox{
 		month: boolean,
 		day: boolean,
@@ -29,13 +35,13 @@ const StepOne: React.FC<StepOneProps> = ({onClick}) => {
 
 	return (
 		<section className={`flex flex-col items-center justify-center gap-8 mt-6 ${toggleArrow.day || toggleArrow.month || toggleArrow.year ? "" : ""}`}>
-		    <div className="text-center mb-2">
-			    <p className="font-nunito font-semibold text-base text-neutral-600">Step 1</p>
-			    <p className="font-nunitosans font-bold text-base md:text-xl lg:text-2xl text-[#3D7CF1] pt-2">Demographic Details</p>
+		    <div className="mb-2 text-center">
+			    <p className="text-base font-semibold font-nunito text-neutral-600">Step 1</p>
+			    <p className="font-nunitosans font-bold text-base md:text-xl lg:text-2xl text-[#3D7CF1] pt-2">{title}</p>
 			</div>
-			<h1 className="font-nunito font-bold text-2xl md:text-[1.5rem] lg:text-[2.0rem] xl:text-[2.4rem] text-deep_blue text-center md:leading-[32px] lg:leading-[52px]">What is your Child’s <br/>date of Birth?</h1>
-			<div className="flex justify-center items-center gap-4">
-				<div className="flex flex-col items-center pt-2 relative">
+			<h1 className="font-nunito font-bold text-2xl md:text-[1.5rem] lg:text-[2.0rem] xl:text-[2.4rem] text-deep_blue text-center md:leading-[32px] lg:leading-[52px]">{description}</h1>
+			<div className="flex items-center justify-center gap-4">
+				<div className="relative flex flex-col items-center pt-2">
 					<div className="flex justify-center items-center gap-2 font-nunito font-semibold text-sm text-neutral-800 w-[104.05px] h-[50px] bg-neutral-200 rounded-[13px] border-[1px] border-neutral-300">
 					    <span>{selectedMonth ? selectedMonth : "Month"}</span> 
 					    <GoChevronDown
@@ -45,11 +51,11 @@ const StepOne: React.FC<StepOneProps> = ({onClick}) => {
 					</div>
 					{toggleArrow.month && <div className="bg-white rounded-[10px] dropdownshadow w-[104.05px] h-[300px] text-center flex flex-col gap-1 py-4 absolute top-[70px] overflow-y-scroll">
 						{
-							months.map((item,i) => (<p key={i} onClick={() =>{setToggleArrow({...toggleArrow, month:false}); setSelectedMonth(item)}} className={`font-nunito font-medium text-lg text-neutral-800 py-2 cursor-pointer ${selectedMonth === item ? "bg-retro_blue-300": ""}`}>{item}</p>
+							months.map((item,i) => (<p key={i} onClick={() =>{setToggleArrow({...toggleArrow, month:false}); setSelectedMonth(item); setAnswer(`${selectedDay}-${item}-${selectedYear}`)}} className={`font-nunito font-medium text-lg text-neutral-800 py-2 cursor-pointer ${selectedMonth === item ? "bg-retro_blue-300": ""}`}>{item}</p>
 						))}
 					</div>}
 				</div>
-				<div className="flex flex-col items-center pt-2 relative">
+				<div className="relative flex flex-col items-center pt-2">
 					<div className="flex justify-center items-center gap-2 font-nunito font-semibold text-sm text-neutral-800 w-[104.05px] h-[50px] bg-neutral-200 rounded-[13px] border-[1px] border-neutral-300">
 					    <span>{selectedDay ? selectedDay : "Day"}</span> 
 					    <GoChevronDown
@@ -59,11 +65,11 @@ const StepOne: React.FC<StepOneProps> = ({onClick}) => {
 					</div>
 					{toggleArrow.day && <div className="bg-white rounded-[10px] dropdownshadow w-[104.05px] h-[300px] text-center flex flex-col gap-1 py-4 absolute top-[70px] overflow-y-scroll">
 						{
-							Day.map((item,i) => (<p key={i} onClick={() =>{setToggleArrow({...toggleArrow, day:false}); setSelectedDay(item)}} className={`font-nunito font-medium text-lg text-neutral-800 py-2 cursor-pointer ${selectedDay === item ? "bg-retro_blue-300": ""}`}>{item}</p>
+							Day.map((item,i) => (<p key={i} onClick={() =>{setToggleArrow({...toggleArrow, day:false}); setSelectedDay(item); setAnswer(`${item}-${selectedMonth}-${selectedYear}`)}} className={`font-nunito font-medium text-lg text-neutral-800 py-2 cursor-pointer ${selectedDay === item ? "bg-retro_blue-300": ""}`}>{item}</p>
 						))}
 					</div>}
 				</div>
-				<div className="flex flex-col items-center pt-2 relative">
+				<div className="relative flex flex-col items-center pt-2">
 					<div className="flex justify-center items-center gap-2 font-nunito font-semibold text-sm text-neutral-800 w-[104.05px] h-[50px] bg-neutral-200 rounded-[13px] border-[1px] border-neutral-300">
 					    <span>{selectedYear ? selectedYear : "Year"}</span> 
 					    <GoChevronDown
@@ -73,13 +79,17 @@ const StepOne: React.FC<StepOneProps> = ({onClick}) => {
 					</div>
 					{toggleArrow.year && <div className="bg-white rounded-[10px] dropdownshadow w-[104.05px] h-[300px] text-center flex flex-col gap-1 py-4 absolute top-[70px] overflow-y-scroll">
 						{
-							year.map((item,i) => (<p key={i} onClick={() =>{setToggleArrow({...toggleArrow, year:false}); setSelectedYear(item)}} className={`font-nunito font-medium text-lg text-neutral-800 py-2 cursor-pointer ${selectedYear === item ? "bg-retro_blue-300": ""}`}>{item}</p>
+							year.map((item,i) => (<p key={i} onClick={() =>{setToggleArrow({...toggleArrow, year:false}); setSelectedYear(item); setAnswer(`${selectedDay}-${selectedMonth}-${item}`)}} className={`font-nunito font-medium text-lg text-neutral-800 py-2 cursor-pointer ${selectedYear === item ? "bg-retro_blue-300": ""}`}>{item}</p>
 						))}
 					</div>}
 				</div>
 			</div>
 			<div className="pt-4">
-				<Button title="Proceed" onClick={onClick} buttonClass="w-[15rem] h-[3.3rem]"/>
+			    {
+			    (selectedDay && selectedMonth && selectedYear) ?
+					<Button title="Proceed" onClick={onClick} buttonClass="w-[15rem] h-[3.3rem]"/>:
+					<Button title="Proceed" buttonClass="w-[15rem] h-[3.3rem]"/>
+			    }
 			</div>
 		</section>
 	)

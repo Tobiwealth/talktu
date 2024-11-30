@@ -15,7 +15,7 @@ export default function TopFeaturesSection() {
 							className="bg-white p-4 flex gap-3 items-center rounded-[15px] max-w-[450px] md:max-w-none"
 						>
 							<div className="bg-neutral-200 w-[40%] lg:w-[45%] h-[113px] rounded-[13px] animate-pulse aspect-[22/19] md:aspect-auto"></div>
-							<p className="flex-1 font-semibold text-black text-sm sm:text-base">
+							<p className="flex-1 text-sm font-semibold text-black sm:text-base">
 								A lot of money on different educational
 								materials and schools for your kid
 							</p>
@@ -23,7 +23,7 @@ export default function TopFeaturesSection() {
 					))}
 				</div>
 			</div>
-			<CTAButton />
+			<CTAButton href="#plans" />
 		</div>
 	);
 }

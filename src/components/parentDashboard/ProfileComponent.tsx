@@ -8,7 +8,7 @@ import WhiteButton from '@/components/WhiteButton'
 
 const ProfileComponent = () => {
 	return (
-		<div className="min-h-screen mt-8 lg:mt-28 px-8 lg:px-0 lg:pr-8 w-full">
+		<div className="w-full min-h-screen px-8 mt-8 lg:mt-28 lg:px-0 lg:pr-8">
 			<div className="flex gap-4">
 				<div className="flex flex-col justify-center items-center gap-2 border-[2px] border-retro_blue-main bg-[#112349] p-4 rounded-[8px]">
 					<Image
@@ -19,18 +19,18 @@ const ProfileComponent = () => {
 						alt="profile"
 						className="rounded-full"
 				    />
-				    <p className="font-nunito font-semibold text-sm text-white">Sammy</p>
+				    <p className="text-sm font-semibold text-white font-nunito">Sammy</p>
 				</div>
 				<div className="flex flex-col justify-center items-center gap-2 bg-[#112349] p-4 rounded-[8px]">
 					<div  className="border-[3px] border-[#0E357E] p-3 rounded-full bg-[#15294F] w-[70px] h-[70px] flex justify-center items-center">
 					    <AiOutlinePlus className="text-3xl text-retro_blue-main" />
 					</div>
-				    <p className="font-nunito font-semibold text-sm text-white">Add a child</p>
+				    <p className="text-sm font-semibold text-white font-nunito">Add a child</p>
 				</div>
 			</div>
 			<div className="font-nunito rounded-[16px] bg-[#112349] mt-5 p-8 md:w-full lg:w-[90%] xl:w-[80%] flex flex-col gap-6">
-				<h3 className="font-semibold text-lg md:text-xl text-white">Edit Profile</h3>
-				<div className="flex flex-col justify-center items-center w-fit gap-2">
+				<h3 className="text-lg font-semibold text-white md:text-xl">Edit Profile</h3>
+				<div className="flex flex-col items-center justify-center w-fit gap-2">
 					<Image
 						src={kid_avatar}
 						width={70}
@@ -43,7 +43,7 @@ const ProfileComponent = () => {
 				</div>
 				<div className="flex flex-col gap-5">
 					<div className="flex flex-col gap-2">
-						<label className="font-medium text-retro_blue-700 text-base" htmlFor="fullname">Full Name</label>
+						<label className="text-base font-medium text-retro_blue-700" htmlFor="fullname">Full Name</label>
 						<input 
 						    className="bg-[#15294F] border-[1px] border-[#2D4675] rounded-[12px] h-[3.125rem] placeholder:text-sm placeholder:text-neutral-500 px-4 text-retro_blue-700 focus:border-[2px] focus:outline-none focus:border-retro_blue-main" 
 						    type="text"
@@ -52,7 +52,7 @@ const ProfileComponent = () => {
 						/>
 					</div>
 					<div className="flex flex-col gap-2">
-						<label className="font-medium text-retro_blue-700 text-base" htmlFor="phoneNumber">Phone number</label>
+						<label className="text-base font-medium text-retro_blue-700" htmlFor="phoneNumber">Phone number</label>
 						<input 
 						    className="bg-[#15294F] border-[1px] border-[#2D4675] rounded-[12px] h-[3.125rem] placeholder:text-sm placeholder:text-neutral-500 px-4 text-retro_blue-700 focus:border-[2px] focus:outline-none focus:border-retro_blue-main" 
 						    type="text"
@@ -61,7 +61,7 @@ const ProfileComponent = () => {
 						/>
 					</div>
 					<div className="flex flex-col gap-2">
-						<label className="font-medium text-retro_blue-700 text-base" htmlFor="email">Email Address</label>
+						<label className="text-base font-medium text-retro_blue-700" htmlFor="email">Email Address</label>
 						<input 
 						    className="bg-[#15294F] border-[1px] border-[#2D4675] rounded-[12px] h-[3.125rem] placeholder:text-sm placeholder:text-neutral-500 px-4 text-retro_blue-700 focus:border-[2px] focus:outline-none focus:border-retro_blue-main" 
 						    type="email"
@@ -70,7 +70,7 @@ const ProfileComponent = () => {
 						/>
 					</div>
 					<div className="flex flex-col gap-2">
-						<label className="font-medium text-retro_blue-700 text-base" htmlFor="password">Password</label>
+						<label className="text-base font-medium text-retro_blue-700" htmlFor="password">Password</label>
 						<input 
 						    className="bg-[#15294F] border-[1px] border-[#2D4675] rounded-[12px] h-[3.125rem] placeholder:text-sm placeholder:text-neutral-500 px-4 text-retro_blue-700 focus:border-[2px] focus:outline-none focus:border-retro_blue-main" 
 						    type="password"
@@ -78,7 +78,7 @@ const ProfileComponent = () => {
 						    name="password"
 						/>
 					</div>
-					<div className="flex items-center justify-start w-fit gap-4 pb-4 mt-4">
+					<div className="flex items-center justify-start pb-4 mt-4 w-fit gap-4">
 					    <WhiteButton title="Change Password" buttonClass="w-[144px] md:w-[168px] h-[42.51px] font-semibold text-deep_blue text-sm" onClick={() => console.log("")}/>
 					    <Button title="Update" buttonClass="w-[168px] h-[42.51px] font-semibold text-deep_blue text-sm" onClick={() => console.log("")}/>
 				    </div>

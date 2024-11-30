@@ -1,46 +1,96 @@
+
+"use client";
 import NavHeader from "@/components/NavHeader";
 import Image from "next/image";
-import Link from "next/link";
+import { useForm } from "react-hook-form";
+import { useRouter } from 'next/navigation'
+import axios from '@/api/useAxios'
+import {useChildStore} from '@/store/childStore'
+import {useAuthStore} from '@/store/authStore'
+
+interface FormData {
+	fullName: string;
+	nickname: string;
+}
 
 export default function CreateChildProfile() {
+	const addChild = useChildStore((state) => state.addChild)
+	const token = useAuthStore((state) => state.token);
+	const router = useRouter()
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	  } = useForm<FormData>();
+	
+	const onSubmit = handleSubmit(async(data) => {
+	  	console.log(data)
+
+        try {
+            const response = await axios.post('children',
+                JSON.stringify(data),
+                {
+                    headers: { 
+                    	'Content-Type': 'application/json',
+                    	'Authorization':`Bearer ${token}`
+                    }
+                    // withCredentials: true
+                }
+            );
+            console.log(response.data)
+            addChild({fullName:response?.data.fullName, nickname:response?.data?.nickname, childrenId:response?.data?.parent?.children, parentId:response?.data?.parent?._id});
+            router.push('/onboarding?user=parent');
+        } catch (err) {
+            console.log(err);
+        }
+	});
+
+
 	return (
-		<div className="relative flex flex-col w-screen min-h-screen bg-retro_blue-100 overflow-hidden">
+		<div className="relative flex flex-col w-screen min-h-screen overflow-hidden bg-retro_blue-100">
 			<NavHeader backLink />
-			<div className="relative flex justify-center flex-1 overflow-hidden px-4 pt-16 md:pt-24">
+			<div className="relative flex justify-center flex-1 px-4 pt-16 overflow-hidden md:pt-10">
 				<div className="relative z-50 bg-white rounded-3xl w-full shadow-[0px_12px_0px] shadow-retro_blue-400 h-fit flex flex-col px-4 sm:px-8 py-12 gap-9 max-w-[450px] self-start lg:max-w-[533px] lg:px-8 min-[1300px]:scale-[0.9]  sm:scale-[0.8]">
-					<form className="space-y-6">
+					<form onSubmit={onSubmit} className="space-y-6">
 						<div className="space-y-6">
 							<div className="size-[100px] rounded-[25px] bg-neutral-200 mx-auto lg:size-[120px]"></div>
-							<h2 className="text-2xl font-bold lg:text-3xl text-dark-800 font-nunitosans text-center">
+							<h2 className="text-2xl font-bold text-center lg:text-3xl text-dark-800 font-nunitosans">
 								Create child’s profile
 							</h2>
 						</div>
 						<div className="space-y-6">
 							<div className="form-field">
-								<label htmlFor="phone">Child’s full name</label>
+								<label htmlFor="fullName">Child’s full name</label>
 								<input
-									id="phone"
+									id="fullName"
+									{...register("fullName", { required: "Child's full name is required" })}
 									type="text"
 									placeholder="Enter full name"
 									className="input-box"
 								/>
+								{errors.fullName && (
+            <p className="text-red-500 text-sm mt-1">{errors.fullName.message}</p>
+          )}
 							</div>
 							<div className="form-field">
-								<label htmlFor="phone">Choose a Nickname</label>
+								<label htmlFor="nickname">Choose a Nickname</label>
 								<input
-									id="phone"
+									id="nickname"
+									{...register("nickname", { required: "Nickname is required" })}
 									type="text"
 									placeholder="Enter a nickname"
 									className="input-box"
 								/>
+						{errors.nickname && (
+            <p className="text-red-500 text-sm mt-1">{errors.nickname.message}</p>
+          )}
 							</div>
 						</div>
-						<Link
-							href={"/onboarding?user=parent"}
-							className="form-btn block text-center"
+						<button
+							className="block text-center form-btn"
 						>
 							Create Profile
-						</Link>
+						</button>
 					</form>
 				</div>
 				{/* <SuccessModal
@@ -61,14 +111,14 @@ export default function CreateChildProfile() {
 					alt="bg-icon-3"
 					width={100}
 					height={100}
-					className="hidden lg:block absolute z-10 w-auto -top-5 right-0"
+					className="absolute right-0 z-10 hidden w-auto lg:block -top-5"
 				/>
 				<Image
 					src={"/images/tube2.svg"}
 					alt="bg-icon-2"
 					width={100}
 					height={100}
-					className="hidden lg:block absolute z-10 right-0 bottom-0 w-auto"
+					className="absolute bottom-0 right-0 z-10 hidden w-auto lg:block"
 				/>
 				<Image
 					src={"/images/periwinkle2.svg"}
@@ -97,7 +147,7 @@ export default function CreateChildProfile() {
 				alt="bg-icon-3"
 				width={100}
 				height={100}
-				className="lg:hidden absolute z-10 w-auto -bottom-20 -left-10 sm:bottom-0 sm:left-0"
+				className="absolute z-10 w-auto lg:hidden -bottom-20 -left-10 sm:bottom-0 sm:left-0"
 			/>
 			<Image
 				src={"/images/bg-icon-4.svg"}

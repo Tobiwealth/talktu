@@ -12,7 +12,7 @@ const FlashCards = () => {
 	
 	return (
 		<div className="w-full">
-			<div className="flex flex-col gap-2 w-full">
+			<div className="flex flex-col w-full gap-2">
 				<p className="text-[#6296F6] text-sm font-nunito font-medium">You’re here</p>
 				<div className="w-full h-[14px] bg-[#2C4B8445] border-[2px] border-[#2C4B84] rounded-[43px]">
 					<div className="bg-[#6296F6] h-full w-[15px] rounded-l-[43px]"></div>
@@ -20,7 +20,7 @@ const FlashCards = () => {
 				<Image src={flag} width={31} height={31} quality={100} alt="flag" className="self-end translate-y-[-2.8rem]" />
 			</div>
 			<div className="bg-[#0A1835] p-6 rounded-[20px]">
-				<h2 className="font-nunito font-semibold text-xl text-white mb-3">Flashcards</h2>
+				<h2 className="mb-3 text-xl font-semibold text-white font-nunito">Flashcards</h2>
 				<Image src={video} width={741} height={348} quality={100} alt="video" className="" />
 			</div>
 			<div className="p-5 bg-[#0A1835] mt-12 rounded-[16px]">

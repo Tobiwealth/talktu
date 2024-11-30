@@ -13,7 +13,7 @@ export default function MidFeaturesSection() {
 							key={index}
 							className="bg-white p-6 space-y-3 rounded-[15px] max-w-[450px] md:max-w-none"
 						>
-							<p className="text-base md:text-lg lg:text-xl font-bold text-black">
+							<p className="text-base font-bold text-black md:text-lg lg:text-xl">
 								Money on different educational materials and
 								schools for your kid
 							</p>
@@ -22,7 +22,7 @@ export default function MidFeaturesSection() {
 					))}
 				</div>
 			</div>
-			<CTAButton />
+			<CTAButton href="#plans" />
 		</div>
 	);
 }

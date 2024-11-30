@@ -39,9 +39,9 @@ const KidsNavbar = () => {
 						className=""
 				    />
 				</div>
-				{ !pathname.startsWith("/dashboard/parents") && <div className="flex justify-center items-center gap-4 w-1/3 ">
+				{ !pathname.startsWith("/dashboard/parents") && <div className="flex items-center justify-center w-1/3 gap-4 ">
 					<Link href="/dashboard" className="flex flex-col items-center justify-center gap-2 bg-[#11244842] w-[71px] h-[64px] border-[1px] border-[#112448] rounded-[14px]">
-					    {pathname === "/dashboard" ? <GoHomeFill className="text-sunglow-main text-xl"/>
+					    {pathname === "/dashboard" ? <GoHomeFill className="text-xl text-sunglow-main"/>
 					    : <LuHome className="text-[#3E64AB] text-xl"/>}
 					    <h3 className={`font-nunito font-medium text-sm ${pathname === "/dashboard" ? "text-sunglow-main":"text-[#3E64AB]" }`}>Home</h3>
 					</Link>
@@ -51,7 +51,7 @@ const KidsNavbar = () => {
 					    <h3 className={`font-nunito font-medium text-sm ${pathname.startsWith("/dashboard/activity") ? "text-sunglow-main":"text-[#3E64AB]" }`}>Activity</h3>
 					</div>
 					<Link href="/dashboard/report" className="flex flex-col items-center justify-center gap-2 bg-[#11244842] w-[71px] h-[64px] border-[1px] border-[#112448] rounded-[14px]">
-					    {pathname === "/dashboard/report" ? <FaFileLines className="text-sunglow-main text-xl"/>
+					    {pathname === "/dashboard/report" ? <FaFileLines className="text-xl text-sunglow-main"/>
 					    : <FaRegFileLines className="text-[#3E64AB] text-xl"/>}
 					    <h3 className={`font-nunito font-medium text-sm ${pathname === "/dashboard/report" ? "text-sunglow-main":"text-[#3E64AB]" }`}>Report</h3>
 					</Link>
@@ -61,7 +61,7 @@ const KidsNavbar = () => {
 					    <h3 className={`font-nunito font-medium text-sm ${pathname === "/dashboard/chat" ? "text-sunglow-main":"text-[#3E64AB]" }`}>Chat</h3>
 					</Link>
 				</div>}
-				<div className="flex justify-end items-center gap-4 w-1/3 ">
+				<div className="flex items-center justify-end w-1/3 gap-4 ">
 					<div className="flex items-center gap-2 h-[42px] w-[109px] bg-[#11244842] border-[1px] border-[#112448] rounded-[12px] px-1">
 						<Image
 							src={kid_avatar}
@@ -71,14 +71,14 @@ const KidsNavbar = () => {
 							alt="Logo"
 							className=""
 				        />
-				        <p className="font-nunito font-semibold text-sm text-retro_blue-main">Sammy</p>
+				        <p className="text-sm font-semibold font-nunito text-retro_blue-main">Sammy</p>
 					</div>
 					<button onClick={() => router.push('/dashboard/parents/profile')} className="text-white font-nunito font-medium text-sm flex justify-center items-center gap-1 bg-retro_blue-main h-[2.25rem] w-[7.8rem] rounded-[9px] shadowbox3"><MdOutlinePeopleAlt className="text-white text-xl"/>For Parents</button>
 				</div>
 			</div>
 		    {/*mobile view*/}
 			{   
-				<div className="  lg:hidden w-full flex flex-col">
+				<div className="flex flex-col w-full  lg:hidden">
 					<div className="bg-deep_blue bg-[#091A396B] px-8 py-6 border-b-[1px] border-[#112448] flex justify-between items-center w-full ">
 					   { closeMobile ?  <LiaTimesSolid onClick={() => setCloseMobile(false)} className="text-2xl font-bold text-[#F3FAFD] cursor-pointer" />
 					        :<MdOutlineMenu onClick={() => setCloseMobile(true)} className="text-2xl text-[#F3FAFD] cursor-pointer" />   
@@ -148,7 +148,7 @@ const KidsNavbar = () => {
 									alt="Logo"
 									className=""
 						        />
-						        <p className="font-nunito font-semibold text-sm text-retro_blue-main">Sammy</p>
+						        <p className="text-sm font-semibold font-nunito text-retro_blue-main">Sammy</p>
 							</div>
 							<button onClick={() => handleMobileClick("dashboard/parents/profile")} className="text-white font-nunito font-medium text-sm flex justify-center items-center gap-1 bg-retro_blue-main h-[2.25rem] w-[7.8rem] rounded-[9px] shadowbox3"><MdOutlinePeopleAlt className="text-white text-xl"/>For Parents</button>
 						</div>

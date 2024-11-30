@@ -7,7 +7,7 @@ import Pill from '../../public/icons/Pill.svg'
 
 const BackgroundComponent2 = () => {
 	return (
-		<div className=" ">
+		<div className="">
 			<Image src={Star2} width={156.59} height={293.48} quality={100} alt="stroke" className="absolute top-[5.8rem] right-0" />
 			<Image src={Pill} width={105.35} height={191.16} quality={100} alt="stroke" className="absolute top-[7.5rem] left-0" />
 			<div className="relative">

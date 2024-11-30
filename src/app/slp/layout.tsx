@@ -11,7 +11,7 @@ export default function SLPLayout({
   return (
     <section className="bg-deep_blue ">
       <KidsNavbar/>
-      <div className="z-50 relative">
+      <div className="relative z-50">
         <section className="lg:flex ">
           <ParentSidebar currentPage="slp"/>
           {children}

@@ -1,29 +1,20 @@
 import React, {useState} from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import OnboardingOptions from '@/components/onboarding/OnboardingOptions'
+import {useOnboardingStore} from '@/store/onboardingStore'
 
 const OnboardingRole = () => {
 	const router = useRouter()
 	const searchParams = useSearchParams()
     const role = searchParams.get('user')
+    const onboardingStatus = useOnboardingStore((state) => state.onboardingAccess);
+    const setOnboardingStatus = useOnboardingStore((state) => state.setOnboardingAccess);
 
-	interface Status {
-	    account: boolean,
-		childProfile: boolean,
-		assessment: boolean,
-		plan: boolean
-	}
 	interface SlpStatus{
 		account: boolean,
 		verify: boolean,
 		plan: boolean
 	}
-	const [onboardingStatus, setOnboardingStatus] = useState<Status>({
-		account: true,
-		childProfile: false,
-		assessment: false,
-		plan: false
-	})
 	const [slpOnboardingStatus, setSlpOnboardingStatus] = useState<SlpStatus>({
 		account: true,
 		verify: false,
@@ -31,28 +22,28 @@ const OnboardingRole = () => {
 	})
 
 	const handleAssessment = () => {
-		// if(!onboardingStatus.childProfile){
-		// 	return;
-		// }
+		if(!onboardingStatus?.childProfileCreated){
+			return;
+		}
 		router.push('/onboarding/parent-assessment'); 
-		setOnboardingStatus({...onboardingStatus, assessment:true })
+		setOnboardingStatus({...onboardingStatus, assessmentTaken:true })
 	}
 
 	const handleSubscription = () => {
-		// if(!onboardingStatus.childProfile || !onboardingStatus.assessment){
-		// 	return;
-		// }
+		if(!onboardingStatus?.childProfileCreated || !onboardingStatus.assessmentTaken){
+			return;
+		}
 		router.push('/subscription'); 
-		setOnboardingStatus({...onboardingStatus, plan:true })
+		setOnboardingStatus({...onboardingStatus, subscribed:true })
 	}
 
 	return (
 		<div>
 			{ role === 'parent' && <div className="pt-6">
-		        <OnboardingOptions handleClick={() => setOnboardingStatus({...onboardingStatus, account:true })} onboardingStatusOption={onboardingStatus.account} title="Create an Account" details=<p>Lorem ipsum dolor sit amet consectetur. <br className="md:hidden"/>Semper ipsum.</p> buttonTitle="Create Profile"/>
-		        <OnboardingOptions handleClick={() => {router.push('/create-child-profile'); setOnboardingStatus({...onboardingStatus, childProfile:true })}} onboardingStatusOption={onboardingStatus.childProfile} title="Create Child’s profile" details=<p>Lorem ipsum dolor sit amet consectetur. <br className="md:hidden"/>Id mollis.</p> buttonTitle="Create Profile"/>
-		        <OnboardingOptions handleClick={handleAssessment} onboardingStatusOption={onboardingStatus.assessment} title="Complete Assessment" details=<p>Lorem ipsum dolor sit amet consectetur. <br className="md:hidden"/>Semper ipsum.</p> buttonTitle="Complete Assessment"/>
-		        <OnboardingOptions handleClick={handleSubscription} onboardingStatusOption={onboardingStatus.plan} title="Subscribe to a plan" details=<p>Lorem ipsum dolor sit amet consectetur. <br className="md:hidden"/>Egestas.</p> buttonTitle="Select a plan"/>
+		        <OnboardingOptions handleClick={() => setOnboardingStatus({...onboardingStatus, accountCreated:true })}  onboardingStatusOption={onboardingStatus.accountCreated} title="Create an Account" details=<p>Lorem ipsum dolor sit amet consectetur. <br className="md:hidden"/>Semper ipsum.</p> buttonTitle="Create Profile"/>
+		        <OnboardingOptions handleClick={() => {router.push('/create-child-profile'); setOnboardingStatus({...onboardingStatus, childProfileCreated:true })}} onboardingStatusOption={onboardingStatus.childProfileCreated} title="Create Child’s profile" details=<p>Lorem ipsum dolor sit amet consectetur. <br className="md:hidden"/>Id mollis.</p> buttonTitle="Create Profile"/>
+		        <OnboardingOptions handleClick={handleAssessment} onboardingStatusOption={onboardingStatus.assessmentTaken} title="Complete Assessment" details=<p>Lorem ipsum dolor sit amet consectetur. <br className="md:hidden"/>Semper ipsum.</p> buttonTitle="Complete Assessment"/>
+		        <OnboardingOptions handleClick={handleSubscription} onboardingStatusOption={onboardingStatus.subscribed} title="Subscribe to a plan" details=<p>Lorem ipsum dolor sit amet consectetur. <br className="md:hidden"/>Egestas.</p> buttonTitle="Select a plan"/>
 		    </div>}
 
 		   {/*slp onboarding*/}

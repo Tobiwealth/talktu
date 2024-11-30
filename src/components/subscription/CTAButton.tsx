@@ -1,13 +1,22 @@
+import clsx from "clsx";
 import Link from "next/link";
 import React from "react";
+import { twMerge } from "tailwind-merge";
 
-export default function CTAButton() {
+interface CTAButtonProps {
+	className?: string;
+	href: string;
+}
+
+export default function CTAButton({ className, href }: CTAButtonProps) {
 	return (
 		<Link
-			href="#plans"
-			className="sub-btn max-w-[168px] md:max-w-[325px] text-center"
+			href={href}
+			className={twMerge(
+				clsx("sub-btn max-w-[186px] text-center max-md:py-2", className)
+			)}
 		>
-			Get my plan
+			Get Started
 		</Link>
 	);
 }

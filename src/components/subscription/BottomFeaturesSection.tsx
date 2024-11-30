@@ -16,7 +16,7 @@ export default function BottomFeaturesSection() {
 							<div className="w-[50px] h-[30px] font-semibold bg-retro_blue-main text-white text-center rounded-full flex justify-center items-center min-w-[31px]">
 								{index + 1}
 							</div>
-							<p className="text-sm sm:text-base font-semibold text-black">
+							<p className="text-sm font-semibold text-black sm:text-base">
 								A lot of money on different educational
 								materials and schools for your kid
 							</p>
@@ -24,7 +24,7 @@ export default function BottomFeaturesSection() {
 					))}
 				</div>
 			</div>
-			<CTAButton />
+			<CTAButton href="/auth/signup" />
 		</div>
 	);
 }

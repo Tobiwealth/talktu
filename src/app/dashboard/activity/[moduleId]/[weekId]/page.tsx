@@ -16,16 +16,16 @@ const WeekLesson = ({ params }: { params: { weekId: string } }) => {
 			<div className="flex justify-between gap-8">
 				<div className="rounded-[21px] bg-[#04122E] w-[435px] lg:flex flex-col items-center hidden  ">
 					<div className="font-nunito flex justify-center items-start gap-2 py-4 bg-[#0A1835] border-[1px] border-[#0F2248] w-full rounded-t-[21px]">
-						<h2 className="font-medium text-2xl text-white">Week 1:</h2>
+						<h2 className="text-2xl font-medium text-white">Week 1:</h2>
 						<div className="">
-							<h2 className="font-medium text-2xl text-white">Forming basic sentences</h2>
-							<p className="text-neutral-400 font-normal text-sm">
+							<h2 className="text-2xl font-medium text-white">Forming basic sentences</h2>
+							<p className="text-sm font-normal text-neutral-400">
 								<span className="pr-5">5 Units</span>
 								<span>50 Skills</span>
 							</p>
 						</div>
 					</div>
-					<div className="overflow-y-scroll h-screen hide-scrollbar ">
+					<div className="h-screen overflow-y-scroll hide-scrollbar ">
 						<WeeklyAssessment/>
 					</div>
 				</div>

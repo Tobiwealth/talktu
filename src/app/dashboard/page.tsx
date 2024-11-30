@@ -25,7 +25,7 @@ const Dashboard = () => {
 		<div className="bg-[url('/icons/mobile_background.svg')] md:bg-[url('/icons/background_vector.svg')] bg-no-repeat lg:bg-top lg:bg-scroll h-full min-h-screen flex flex-col items-center pb-12 px-8">
 			<div className="pt-10 lg:pt-16">
 				<h1 className="text-white font-nunito font-bold text-lg md:text-[2.5rem] text-center">Sammy’s personalised learning plan</h1>
-				<h3 className="font-nunito font-medium text-neutral-400 text-base md:text-xl text-center md:pt-3">
+				<h3 className="text-base font-medium text-center font-nunito text-neutral-400 md:text-xl md:pt-3">
 				    Sammy’s learning plan is spread over a period of 12 months, each <br className="hidden md:block"/>months plan is broken down into different lessons
 				</h3>
 			</div>

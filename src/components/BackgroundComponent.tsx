@@ -7,7 +7,7 @@ import Unionshape from '../../public/icons/Unionshape.svg'
 
 const BackgroundComponent = () => {
 	return (
-		<div className=" ">
+		<div className="">
 
 			<Image src={Union} width={106.59} height={293.48} quality={100} alt="stroke" className="w-[25px] md:w-[106px] absolute top-[7rem] right-0" />
 			<Image src={Unionshape} width={104.35} height={191.16} quality={100} alt="stroke" className="w-[23px] md:w-[104px] absolute top-[8.5rem] left-0" />

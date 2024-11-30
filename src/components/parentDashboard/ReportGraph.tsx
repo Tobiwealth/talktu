@@ -31,12 +31,12 @@ const ReportGraph: React.FC<reportProps> = ({title, details, graphArray, backgro
 		        <p className={`font-nunito font-semibold text-[8px] md:text-base px-1.5 md:px-3 py-[1px] md:py-1 w-fit h-fit ${textColor} rounded-[4px] md:rounded-[11px] ${boxColor} `}>1 - 10 Scale</p>
 			    <div className="w-full max-w-md mx-auto text-center">
 		    	    <h2 className="px-4 text-deep_blue font-bold text-sm md:text-[2rem] md:leading-[41.6px]">{title}</h2>
-		    	    <p className="px-12 font-medium text-xs md:text-base text-neutral-700 mb-10 md:mb-16">{details}</p>
+		    	    <p className="px-12 mb-10 text-xs font-medium md:text-base text-neutral-700 md:mb-16">{details}</p>
 		    	</div>
 		        {/*Graph on the report*/}
 		    	<div className="w-full md:w-[80%] flex justify-center items-center pb-3  mx-auto">
 		    	    {graphArray.map((item,i) => 
-		    	    	(<div key={i} className="flex-1 flex flex-col justify-center items-center gap-3">
+		    	    	(<div key={i} className="flex flex-col items-center justify-center flex-1 gap-3">
 			    	    	<div className="h-[180px] md:h-[300px] w-full flex flex-col justify-end ">
 			    	    		<div className={`${item.color} w-full flex items-end justify-center`} style={{height:`${(item.rating)*10}%`}}>
 			    	    			<p className="font-nunito font-normal text-white text-[12.72px] md:text-[35.75px]">{item.rating}</p>
@@ -52,7 +52,7 @@ const ReportGraph: React.FC<reportProps> = ({title, details, graphArray, backgro
 		    	    )}
 			    </div>
 			    <div className={`${boxColor} rounded-[9px] md:rounded-[26px] p-2 md:p-4 flex justify-between items-center w-[226px] md:w-[637px] md:h-[149px] mx-auto mt-8`}>
-			    	<div className="font-nunito text-white px-3">
+			    	<div className="px-3 text-white font-nunito">
 			    		<p className="font-medium text-[8.54px] md:text-2xl">Total Score</p>
 			    		<p className="font-bold text-[22.77px] md:text-[4rem] leading-[29.6px] md:leading-[83.2px]">24</p>
 			    	</div>

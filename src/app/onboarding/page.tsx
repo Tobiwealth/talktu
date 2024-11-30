@@ -1,11 +1,16 @@
 'use client'
 import React, { Suspense } from 'react'
 import OnboardingRole from '@/components/onboarding/OnboardingRole'
+import {useAuthStore} from '@/store/authStore'
+import {useChildStore} from '@/store/childStore'
 
 
 
 const Onboarding = () => {
+	const token = useAuthStore((state) => state.token);
+	const child = useChildStore((state) => state.childProfile);
 	const Loading = () => <div>Loading...</div>;
+
 
 	return (
 		<div className="bg-[#EEF3FE] py-20 pb-60 flex flex-col items-center gap-12 min-h-screen max-h-full px-5">

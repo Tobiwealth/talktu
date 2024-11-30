@@ -3,9 +3,9 @@ import Image from "next/image";
 
 export default function SLPVerificationPage() {
 	return (
-		<div className="relative flex flex-col w-screen min-h-screen bg-retro_blue-100 overflow-hidden">
+		<div className="relative flex flex-col w-screen min-h-screen overflow-hidden bg-retro_blue-100">
 			<NavHeader backLink />
-			<div className="relative flex justify-center flex-1 overflow-hidden sm:items-center px-4 py-16 lg:py-32">
+			<div className="relative flex justify-center flex-1 px-4 py-16 overflow-hidden sm:items-center lg:py-32">
 				<div className="relative z-50 bg-white rounded-3xl w-full shadow-[0px_12px_0px] shadow-retro_blue-400 h-fit flex flex-col px-4 py-8 gap-9 max-w-[408px] self-start lg:max-w-[500px] lg:px-8">
 					<form className="space-y-6">
 						<div className="space-y-3">
@@ -53,7 +53,7 @@ export default function SLPVerificationPage() {
 								<label htmlFor="phone">
 									Upload Supporting certifications
 								</label>
-								<div className="flex flex-col items-center bg-neutral-100 border border-neutral-300 outline-none py-4 gap-1 focus-within:bg-sunglow-100 focus-within:border-sunglow-main duration-200 ease-in-out relative">
+								<div className="relative flex flex-col items-center py-4 border outline-none bg-neutral-100 border-neutral-300 gap-1 focus-within:bg-sunglow-100 focus-within:border-sunglow-main duration-200 ease-in-out">
 									<Image
 										src={"/images/upload.svg"}
 										alt="upload icon"
@@ -95,14 +95,14 @@ export default function SLPVerificationPage() {
 					alt="bg-icon-3"
 					width={100}
 					height={100}
-					className="hidden lg:block absolute z-10 w-auto -top-5 right-0"
+					className="absolute right-0 z-10 hidden w-auto lg:block -top-5"
 				/>
 				<Image
 					src={"/images/tube2.svg"}
 					alt="bg-icon-2"
 					width={100}
 					height={100}
-					className="hidden lg:block absolute z-10 right-0 bottom-0 w-auto"
+					className="absolute bottom-0 right-0 z-10 hidden w-auto lg:block"
 				/>
 				<Image
 					src={"/images/periwinkle2.svg"}
@@ -131,7 +131,7 @@ export default function SLPVerificationPage() {
 				alt="bg-icon-3"
 				width={100}
 				height={100}
-				className="lg:hidden absolute z-10 w-auto -bottom-20 -left-10 sm:bottom-0 sm:left-0"
+				className="absolute z-10 w-auto lg:hidden -bottom-20 -left-10 sm:bottom-0 sm:left-0"
 			/>
 			<Image
 				src={"/images/bg-icon-4.svg"}

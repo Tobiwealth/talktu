@@ -22,7 +22,7 @@ export default function PlanSection() {
 			className="bg-retro_blue-100 gap-6 flex flex-col md:p-4 lg:p-8 rounded-[20px]"
 			id="plans"
 		>
-			<div className="space-y-8 relative z-20">
+			<div className="relative z-20 space-y-8">
 				<h2 className="text-deep_blue text-2xl md:text-3xl lg:text-4xl font-bold text-center leading-[120%]">
 					Choose your plan
 				</h2>
@@ -35,14 +35,14 @@ export default function PlanSection() {
 							{...plan}
 						/>
 					))}
-					<div className="font-medium text-neutral-600 text-center md:text-left text-sm md:text-base">
+					<div className="text-sm font-medium text-center text-neutral-600 md:text-left md:text-base">
 						Subscription can be cancelled in{" "}
 						<br className="sm:hidden" /> settings at anytime
 					</div>
 				</div>
 			</div>
 			<div className="flex justify-center">
-				<CTAButton />
+				<CTAButton href="#plans" />
 			</div>
 		</div>
 	);

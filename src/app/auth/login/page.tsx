@@ -1,17 +1,62 @@
 "use client";
+import { on } from "events";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useRef } from "react";
+import { useForm } from "react-hook-form";
+import axios from '@/api/useAxios'
+import {useAuthStore} from '@/store/authStore'
+import { useRouter } from 'next/navigation'
+
+interface FormData {
+	email: string;
+	password: string;
+  }
 
 export default function Login() {
-	const inputRef = useRef<HTMLInputElement | null>(null);
+    const addAuth = useAuthStore((state) => state.addAuth);
+	const router = useRouter()
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	  } = useForm<FormData>();
+	
+	const onSubmit = handleSubmit (async(data) => {
+		console.log(data)
+		try {
+            const response = await axios.post('/authentication',
+                JSON.stringify({
+                	strategy:'local', 
+                	email: data.email, 
+                	password: data.password 
+                }),
+                {
+                    headers: { 'Content-Type': 'application/json' }
+                    // withCredentials: true
+                }
+            );
+            console.log(response.data.accessToken);
+            addAuth(response.data.accessToken);
+            router.push(`/onboarding?user=${response.data.user.role}`)
+        } catch (err) {
+            console.log(err);
+            // if (!err?.response) {
+            //     setErrMsg('No Server Response');
+            // } else if (err.response?.status === 400) {
+            //     setErrMsg('Missing Username or Password');
+            // } else if (err.response?.status === 401) {
+            //     setErrMsg('Unauthorized');
+            // } else {
+            //     setErrMsg('Login Failed');
+            // }
+        }
+	});
 
-	useEffect(() => {
-		inputRef.current?.focus();
-	}, []);
+
 
 	return (
-		<div className="flex flex-col w-screen h-screen bg-retro_blue-100">
+		<div className="flex flex-col w-screen min-h-screen bg-retro_blue-100">
 			<div className="hidden md:flex justify-center bg-retro_blue-300 items-center h-[82px]">
 				<Image
 					src="/images/logo-dark.svg"
@@ -21,7 +66,7 @@ export default function Login() {
 					className="w-24"
 				/>
 			</div>
-			<div className="relative flex justify-center flex-1 overflow-hidden px-4 pt-16 md:pt-24">
+			<div className="relative flex justify-center flex-1 px-4 pt-16 overflow-hidden md:pt-10">
 				<div className="relative z-50 space-y-4 auth-box min-[1300px]:scale-[0.9] sm:scale-[0.8] max-sm:rounded-2xl max-sm:px-4">
 					<div className="space-y-2">
 						<h2 className="text-2xl font-bold sm:text-4xl text-dark-800 font-nunitosans">
@@ -31,17 +76,26 @@ export default function Login() {
 							Enter your email address and password to continue
 						</p>
 					</div>
-					<form className="space-y-6">
+					<form onSubmit={onSubmit} className="space-y-6">
 						<div className="space-y-4">
 							<div className="form-field">
 								<label htmlFor="email">Email Address</label>
 								<input
-									type="email"
 									id="email"
-									ref={inputRef}
+									{...register("email", {
+										required: "Email is required",
+										pattern: {
+										  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+										  message: "Invalid email address",
+										},
+									  })}
+									type="email"
 									placeholder="Enter email address"
 									className="input-box"
 								/>
+								 {errors.email && (
+            <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+          )}
 							</div>
 							<div className="form-field">
 								<div className="space-y-1">
@@ -53,37 +107,33 @@ export default function Login() {
 									</div>
 								</div>
 								<input
-									type="password"
 									id="password"
-									placeholder="Enter Password"
+									{...register("password", {
+										required: "Password is required",
+										pattern: {
+										  value: /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/,
+										  message:
+											"Password must be at least 8 characters long and contain numbers and symbols",
+										},
+									  })}
+									type="password"
+									placeholder="Enter password"
 									className="input-box"
 								/>
+								 {errors.password && (<p className="text-red-500 text-sm mt-1">{errors.password.message}</p>          )}
 							</div>
 						</div>
-						<div className="space-y-2 text-xs sm:text-sm text-neutral-600">
+						<div className="text-xs space-y-2 sm:text-sm text-neutral-600">
 							<div className="pr-2">
-								By signing up you agree to the terms and
-								conditions of Talktu
-							</div>
-							<div className="flex items-center gap-2">
-								<input
-									type="checkbox"
-									id="subscribeCheckbox"
-									className="w-5 h-5 accent-retro_blue-main"
-								/>
-								<label htmlFor="subscribeCheckbox">
-									I’d like to receive weekly emails and
-									updates from talktu
-								</label>
+								Forgot Password?
 							</div>
 						</div>
-						<Link
-							href={"/onboarding?user=parent"}
-							className="form-btn block text-center"
+						<button						
+							className="block text-center form-btn"
 							type="submit"
 						>
 							Sign In
-						</Link>
+						</button>
 					</form>
 				</div>
 

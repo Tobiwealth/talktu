@@ -4,9 +4,9 @@ import Image from "next/image";
 
 export default function page() {
 	return (
-		<div className="relative flex flex-col w-screen min-h-screen bg-retro_blue-100 overflow-hidden">
+		<div className="relative flex flex-col w-screen min-h-screen overflow-hidden bg-retro_blue-100">
 			<NavHeader backLink />
-			<div className="relative flex justify-center flex-1 overflow-hidden sm:items-center px-4 py-16 lg:py-32">
+			<div className="relative flex justify-center flex-1 px-4 py-16 overflow-hidden sm:items-center lg:py-32">
 				<SuccessModal
 					title="Details successfully Submitted"
 					description="Thanks for your Interest In Talktu. Your signup will e reviewed and your account will be verified. We will send you a mail to that effect within the next 24 hours"
@@ -32,14 +32,14 @@ export default function page() {
 					alt="bg-icon-3"
 					width={100}
 					height={100}
-					className="hidden lg:block absolute z-10 w-auto -top-5 right-0"
+					className="absolute right-0 z-10 hidden w-auto lg:block -top-5"
 				/>
 				<Image
 					src={"/images/tube2.svg"}
 					alt="bg-icon-2"
 					width={100}
 					height={100}
-					className="hidden lg:block absolute z-10 right-0 bottom-0 w-auto"
+					className="absolute bottom-0 right-0 z-10 hidden w-auto lg:block"
 				/>
 				<Image
 					src={"/images/periwinkle2.svg"}
@@ -68,7 +68,7 @@ export default function page() {
 				alt="bg-icon-3"
 				width={100}
 				height={100}
-				className="lg:hidden absolute z-10 w-auto -bottom-20 -left-10 sm:bottom-0 sm:left-0"
+				className="absolute z-10 w-auto lg:hidden -bottom-20 -left-10 sm:bottom-0 sm:left-0"
 			/>
 			<Image
 				src={"/images/bg-icon-4.svg"}

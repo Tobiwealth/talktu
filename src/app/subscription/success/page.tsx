@@ -5,9 +5,9 @@ import React from "react";
 
 export default function SubscriptionSuccessful() {
 	return (
-		<div className="relative flex flex-col w-screen min-h-screen bg-retro_blue-100 overflow-hidden">
+		<div className="relative flex flex-col w-screen min-h-screen overflow-hidden bg-retro_blue-100">
 			<NavHeader />
-			<div className="lg:hidden mt-10">
+			<div className="mt-10 lg:hidden">
 				<Image
 					src={"/images/logo-dark.svg"}
 					alt="talktu"
@@ -16,7 +16,7 @@ export default function SubscriptionSuccessful() {
 					className="w-20 mx-auto"
 				/>
 			</div>
-			<div className="relative flex justify-center flex-1 overflow-hidden sm:items-center px-4 pt-8 md:pt-16 lg:pt-32">
+			<div className="relative flex justify-center flex-1 px-4 pt-8 overflow-hidden sm:items-center md:pt-16 lg:pt-32">
 				<SuccessModal
 					title="Payment Received"
 					description="Login to your account to access your Sammy’s learning plan"
@@ -42,7 +42,7 @@ export default function SubscriptionSuccessful() {
 					alt="bg-icon-3"
 					width={100}
 					height={100}
-					className="hidden lg:block absolute z-10 w-auto -bottom-20 -left-10 sm:bottom-0 sm:left-0"
+					className="absolute z-10 hidden w-auto lg:block -bottom-20 -left-10 sm:bottom-0 sm:left-0"
 				/>
 				<Image
 					src={"/images/periwinkle.svg"}
@@ -71,7 +71,7 @@ export default function SubscriptionSuccessful() {
 				alt="bg-icon-3"
 				width={100}
 				height={100}
-				className="lg:hidden absolute z-10 w-auto -bottom-20 -left-10 sm:bottom-0 sm:left-0"
+				className="absolute z-10 w-auto lg:hidden -bottom-20 -left-10 sm:bottom-0 sm:left-0"
 			/>
 			<Image
 				src={"/images/bg-icon-4.svg"}

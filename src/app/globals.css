@@ -200,49 +200,51 @@ html {
 	}
 
 	.sub-btn {
-		@apply bg-sunglow-main w-full text-deep_blue font-bold text-base rounded-xl py-4 shadow-[0px_4px_0px] shadow-sunglow-900;
+		@apply bg-sunglow-main w-full text-deep_blue font-bold text-base rounded-xl py-3 shadow-[0px_5px_0px] shadow-sunglow-900 block;
 	}
 
 	.active-plan {
-		@apply 
+		@apply;
 	}
 }
 
 /*onboarding screen*/
-.shadowbox{
-  box-shadow: 0px 10px 0px 0px #CBDCFC;
+.shadowbox {
+	box-shadow: 0px 10px 0px 0px #cbdcfc;
 }
-.shadowbox2{
-  box-shadow: 0px 10px 0px 0px #DCE8FD;
+.shadowbox2 {
+	box-shadow: 0px 10px 0px 0px #dce8fd;
 }
-.shadowbox3{
-  box-shadow: 0px 4px 0px 0px #3063C2;
+.shadowbox3 {
+	box-shadow: 0px 4px 0px 0px #3063c2;
 }
 
-.buttonshadow{
-  box-shadow: 0px 5px 5px 0px #CBD5E1;
+.buttonshadow {
+	box-shadow: 0px 5px 5px 0px #cbd5e1;
 }
-.buttonshadow2{
-  box-shadow: 0px 5px 0px 0px #DFAD27;
+.buttonshadow2 {
+	box-shadow: 0px 5px 0px 0px #dfad27;
 }
-.buttonshadow-white{
-  box-shadow: 0px 5px 0px 0px #CBD5E1;
+.buttonshadow-white {
+	box-shadow: 0px 5px 0px 0px #cbd5e1;
 }
-.buttonshadow-red{
-  box-shadow: 0px 5px 0px 0px #DC2626;
+.buttonshadow-red {
+	box-shadow: 0px 5px 0px 0px #dc2626;
 }
-.dropdownshadow{
-    box-shadow: 0px 4px 24px 0px #E0E3EB;
+.dropdownshadow {
+	box-shadow: 0px 4px 24px 0px #e0e3eb;
 }
-.moduleBar{
-	background: linear-gradient(179.93deg, rgba(23, 44, 84, 0.2) -2.2%, #172C54 99.94%);
+.moduleBar {
+	background: linear-gradient(
+		179.93deg,
+		rgba(23, 44, 84, 0.2) -2.2%,
+		#172c54 99.94%
+	);
 }
 .hide-scrollbar::-webkit-scrollbar {
-    display: none;
+	display: none;
 }
-.hide-scrollbar{
-	-ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+.hide-scrollbar {
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
 }
-
-

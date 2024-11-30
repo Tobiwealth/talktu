@@ -13,7 +13,7 @@ const ClosingModal= () => {
 				<div className="">
 				    <Image src={congrats} width={122.35} height={113.22} quality={100} alt="congratulations" className="" />
 				</div>
-				<div className="font-nunito text-center mt-4">
+				<div className="mt-4 text-center font-nunito">
 					<h2 className="font-bold text-deep_blue text-2xl md:text-[2.5rem] md:leading-[52px]">Assessment completed Successfully</h2>
 					<p className="font-normal text-base md:text-xl text-[#475569] py-4">
 					    Thanks for your Interest In talktu. Your child’s Assessment report has been received. 

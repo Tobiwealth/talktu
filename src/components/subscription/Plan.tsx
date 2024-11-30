@@ -52,15 +52,15 @@ export default function Plan({
 						className="w-8 h-8"
 					/>
 					<div className="flex flex-col">
-						<span className="text-lg md:text-2xl font-bold">
+						<span className="text-lg font-bold md:text-2xl">
 							{name}
 						</span>
-						<span className="text-sm md:text-base font-medium text-neutral-600">
+						<span className="text-sm font-medium md:text-base text-neutral-600">
 							Per child
 						</span>
 					</div>
 				</div>
-				<span className="text-lg md:text-2xl font-bold">
+				<span className="text-lg font-bold md:text-2xl">
 					₦{price.toLocaleString()}
 				</span>
 			</div>
