@@ -52,7 +52,7 @@ const ParentAssessment = () => {
 	const [openClosingModal, setOpenClosingModal] = useState<boolean>(false) // this closes the last modal
 	const [assessment, setAssessment] = useState<Steps[]>([]); // assessment questions
 	const [assessmentId, setAssessmentId] = useState<string>("")
-	const childId = useChildStore((state) => state.childProfile?.childrenId[0]);
+	const childId = useChildStore((state) => state.childProfile?.childrenId[0]) || "hcd8yr8r3y7r3y3y7e3y77";
 	//const childId = "dj9ediid"
 	const [selectedAnswer, setSelectedAnswer] = useState<string|number|null>(null);
 	const addResponse = useAssessmentResponseStore((state) => state.addAssessmentResponse);//
