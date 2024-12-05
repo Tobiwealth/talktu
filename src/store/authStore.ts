@@ -4,14 +4,14 @@ type AuthStore = {
   token: string;
   email: string;
   addAuth: (token:string) => void;
-  addEmail: (token:string) => void;
+  addEmail: (email:string) => void;
   clearAuth: () => void;
 };
 
 export const useAuthStore = create<AuthStore>((set) => ({
-    token: '',
+    token: 'hfjnvjdfvn',
     email: 'tobi@gmail.com',
-	addAuth: (token) => {
+	  addAuth: (token) => {
         set({ token }); // Directly update the token
     },
     clearAuth: () => {

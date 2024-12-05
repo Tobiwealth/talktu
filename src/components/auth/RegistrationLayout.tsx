@@ -10,7 +10,7 @@ interface Props {
 
 export default function RegistrationLayout({ children }: Props) {
 	return (
-		<div className="flex w-screen min-h-screen bg-retro_blue-100 min-[1060px]:h-screen">
+		<div className="flex w-screen min-h-[780px] bg-retro_blue-100 min-[1060px]:min-h-screen">
 			<OnboardingFlow />
 			<FormSection>{children}</FormSection>
 		</div>

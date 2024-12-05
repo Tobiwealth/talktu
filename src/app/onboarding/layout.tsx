@@ -1,6 +1,7 @@
 import BackgroundComponent from '@/components/BackgroundComponent'
 import DashboardNav from '@/components/DashboardNav'
 
+
 export default function DashboardLayout({
   children, 
 }: {

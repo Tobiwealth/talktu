@@ -1,12 +1,11 @@
-
 "use client";
+import axios from '@/api/useAxios';
 import NavHeader from "@/components/NavHeader";
+import { useAuthStore } from '@/store/authStore';
+import { useChildStore } from '@/store/childStore';
 import Image from "next/image";
+import { useRouter } from 'next/navigation';
 import { useForm } from "react-hook-form";
-import { useRouter } from 'next/navigation'
-import axios from '@/api/useAxios'
-import {useChildStore} from '@/store/childStore'
-import {useAuthStore} from '@/store/authStore'
 
 interface FormData {
 	fullName: string;
@@ -50,7 +49,7 @@ export default function CreateChildProfile() {
 		<div className="relative flex flex-col w-screen min-h-screen overflow-hidden bg-retro_blue-100">
 			<NavHeader backLink />
 			<div className="relative flex justify-center flex-1 px-4 pt-16 overflow-hidden md:pt-10">
-				<div className="relative z-50 bg-white rounded-3xl w-full shadow-[0px_12px_0px] shadow-retro_blue-400 h-fit flex flex-col px-4 sm:px-8 py-12 gap-9 max-w-[450px] self-start lg:max-w-[533px] lg:px-8 min-[1300px]:scale-[0.9]  sm:scale-[0.8]">
+				<div className="relative z-50 bg-white rounded-3xl w-full shadow-[0px_12px_0px] shadow-retro_blue-400 h-fit flex flex-col px-4 sm:px-8 py-12 gap-9 max-w-[450px] self-start lg:max-w-[533px] lg:px-8 min-[1300px]:scale-[0.9] sm:scale-[0.8]">
 					<form onSubmit={onSubmit} className="space-y-6">
 						<div className="space-y-6">
 							<div className="size-[100px] rounded-[25px] bg-neutral-200 mx-auto lg:size-[120px]"></div>
@@ -69,7 +68,7 @@ export default function CreateChildProfile() {
 									className="input-box"
 								/>
 								{errors.fullName && (
-            <p className="text-red-500 text-sm mt-1">{errors.fullName.message}</p>
+            <p className="mt-1 text-sm text-red-500">{errors.fullName.message}</p>
           )}
 							</div>
 							<div className="form-field">
@@ -82,7 +81,7 @@ export default function CreateChildProfile() {
 									className="input-box"
 								/>
 						{errors.nickname && (
-            <p className="text-red-500 text-sm mt-1">{errors.nickname.message}</p>
+            <p className="mt-1 text-sm text-red-500">{errors.nickname.message}</p>
           )}
 							</div>
 						</div>

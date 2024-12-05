@@ -1,5 +1,4 @@
 "use client";
-import CTAButton from "@/components/subscription/CTAButton";
 import Image from "next/image";
 import MaskText from "./_components/animated components/MaskText";
 import FadeUp from "./_components/animated components/FadeUp";
@@ -7,6 +6,7 @@ import { motion, useInView, Variants } from "framer-motion";
 import { useRef } from "react";
 import { twMerge } from "tailwind-merge";
 import clsx from "clsx";
+import CTAButton from "./_components/CTAButton";
 
 export default function WhyTalktuSection() {
 	const ref = useRef(null);
@@ -23,7 +23,7 @@ export default function WhyTalktuSection() {
 						tag="p"
 						className="font-bold font-nunitosans text-[#4E5F76] lg:text-lg xl:text-2xl"
 					/>
-					<FadeUp className="md:hidden">
+					<FadeUp delay={0.1} className="md:hidden">
 						<h2 className="font-bold text-2xl md:text-3xl lg:text-4xl  xl:text-[2.5rem] !leading-[120%] mb-8 mt-2 max-w-[450px] md:max-w-[700px] lg:max-w-[850px]">
 							Supportive, engaging platform for children to
 							develop crucial speech and language skills
@@ -39,11 +39,8 @@ export default function WhyTalktuSection() {
 							className="font-bold text-2xl md:text-3xl lg:text-4xl  xl:text-[2.5rem] !leading-[120%]"
 						/>
 					</div>
-					<FadeUp
-						delay={0.3}
-						className="w-full justify-center flex"
-					>
-						<CTAButton href="https://docs.google.com/forms/d/e/1FAIpQLSfmezJ1izTztneqfjNOPoyem_akC5um4azsDVtdEaUH24WNJA/viewform" />
+					<FadeUp delay={0.2} className="w-full justify-center flex">
+						<CTAButton />
 					</FadeUp>
 				</div>
 				<div className="bg-[#D6EDF6] px-4 py-14  md:px-8 md:pb-14 md:pt-20 lg:py-[100px] xl:py-[112px] rounded-3xl md:rounded-[47px] overflow-hidden">
@@ -108,9 +105,9 @@ export default function WhyTalktuSection() {
 								<p className="lg:text-xl xl:text-2xl opacity-[94%]">
 									You can access high-quality, pre-recorded
 									resources curated by board-certified Speech
-									and Language Pathologists, to guide your
-									child through self-led activities at their
-									own pace.
+									and Language Therapists, to guide your child
+									through self-led activities at their own
+									pace.
 								</p>
 							</div>
 							<Image

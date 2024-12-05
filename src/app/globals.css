@@ -171,6 +171,7 @@
 		@apply font-nunito;
 		line-height: var(--lh-default) !;
 		letter-spacing: var(--lt-sp-default) !;
+		overflow-x: hidden;
 	}
 }
 

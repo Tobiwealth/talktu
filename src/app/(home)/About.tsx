@@ -1,13 +1,13 @@
 "use client";
-import Image from "next/image";
-import React, { useEffect, useState } from "react";
-import { teamMembers } from "./data";
-import { twMerge } from "tailwind-merge";
 import clsx from "clsx";
+import Image from "next/image";
 import Link from "next/link";
-import MaskText from "./_components/animated components/MaskText";
-import FadeUp from "./_components/animated components/FadeUp";
+import { useEffect, useState } from "react";
+import { twMerge } from "tailwind-merge";
 import FadeIn from "./_components/animated components/FadeIn";
+import FadeUp from "./_components/animated components/FadeUp";
+import MaskText from "./_components/animated components/MaskText";
+import { teamMembers } from "./data";
 
 export default function About() {
 	const [defaultCard, setDefaultCard] = useState(0);
@@ -23,12 +23,6 @@ export default function About() {
 		}
 	}, [activeCard]);
 
-	const handleMouseOver = (id: number) => {
-		if (activeCard === id) {
-			setActiveCard(null);
-		}
-	};
-
 	return (
 		<section className="px-4 pt-[123px] lg:px-8 pb-[157px]">
 			<div className="container space-y-14 md:space-y-[89px] max-w-[1202px]">
@@ -38,7 +32,7 @@ export default function About() {
 						tag="p"
 						className="font-bold font-nunitosans text-[#4E5F76] lg:text-lg xl:text-2xl"
 					/>
-					<FadeUp className="min-[515px]:hidden">
+					<FadeUp delay={0.1} className="min-[515px]:hidden">
 						<h2 className="font-bold text-2xl !leading-[120%] mb-8 mt-2">
 							Building a world where every child has the ability
 							to communicate.
@@ -55,14 +49,14 @@ export default function About() {
 						/>
 					</div>
 					<div className="text-[#4E5F76] max-w-xl md:text-lg lg:text-xl md:max-w-2xl lg:max-w-3xl space-y-2 lg:space-y-3">
-						<FadeUp delay={0.3}>
+						<FadeUp delay={0.2}>
 							Our team possesses over 15 years of collective
-							experience in Audiology, Speech-Language Pathology,
+							experience in Audiology, Speech-Language Therapy,
 							Early Child Education, Special Education, Software
 							Engineering, Machine Learning, Data Engineering,
 							Business Operations and Project Management.
 						</FadeUp>
-						<FadeUp delay={0.4}>
+						<FadeUp delay={0.3}>
 							With a collective vision to build an impactful
 							solution, we are committed to building a world where
 							every child has the ability to communicate.
@@ -78,7 +72,6 @@ export default function About() {
 								className="max-w-[400px]"
 							>
 								<Image
-									key={member.id}
 									src={member.imgSmall}
 									alt={member.name}
 									width={581}
@@ -96,7 +89,9 @@ export default function About() {
 									<div className="flex gap-3">
 										<Link
 											href={member.linkedIn}
-											className="size-[35px] flex items-center rounded-full justify-center bg-neutral-300"
+											target="_blank"
+											rel="noreferrer"
+											className="size-[35px] flex items-center rounded-full justify-center bg-neutral-300 hover:bg-neutral-400 transition-all duration-200 ease-in-out"
 										>
 											<Image
 												src="images/linkedin.svg"
@@ -109,7 +104,7 @@ export default function About() {
 										<div
 											className={twMerge(
 												clsx(
-													"size-[35px] flex items-center rounded-full justify-center bg-neutral-300 transition-all duration-[600ms]",
+													"size-[35px] flex items-center rounded-full justify-center bg-neutral-300 transition-all duration-[600ms] hover:bg-neutral-400",
 													activeCard === member.id
 														? "rotate-180"
 														: "rotate-0"
@@ -159,7 +154,7 @@ export default function About() {
 					</div>
 					<ul className="flex-1 space-y-6 max-w-[613px] justify-self-end lg:hidden">
 						{teamMembers.map((member, index) => (
-							<FadeUp key={member.name} delay={index * 0.15}>
+							<FadeUp key={member.name} delay={index * 0.1}>
 								<li
 									onClick={() =>
 										handleActiveMobile(member.id)
@@ -175,7 +170,12 @@ export default function About() {
 												{member.role}
 											</div>
 										</div>
-										<div className="size-[35px] flex items-center rounded-full justify-center bg-neutral-300">
+										<Link
+											href={member.linkedIn}
+											target="_blank"
+											rel="noreferrer"
+											className="size-[35px] flex items-center rounded-full justify-center bg-neutral-300 hover:bg-neutral-400 transition-all duration-200 ease-in-out"
+										>
 											<Image
 												src="images/linkedin.svg"
 												alt="linkedin logo"
@@ -183,7 +183,7 @@ export default function About() {
 												height={16}
 												className="size-[20px]"
 											/>
-										</div>
+										</Link>
 									</div>
 									<div
 										className={twMerge(
@@ -232,7 +232,9 @@ export default function About() {
 										</div>
 										<Link
 											href={member.linkedIn}
-											className="size-[41px] flex items-center rounded-full justify-center bg-neutral-300"
+											target="_blank"
+											rel="noreferrer"
+											className="size-[41px] flex items-center rounded-full justify-center bg-neutral-300 hover:bg-neutral-400 transition-all duration-200 ease-in-out"
 										>
 											<Image
 												src="images/linkedin.svg"

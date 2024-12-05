@@ -5,6 +5,7 @@ import dashboard_image from '../../../public/icons/dashboard_image.svg'
 import locked_module from '../../../public/icons/locked_module.svg'
 import { useRouter } from 'next/navigation'
 import StarComponent from '@/components/StarComponent'
+import RequiredAuth from '@/components/RequiredAuth';
 
 const Dashboard = () => {
 	const list = [1,2,3,4,5,6,7,8,9,10,11]

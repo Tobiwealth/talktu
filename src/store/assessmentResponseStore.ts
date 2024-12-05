@@ -48,10 +48,10 @@ export const useAssessmentResponseStore = create<AssessmentStore>((set, get) => 
                 answers: [
                   {
                     questionId: response.questionId,
+                    followUpAnswer: response.followUpAnswer,
                     response: {
                       key: response.type,
                       value: response.value,
-                      followUpAnswer: response.followUpAnswer,
                     },
                   },
                 ],
@@ -82,10 +82,10 @@ export const useAssessmentResponseStore = create<AssessmentStore>((set, get) => 
               answer.questionId === response.questionId
                 ? {
                     ...answer,
+                    followUpAnswer: response.followUpAnswer || null,
                     response: {
                       key: response.type,
                       value: response.value,
-                      followUpAnswer: response.followUpAnswer || null,
                     },
                   }
                 : answer
@@ -94,10 +94,10 @@ export const useAssessmentResponseStore = create<AssessmentStore>((set, get) => 
               ...existingStep.answers,
               {
                 questionId: response.questionId,
+                followUpAnswer: response.followUpAnswer || null,
                 response: {
                   key: response.type,
                   value: response.value,
-                  followUpAnswer: response.followUpAnswer || null,
                 },
               },
             ];
@@ -122,10 +122,10 @@ export const useAssessmentResponseStore = create<AssessmentStore>((set, get) => 
                 answers: [
                   {
                     questionId: response.questionId,
+                    followUpAnswer: response.followUpAnswer || null,
                     response: {
                       key: response.type,
                       value: response.value,
-                      followUpAnswer: response.followUpAnswer || null,
                     },
                   },
                 ],

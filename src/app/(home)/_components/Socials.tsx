@@ -5,7 +5,9 @@ export default function Socials() {
 	return (
 		<div className="flex items-center gap-3 min-[375px]:gap-4 lg:gap-6 lg:mt-4">
 			<Link
-				href="/"
+				href="https://www.instagram.com/talktu.speech/"
+				target="_blank"
+				rel="noreferrer"
 				className="p-3 rounded-full bg-[#152D5B] group min-[375px]:p-4 flex items-center border border-[#193B7B]"
 			>
 				<svg
@@ -24,7 +26,9 @@ export default function Socials() {
 				</svg>
 			</Link>
 			<Link
-				href="/"
+				href="https://www.facebook.com/profile.php?id=61563872649562"
+				target="_blank"
+				rel="noreferrer"
 				className="p-[10px] rounded-full bg-[#152D5B] group min-[375px]:p-[14px] flex items-center border border-[#193B7B]"
 			>
 				<svg
@@ -46,25 +50,39 @@ export default function Socials() {
 			</Link>
 			<Link
 				href="/"
+				target="_blank"
+				rel="noreferrer"
 				className="p-3 rounded-full bg-[#152D5B] group min-[375px]:p-4 flex items-center border border-[#193B7B]"
 			>
 				<svg
-					width={24}
-					height={25}
-					viewBox="0 0 24 25"
+					width="26"
+					height="19"
+					viewBox="0 0 26 19"
 					fill="none"
 					xmlns="http://www.w3.org/2000/svg"
 					className="size-6 lg:size-8"
 				>
 					<path
-						d="M10.488 15.1354L15.25 21.4844H22.25L14.392 11.0064L20.93 3.48438H18.28L13.163 9.37037L8.75 3.48438H1.75L9.26 13.4994L2.32 21.4844H4.97L10.488 15.1354ZM16.25 19.4844L5.75 5.48438H7.75L18.25 19.4844H16.25Z"
+						d="M15.4 9.52012L11.2 11.9201V7.12012L15.4 9.52012Z"
 						fill="white"
-						className="transition-all duration-300 ease-in-out group-hover:fill-sunglow-main "
+						stroke="white"
+						stroke-width="1.80406"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						// className="transition-all duration-300 ease-in-out group-hover:fill-sunglow-main"
+					/>
+					<path
+						d="M1 10.3691V8.671C1 5.19658 1 3.45939 2.08659 2.34162C3.17319 1.22386 4.88387 1.17548 8.30523 1.07871C9.92648 1.03286 11.5826 1 13 1C14.4174 1 16.0736 1.03286 17.6948 1.07871C21.1161 1.17548 22.8268 1.22386 23.9134 2.34162C25 3.45939 25 5.19658 25 8.671V10.3691C25 13.8435 25 15.5807 23.9134 16.6984C22.8268 17.8162 21.1162 17.8646 17.6949 17.9614C16.0736 18.0072 14.4174 18.0401 13 18.0401C11.5826 18.0401 9.9264 18.0072 8.30512 17.9614C4.88381 17.8646 3.17316 17.8162 2.08658 16.6984C1 15.5807 1 13.8435 1 10.3691Z"
+						stroke="white"
+						stroke-width="1.80406"
+						// className="transition-all duration-300 ease-in-out group-hover:fill-sunglow-main"
 					/>
 				</svg>
 			</Link>
 			<Link
-				href="/"
+				href="https://www.linkedin.com/company/talktuspeech/"
+				target="_blank"
+				rel="noreferrer"
 				className="p-3 rounded-full bg-[#152D5B] group min-[375px]:p-4 flex items-center border border-[#193B7B]"
 			>
 				<svg

@@ -73,7 +73,7 @@ const ParentAssessment = () => {
 		if(currentLevel === maxLevel && currentStep === 10){
 			// try {
 	  //           const response = await axios.post('assessment-responses',
-	  //               JSON.stringify({ assessmentResponse}),
+	  //               JSON.stringify({ responsess}),
 	  //               {
 	  //                   headers: { 
 	  //                   	'Content-Type': 'application/json',
@@ -87,6 +87,7 @@ const ParentAssessment = () => {
 
 	  //       } catch (err) {
 	  //           console.log(err);
+	  //           return;
 	  //       }
 	        handleCloseMobile()
 		}

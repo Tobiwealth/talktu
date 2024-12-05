@@ -1,9 +1,9 @@
-import CTAButton from "@/components/subscription/CTAButton";
 import Image from "next/image";
-import React from "react";
-import Socials from "./_components/Socials";
 import FadeUp from "./_components/animated components/FadeUp";
 import MaskText from "./_components/animated components/MaskText";
+import CTAButton from "./_components/CTAButton";
+import Socials from "./_components/Socials";
+import Link from "next/link";
 
 export default function Footer() {
 	return (
@@ -11,27 +11,39 @@ export default function Footer() {
 			<div className="relative overflow-hidden container px-4 pt-20 md:pt-[112px] pb-[112px] md:pb-[135px] bg-deep_blue xl:max-w-[1252px] rounded-3xl md:rounded-[76px]">
 				<div className="relative z-20 flex flex-col items-center text-center text-white gap-[44px]">
 					<div className="flex flex-col items-center gap-10">
-						<FadeUp>
-							<Image
-								src="/images/logo.svg"
-								alt="logo"
-								width={100}
-								height={100}
-								className="w-20 md:w-auto xl:w-[159px]"
-							/>
+						<FadeUp delay={0.1}>
+							<Link href="/">
+								<Image
+									src="/images/logo.svg"
+									alt="logo"
+									width={100}
+									height={100}
+									className="w-20 md:w-auto xl:w-[159px]"
+								/>
+							</Link>
 						</FadeUp>
 						<div className="space-y-4">
-							<MaskText phrases={["Ready to Start the Journey?"]} tag="h3" className="font-bold text-xl sm:text-2xl md:text-4xl lg:text-[2.5rem] xl:text-[3rem] !leading-[120%]" />
-							<FadeUp delay={0.3} className="max-w-md mx-auto md:text-lg lg:text-xl md:max-w-[26rem] lg:max-w-md text-[#F5F6F8]">
+							<MaskText
+								phrases={["Ready to Start the Journey?"]}
+								tag="h3"
+								className="font-bold text-xl sm:text-2xl md:text-4xl lg:text-[2.5rem] xl:text-[3rem] !leading-[120%]"
+							/>
+							<FadeUp
+								delay={0.2}
+								className="max-w-md mx-auto md:text-lg lg:text-xl md:max-w-[26rem] lg:max-w-md text-[#F5F6F8]"
+							>
 								Join us in helping your child reach new
 								milestones in communication and confidence
 							</FadeUp>
 						</div>
-						<FadeUp delay={0.4} className="w-full flex justify-center">
-							<CTAButton href="/auth/signup"/>
+						<FadeUp
+							delay={0.3}
+							className="w-full flex justify-center"
+						>
+							<CTAButton />
 						</FadeUp>
 					</div>
-					<FadeUp delay={0.5}>
+					<FadeUp delay={0.4}>
 						<Socials />
 					</FadeUp>
 				</div>

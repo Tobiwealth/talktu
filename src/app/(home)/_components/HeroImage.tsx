@@ -1,12 +1,12 @@
 import Image from "next/image";
-import React from "react";
 import FadeIn from "./animated components/FadeIn";
+import { motion } from "framer-motion";
 
 export default function HeroImage() {
 	return (
 		<FadeIn
 			delay={0.8}
-			className="absolute bottom-0 left-0 right-0 flex overflow-hidden h-[300px] lg:h-[420px] xl:max-w-[1536px] xl:mx-auto"
+			className="absolute bottom-0 left-0 right-0 flex overflow-hidden h-[300px] lg:h-[420px] xl:max-w-[1536px] xl:mx-auto z-10"
 		>
 			{/* rounded lines */}
 			<Image
@@ -25,7 +25,17 @@ export default function HeroImage() {
 			/>
 
 			{/* kid 1 */}
-			<div className="absolute bottom-[40%] w-full max-w-[90px] left-[4%] z-30 sm:max-w-[100px] sm:bottom-[45%] md:max-w-[140px] md:bottom-[38%] lg:max-w-[192px] -rotate-[16.5deg] xl:left-[3%] lg:bottom-[19%]  xl:bottom-[50%]">
+			<motion.div
+				animate={{
+					y: ["0%", "-8%", "0%"],
+				}}
+				transition={{
+					duration: 5,
+					repeat: Infinity,
+					repeatType: "loop",
+				}}
+				className="absolute bottom-[40%] w-full max-w-[90px] left-[4%] z-30 sm:max-w-[100px] sm:bottom-[45%] md:max-w-[140px] md:bottom-[38%] lg:max-w-[192px] -rotate-[16.5deg] xl:left-[3%] lg:bottom-[19%]  xl:bottom-[50%]"
+			>
 				<Image
 					src="/images/crown-lines.svg"
 					alt="illustration"
@@ -40,10 +50,20 @@ export default function HeroImage() {
 					height={470}
 					className="max-w-full"
 				/>
-			</div>
+			</motion.div>
 
 			{/* kid 2 */}
-			<div className="absolute bottom-[70%] w-full max-w-[60px] left-[41%] z-30 sm:max-w-[80px] sm:left-[28%] sm:bottom-[35%] md:max-w-[110px] min-[900px]:max-w-[130px] min-[900px]:bottom-[45%] rotate-[7.77deg] lg:left-[24%] lg:bottom-[52%] xl:max-w-[162px] xl:left-[25%] xl:bottom-[54%]">
+			<motion.div
+				animate={{
+					y: ["-8%", "0%", "-8%"],
+				}}
+				transition={{
+					duration: 5,
+					repeat: Infinity,
+					repeatType: "loop",
+				}}
+				className="absolute bottom-[70%] w-full max-w-[60px] left-[41%] z-30 sm:max-w-[80px] sm:left-[28%] sm:bottom-[35%] md:max-w-[110px] min-[900px]:max-w-[130px] min-[900px]:bottom-[45%] rotate-[7.77deg] lg:left-[24%] lg:bottom-[52%] xl:max-w-[162px] xl:left-[25%] xl:bottom-[54%]"
+			>
 				<Image
 					src="/images/crown-lines.svg"
 					alt="illustration"
@@ -58,10 +78,20 @@ export default function HeroImage() {
 					height={376}
 					className="max-w-full"
 				/>
-			</div>
+			</motion.div>
 
 			{/* kid 3 */}
-			<div className="absolute bottom-[26%] w-full max-w-[80px] left-[39%] z-30 sm:max-w-[90px] sm:left-[52%] sm:bottom-[23%] md:max-w-[110px] min-[900px]:max-w-[140px] -rotate-[16.5deg] lg:max-w-[172px] lg:bottom-[25%] xl:max-w-[192px] xl:bottom-[41%]">
+			<motion.div
+				animate={{
+					y: ["0%", "-8%", "0%"],
+				}}
+				transition={{
+					duration: 5,
+					repeat: Infinity,
+					repeatType: "loop",
+				}}
+				className="absolute bottom-[26%] w-full max-w-[80px] left-[39%] z-30 sm:max-w-[90px] sm:left-[52%] sm:bottom-[23%] md:max-w-[110px] min-[900px]:max-w-[140px] -rotate-[16.5deg] lg:max-w-[172px] lg:bottom-[25%] xl:max-w-[192px] xl:bottom-[41%]"
+			>
 				<Image
 					src="/images/crown-lines.svg"
 					alt="illustration"
@@ -76,10 +106,20 @@ export default function HeroImage() {
 					height={470}
 					className="max-w-full"
 				/>
-			</div>
+			</motion.div>
 
 			{/* kid 4 */}
-			<div className="absolute bottom-[30%] w-full max-w-[90px] right-[4%] z-30 sm:max-w-[100px] sm:right-[8%] sm:bottom-[45%] md:max-w-[130px] md:bottom-[30%] md:right-[6%] rotate-[7.77deg] lg:max-w-[192px] lg:bottom-[26%] lg:right-[6%] xl:bottom-[49%] xl:right-[7%]">
+			<motion.div
+				animate={{
+					y: ["-8%", "0%", "-8%"],
+				}}
+				transition={{
+					duration: 5,
+					repeat: Infinity,
+					repeatType: "loop",
+				}}
+				className="absolute bottom-[30%] w-full max-w-[90px] right-[4%] z-30 sm:max-w-[100px] sm:right-[8%] sm:bottom-[45%] md:max-w-[130px] md:bottom-[30%] md:right-[6%] rotate-[7.77deg] lg:max-w-[192px] lg:bottom-[26%] lg:right-[6%] xl:bottom-[49%] xl:right-[7%]"
+			>
 				<Image
 					src="/images/crown-lines.svg"
 					alt="illustration"
@@ -94,7 +134,7 @@ export default function HeroImage() {
 					height={501}
 					className="max-w-full"
 				/>
-			</div>
+			</motion.div>
 
 			{/* dots group */}
 			<Image

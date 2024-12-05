@@ -1,8 +1,7 @@
 "sue client";
-import CTAButton from "@/components/subscription/CTAButton";
 import FadeUp from "./_components/animated components/FadeUp";
 import MaskText from "./_components/animated components/MaskText";
-import FadeIn from "./_components/animated components/FadeIn";
+import CTAButton from "./_components/CTAButton";
 
 export default function GettingStartedSection() {
 	return (
@@ -23,10 +22,13 @@ export default function GettingStartedSection() {
 						journey that builds confidence and communication skills
 					</FadeUp>
 					<FadeUp delay={0.4} className="w-full justify-center flex">
-						<CTAButton href="/auth/signup" />
+						<CTAButton />
 					</FadeUp>
 				</div>
-				<FadeUp className="max-w-[1137px] grid justify-center gap-8 mx-auto md:grid-cols-2 md:gap-4 md:grid-rows-2 lg:gap-6 xl:gap-8 lg:grid-cols-[4fr_3.5fr]">
+				<FadeUp
+					delay={0.5}
+					className="max-w-[1137px] grid justify-center gap-8 mx-auto md:grid-cols-2 md:gap-4 md:grid-rows-2 lg:gap-6 xl:gap-8 lg:grid-cols-[4fr_3.5fr]"
+				>
 					<div className="relative rounded-[15px] bg-[#C6E2FF] pt-8 group overflow-hidden max-w-[414px] md:row-span-2  md:justify-self-end lg:max-w-none lg:pt-[53px] flex flex-col justify-between">
 						<div className="relative z-20 px-4 space-y-2 transition-all duration-300 ease-in-out lg:space-y-3 text-deep_blue group-hover:text-white sm:px-6 lg:px-8">
 							<div className="text-2xl font-bold lg:text-3xl xl:text-[2rem]">
@@ -36,7 +38,7 @@ export default function GettingStartedSection() {
 								Create your child’s account to set up a learning
 								experience tailored to their unique strengths
 								and need and take an assessment, guided by
-								expert Speech-Language Pathologists, which helps
+								expert Speech-Language Therapists, which helps
 								us understand your child’s current communication
 								abilities.
 							</p>

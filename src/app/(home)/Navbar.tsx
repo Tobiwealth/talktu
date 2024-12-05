@@ -1,10 +1,17 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import HamburgerButton from "./_components/HamburgerButton";
-import CTAButton from "@/components/subscription/CTAButton";
 import { useState } from "react";
+import CTAButton from "./_components/CTAButton";
+import HamburgerButton from "./_components/HamburgerButton";
 import MobileMenu from "./_components/MobileMenu";
+
+const navLinks = [
+	{ title: "Home", path: "/" },
+	{ title: "About", path: "/" },
+	{ title: "For SLPs", path: "/" },
+	{ title: "For Schools", path: "/" },
+];
 
 export default function Navbar() {
 	const [isOpen, setIsOpen] = useState(false);
@@ -29,53 +36,24 @@ export default function Navbar() {
 
 				<nav>
 					<ul className="items-center hidden gap-4 font-semibold text-white md:flex">
-						<li>
-							<Link
-								href={"/"}
-								className="p-2 transition-colors duration-200 ease-in-out cursor-pointer hover:text-sunglow-main"
-							>
-								Home
-							</Link>
-						</li>
-						<li>
-							<Link
-								href={"/about"}
-								className="p-2 transition-colors duration-200 ease-in-out cursor-pointer hover:text-sunglow-main"
-							>
-								About
-							</Link>
-						</li>
-						<li>
-							<Link
-								href={"/for-slps"}
-								className="p-2 transition-colors duration-200 ease-in-out cursor-pointer hover:text-sunglow-main"
-							>
-								For SLPs
-							</Link>
-						</li>
-						<li>
-							<Link
-								href={"/for-schools"}
-								className="p-2 transition-colors duration-200 ease-in-out cursor-pointer hover:text-sunglow-main"
-							>
-								For Schools
-							</Link>
-						</li>
+						{navLinks.map((link, index) => (
+							<li key={index}>
+								<Link
+									href={link.path}
+									className="p-2 transition-colors duration-200 ease-in-out cursor-pointer hover:text-sunglow-main"
+								>
+									{link.title}
+								</Link>
+							</li>
+						))}
 					</ul>
 				</nav>
 
 				<div className="hidden md:block">
-					<Link
-						href="https://docs.google.com/forms/d/e/1FAIpQLSfmezJ1izTztneqfjNOPoyem_akC5um4azsDVtdEaUH24WNJA/viewform"
-						target="_blank"
-						rel="noreferrer"
-						className="sub-btn text-center font-bold min-w-[150px] lg:min-w-[186px]"
-					>
-						Get Started
-					</Link>
+					<CTAButton className="min-w-[150px] lg:min-w-[186px]" />
 				</div>
 			</nav>
-			<MobileMenu isOpen={isOpen} />
+			<MobileMenu isOpen={isOpen} navLinks={navLinks} />
 		</header>
 	);
 }
