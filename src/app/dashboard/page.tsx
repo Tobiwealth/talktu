@@ -6,8 +6,11 @@ import locked_module from '../../../public/icons/locked_module.svg'
 import { useRouter } from 'next/navigation'
 import StarComponent from '@/components/StarComponent'
 import RequiredAuth from '@/components/RequiredAuth';
+import { useAuthStore } from "@/store/authStore";
 
 const Dashboard = () => {
+	const token = useAuthStore((state) => state.token);
+	console.log(token)
 	const list = [1,2,3,4,5,6,7,8,9,10,11]
 	const position = [
 	                    '-translate-x-12 sl:-translate-x-16 md:-translate-x-2 lg:-translate-x-6 lg:pt-10', '-translate-x-[65px] sl:-translate-x-[85px] md:-translate-x-[180px] lg:-translate-x-[155px]', 'translate-x-[110px] sl:translate-x-20 md:-translate-x-[155px] lg:translate-x-40', 'translate-x-10 sl:translate-x-6 md:translate-x-32 lg:translate-x-36', 
@@ -22,6 +25,10 @@ const Dashboard = () => {
 	                    '-translate-x-[106px] sl:-translate-x-32 md:translate-x-40 lg:-translate-x-32', '-translate-x-[100px] sl:-translate-x-32 md:translate-x-16 lg:-translate-x-48', 'translate-x-5 sl:translate-x-0 md:-translate-x-28 lg:-translate-x-4'
 	                ]
 	const router = useRouter()
+
+	if(!token){
+		router.push('/auth/login');
+	}
 	return (
 		<div className="bg-[url('/icons/mobile_background.svg')] md:bg-[url('/icons/background_vector.svg')] bg-no-repeat lg:bg-top lg:bg-scroll h-full min-h-screen flex flex-col items-center pb-12 px-8">
 			<div className="pt-10 lg:pt-16">
@@ -91,4 +98,4 @@ const Dashboard = () => {
 	)
 }
 
-export default Dashboard
+export default RequiredAuth(Dashboard)

@@ -24,7 +24,7 @@ export default function BottomFeaturesSection() {
 					))}
 				</div>
 			</div>
-			<CTAButton href="/auth/signup" />
+			<CTAButton href="/dashboard" />
 		</div>
 	);
 }

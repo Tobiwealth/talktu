@@ -9,7 +9,10 @@ import {useChildStore} from '@/store/childStore'
 const Onboarding = () => {
 	const token = useAuthStore((state) => state.token);
 	const child = useChildStore((state) => state.childProfile);
+	const childId = useChildStore((state) => state.childProfile)
 	const Loading = () => <div>Loading...</div>;
+
+	console.log(token)
 
 
 	return (

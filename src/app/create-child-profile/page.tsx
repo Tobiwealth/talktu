@@ -37,7 +37,7 @@ export default function CreateChildProfile() {
                 }
             );
             console.log(response.data)
-            addChild({fullName:response?.data.fullName, nickname:response?.data?.nickname, childrenId:response?.data?.parent?.children, parentId:response?.data?.parent?._id});
+            await addChild({fullName:response?.data.fullName, nickname:response?.data?.nickname, childrenId:response?.data?.parent?.children, parentId:response?.data?.parent?._id});
             router.push('/onboarding?user=parent');
         } catch (err) {
             console.log(err);

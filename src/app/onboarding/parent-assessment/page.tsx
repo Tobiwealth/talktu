@@ -44,6 +44,7 @@ type AssessmentResponse = {
 
 const ParentAssessment = () => {
 	const token = useAuthStore((state) => state.token);
+	const userId = useAuthStore((state) => state.userId);
 	const [step, setStep] = useState<number>(1);
 	const [level, setLevel] = useState<number>(1);
 	const [startAssessment, setStartAssessment] = useState<boolean>(false) // this state if true, the assessment questions are fetched
@@ -52,16 +53,37 @@ const ParentAssessment = () => {
 	const [openClosingModal, setOpenClosingModal] = useState<boolean>(false) // this closes the last modal
 	const [assessment, setAssessment] = useState<Steps[]>([]); // assessment questions
 	const [assessmentId, setAssessmentId] = useState<string>("")
-	const childId = useChildStore((state) => state.childProfile?.childrenId[0]) || "hcd8yr8r3y7r3y3y7e3y77";
+	const children = useChildStore((state) => state.childProfile);
 	//const childId = "dj9ediid"
 	const [selectedAnswer, setSelectedAnswer] = useState<string|number|null>(null);
 	const addResponse = useAssessmentResponseStore((state) => state.addAssessmentResponse);//
 	const responsess = useAssessmentResponseStore((state) => state.assessmentResponse); 
 	
 
-	const setReponse = (stepId:string, qstnId:string, type:string, hasFollowUp:boolean) => {
-		if(!childId || !assessmentId || !qstnId || !type ){
+	const setReponse = async (stepId:string, qstnId:string, type:string, hasFollowUp:boolean) => {
+		if(!children || !assessmentId || !qstnId || !type ){
 			return;
+		}
+		let childId;
+		if(!children?.childrenId){
+			try {
+	            const response = await axios.get(`users/${userId}`,
+	                {
+	                    headers: { 
+	                    	'Content-Type': 'application/json',
+	                    	'Authorization':`Bearer ${token}` 
+	                    }
+	                    // withCredentials: true
+	                }
+	            );
+	            console.log('cant find chioldId', response.data);
+	            childId = response.data.children[0]
+	        } catch (err) {
+	            console.log(err);
+	            return;
+	        }
+		}else{
+			childId = children.childrenId[0]
 		}
 		addResponse({childId, assessmentId, stepId, questionId:qstnId, type, value: type === 'text' ? selectedAnswer : type === 'scale' ? rating : pickedOption, followUpAnswer: selectedAnswer });
 		setSelectedAnswer(null);
@@ -123,6 +145,7 @@ const ParentAssessment = () => {
 	}
 	console.log(assessment, assessmentId)
 	console.log('asest response', responsess);
+	console.log(children);
 
 	return (
 		<main>

@@ -40,7 +40,7 @@ export default function Login() {
                 }
             );
             console.log(response.data.accessToken);
-            addAuth(response.data.accessToken);
+            await addAuth(response.data.accessToken, response.data.user._id);
             router.push(`/onboarding?user=${response.data.user.role}`)
         } catch (err) {
         	const axiosError = err as AxiosError;
