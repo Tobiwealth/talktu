@@ -48,11 +48,13 @@ export const useAssessmentResponseStore = create<AssessmentStore>((set, get) => 
                 answers: [
                   {
                     questionId: response.questionId,
-                    followUpAnswer: response.followUpAnswer,
                     response: {
                       key: response.type,
                       value: response.value,
                     },
+                    ...(response.followUpAnswer
+                    ? { followUpAnswer: response.followUpAnswer }
+                    : {}),
                   },
                 ],
               },
@@ -82,11 +84,13 @@ export const useAssessmentResponseStore = create<AssessmentStore>((set, get) => 
               answer.questionId === response.questionId
                 ? {
                     ...answer,
-                    followUpAnswer: response.followUpAnswer || null,
                     response: {
                       key: response.type,
                       value: response.value,
                     },
+                    ...(response.followUpAnswer
+                    ? { followUpAnswer: response.followUpAnswer }
+                    : {}),
                   }
                 : answer
             )
@@ -94,11 +98,13 @@ export const useAssessmentResponseStore = create<AssessmentStore>((set, get) => 
               ...existingStep.answers,
               {
                 questionId: response.questionId,
-                followUpAnswer: response.followUpAnswer || null,
                 response: {
-                  key: response.type,
+                  key: response.type === "multiple_choice" ? "text" : response.type ,
                   value: response.value,
                 },
+                ...(response.followUpAnswer
+                  ? { followUpAnswer: response.followUpAnswer }
+                  : {}),
               },
             ];
 
@@ -122,11 +128,13 @@ export const useAssessmentResponseStore = create<AssessmentStore>((set, get) => 
                 answers: [
                   {
                     questionId: response.questionId,
-                    followUpAnswer: response.followUpAnswer || null,
                     response: {
                       key: response.type,
                       value: response.value,
                     },
+                    ...(response.followUpAnswer
+                    ? { followUpAnswer: response.followUpAnswer }
+                    : {}),
                   },
                 ],
               },

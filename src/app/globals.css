@@ -249,3 +249,6 @@ html {
 	-ms-overflow-style: none; /* IE and Edge */
 	scrollbar-width: none; /* Firefox */
 }
+.assessment-report-gradient{
+	background: linear-gradient(180deg, rgba(224, 231, 255, 0.2) 0%, rgba(224, 231, 255, 0.82) 28.36%, rgba(224, 231, 255, 0.94) 41.78%, #E0E7FF 100%);
+}

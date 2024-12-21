@@ -4,6 +4,7 @@ type ChildProfile = {
   fullName: string;
   nickname: string;
   childrenId: string[];
+  childId: string;
   parentId: string;
 };
 

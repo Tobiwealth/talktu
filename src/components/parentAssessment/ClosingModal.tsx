@@ -5,11 +5,13 @@ import congrats from '../../../public/icons/congrats.svg'
 import Button from '@/components/Button'
 import { useRouter } from 'next/navigation'
 
-
-const ClosingModal= () => {
+interface ModalProps{
+	assessmentId:string;
+}
+const ClosingModal: React.FC<ModalProps> = ({assessmentId}) => {
 	const router = useRouter()
 	const handleClick =() =>{
-		router.push('/onboarding?user=parent')
+		router.push(`/onboarding/assessment-report/${assessmentId}`)
 	}
 	return (
 		<div className="min-h-screen max-h-full w-full flex flex-col items-center justify-center bg-[#EEF3FE] py-24 px-6 relative">

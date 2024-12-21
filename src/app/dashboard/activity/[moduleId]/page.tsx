@@ -6,12 +6,13 @@ import Lock from '../../../../../public/icons/Lock.svg'
 import { useRouter } from 'next/navigation';
 import GoBackButton from '@/components/GoBackButton'
 
+
 const Module = ({ params }: { params: { moduleId: string } }) => {
 	const {moduleId} = params
 	const router = useRouter();
 
 	return (
-		<div className="z-50 min-h-screen pb-24 ">
+		<div className="z-50 min-h-screen pb-24">
 			<GoBackButton extraClass="ml-8 md:ml-16"/>
 			<div className="flex flex-col items-center gap-8">
 				<div className='text-center font-nunito'>

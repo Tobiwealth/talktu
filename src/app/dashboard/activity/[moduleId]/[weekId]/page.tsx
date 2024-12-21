@@ -1,17 +1,19 @@
 'use client'
-import React from 'react'
+import React, {useState} from 'react'
 import { useRouter } from 'next/navigation';
 import WeeklyAssessment from '@/components/kidsDashboard/WeeklyAssessment'
 import FlashCards from '@/components/kidsDashboard/FlashCards'
 import GoBackButton from '@/components/GoBackButton'
+import ActivityModal from '@/components/kidsDashboard/ActivityModal'
 
 
 const WeekLesson = ({ params }: { params: { weekId: string } }) => {
 	const {weekId} = params
 	const router = useRouter();
+	const [openModal, setOpenModal] = useState(true);
 
 	return (
-		<div className="min-h-screen px-8 lg:px-20">
+		<div className="min-h-screen px-8 lg:px-20 relative">
 			<GoBackButton extraClass="mb-6"/>
 			<div className="flex justify-between gap-8">
 				<div className="rounded-[21px] bg-[#04122E] w-[435px] lg:flex flex-col items-center hidden  ">
@@ -33,6 +35,7 @@ const WeekLesson = ({ params }: { params: { weekId: string } }) => {
 					<FlashCards/>
 				</div>
 			</div>
+			{openModal && <ActivityModal setOpenModal={setOpenModal}/>}
 		</div>
 	)
 }

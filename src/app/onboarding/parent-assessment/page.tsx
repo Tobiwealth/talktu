@@ -54,38 +54,17 @@ const ParentAssessment = () => {
 	const [assessment, setAssessment] = useState<Steps[]>([]); // assessment questions
 	const [assessmentId, setAssessmentId] = useState<string>("")
 	const children = useChildStore((state) => state.childProfile);
-	//const childId = "dj9ediid"
 	const [selectedAnswer, setSelectedAnswer] = useState<string|number|null>(null);
 	const addResponse = useAssessmentResponseStore((state) => state.addAssessmentResponse);//
-	const responsess = useAssessmentResponseStore((state) => state.assessmentResponse); 
+	const assessmentResponse = useAssessmentResponseStore((state) => state.assessmentResponse); 
 	
 
 	const setReponse = async (stepId:string, qstnId:string, type:string, hasFollowUp:boolean) => {
 		if(!children || !assessmentId || !qstnId || !type ){
 			return;
 		}
-		let childId;
-		if(!children?.childrenId){
-			try {
-	            const response = await axios.get(`users/${userId}`,
-	                {
-	                    headers: { 
-	                    	'Content-Type': 'application/json',
-	                    	'Authorization':`Bearer ${token}` 
-	                    }
-	                    // withCredentials: true
-	                }
-	            );
-	            console.log('cant find chioldId', response.data);
-	            childId = response.data.children[0]
-	        } catch (err) {
-	            console.log(err);
-	            return;
-	        }
-		}else{
-			childId = children.childrenId[0]
-		}
-		addResponse({childId, assessmentId, stepId, questionId:qstnId, type, value: type === 'text' ? selectedAnswer : type === 'scale' ? rating : pickedOption, followUpAnswer: selectedAnswer });
+		let {childId} = children
+		addResponse({childId, assessmentId, stepId, questionId:qstnId, type, value: type === 'text' ? selectedAnswer : type === 'scale' ? rating : pickedOption, ...(hasFollowUp ? { followUpAnswer: selectedAnswer } : {}) });
 		setSelectedAnswer(null);
 		setPickedOption("");
 		setRating(1)
@@ -93,25 +72,23 @@ const ParentAssessment = () => {
 	const handleClick = async (maxLevel:number, currentLevel:number, currentStep:number, stepId:string, questionId:string, type:string, hasFollowUp:boolean) => {
 		setReponse(stepId, questionId, type, hasFollowUp);
 		if(currentLevel === maxLevel && currentStep === 10){
-			// try {
-	  //           const response = await axios.post('assessment-responses',
-	  //               JSON.stringify({ responsess}),
-	  //               {
-	  //                   headers: { 
-	  //                   	'Content-Type': 'application/json',
-	  //                   	'Authorization':`Bearer ${token}` 
-	  //                   }
-	  //                   // withCredentials: true
-	  //               }
-	  //           );
-	  //           console.log(response.data);
-	  //           handleCloseMobile()
+			try {
+	            const response = await axios.post('assessment-responses',
+	                JSON.stringify(assessmentResponse),
+	                {
+	                    headers: { 
+	                    	'Content-Type': 'application/json',
+	                    	'Authorization':`Bearer ${token}` 
+	                    }
+	                }
+	            );
+	            console.log(response.data);
+	            handleCloseMobile()
 
-	  //       } catch (err) {
-	  //           console.log(err);
-	  //           return;
-	  //       }
-	        handleCloseMobile()
+	        } catch (err) {
+	            console.log(err)
+	            return;
+	        }
 		}
 		if(currentLevel < maxLevel){
 			setLevel(prev => prev + 1);
@@ -132,10 +109,8 @@ const ParentAssessment = () => {
             const response = await axios.get('/sta',
                 {
                     headers: { 'Content-Type': 'application/json' }
-                    // withCredentials: true
                 }
             );
-           ///console.log(response)
             setAssessment(response?.data.steps)
             setAssessmentId(response?.data._id)
             setStartAssessment(true)
@@ -143,9 +118,7 @@ const ParentAssessment = () => {
             console.log(err);
         }
 	}
-	console.log(assessment, assessmentId)
-	console.log('asest response', responsess);
-	console.log(children);
+	console.log('asest response', assessmentResponse);
 
 	return (
 		<main>
@@ -193,7 +166,7 @@ const ParentAssessment = () => {
 					</div>
 				</div>
 			</div>
-			{!startAssessment && openClosingModal && <ClosingModal/>}
+			{!startAssessment && openClosingModal && <ClosingModal assessmentId={assessmentId}/>}
 		</main>
 	)
 }
