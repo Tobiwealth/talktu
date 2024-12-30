@@ -5,8 +5,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import axios from "@/api/useAxios";
 import SignupForm from "@/components/auth/signup/SignupForm";
-import { AxiosError } from 'axios';
-
+import { AxiosError } from "axios";
 
 type InputGroupRef = {
 	emailInputValue: () => void;
@@ -21,7 +20,7 @@ const tabs = [
 	},
 	{
 		id: "therapist",
-		label: "SLP",
+		label: "SLT",
 	},
 	{
 		id: "school",
@@ -36,10 +35,10 @@ interface FormData {
 }
 
 export default function SignUp() {
-  const [errMsg, setErrMsg] = useState<string>("");
-  const router = useRouter();
-  const [activeTab, setActiveTab] = useState(tabs[0].id);
-  const inputRef = useRef<HTMLInputElement>(null);
+	const [errMsg, setErrMsg] = useState<string>("");
+	const router = useRouter();
+	const [activeTab, setActiveTab] = useState(tabs[0].id);
+	const inputRef = useRef<HTMLInputElement>(null);
 
 	useEffect(() => {
 		if (inputRef.current) {
@@ -74,12 +73,14 @@ export default function SignUp() {
 			const axiosError = err as AxiosError;
 			console.log(axiosError);
 			if (!axiosError?.response) {
-	            setErrMsg('No Server Response');
-	        } else if (axiosError?.status === 403) {
-	            setErrMsg('You do not have permission to create an admin account');
-	        } else {
-	            setErrMsg('Sign up Failed');
-	        }
+				setErrMsg("No Server Response");
+			} else if (axiosError?.status === 403) {
+				setErrMsg(
+					"You do not have permission to create an admin account"
+				);
+			} else {
+				setErrMsg("Sign up Failed");
+			}
 		}
 		// Pass email to verify-email page
 	};
@@ -103,7 +104,11 @@ export default function SignUp() {
 						setActiveTab={setActiveTab}
 					/>
 				</header>
-				{errMsg && <p className="font-nunito font-normal text-sm text-[#DC143C]">{errMsg}</p>}
+				{errMsg && (
+					<p className="font-nunito font-normal text-sm text-[#DC143C]">
+						{errMsg}
+					</p>
+				)}
 				<SignupForm
 					formType={activeTab === "school" ? "school" : "default"}
 					onSubmit={handleFormSubmit}

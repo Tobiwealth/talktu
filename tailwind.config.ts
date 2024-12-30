@@ -194,9 +194,12 @@ const config: Config = {
 				h3: ["var(--fs-h3)", { lineHeight: "var(--lh-default)" }],
 				h4: ["var(--fs-h4)", { lineHeight: "var(--lh-default)" }],
 			},
+			backgroundImage: {
+				"hero-banner": "url('/images/hero_banner.png')",
+			},
 			screens: {
-		        'sl': '400px',
-		    }
+				sl: "400px",
+			},
 		},
 	},
 	plugins: [],

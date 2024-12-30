@@ -20,8 +20,9 @@ const HamburgerButton = ({
 			<span
 				className={twMerge(
 					clsx(
-						"w-6 h-[2px] bg-brand-600 rounded duration-300 transition-all ease-in-out bg-white",
-						isOpen && "rotate-45 translate-y-[5px]"
+						"w-6 h-[2px] bg-brand-600 rounded duration-300 transition-all ease-in-out",
+						isOpen && "rotate-45 translate-y-[5px]",
+						hamburgerButtonColor || "bg-white"
 					)
 				)}
 			></span>
@@ -29,8 +30,9 @@ const HamburgerButton = ({
 			<span
 				className={twMerge(
 					clsx(
-						"w-6 h-[2px] bg-brand-600 rounded duration-200 transition-all ease-in-out bg-white",
-						isOpen && "opacity-0"
+						"w-6 h-[2px] bg-brand-600 rounded duration-200 transition-all ease-in-out",
+						isOpen && "opacity-0",
+						hamburgerButtonColor || "bg-white"
 					)
 				)}
 			></span>
@@ -38,8 +40,9 @@ const HamburgerButton = ({
 			<span
 				className={twMerge(
 					clsx(
-						"w-6 h-[2px] bg-brand-600 rounded duration-300 transition-all ease-in-out bg-white",
-						isOpen && "-rotate-45 -translate-y-[7px]"
+						"w-6 h-[2px] bg-brand-600 rounded duration-300 transition-all ease-in-out",
+						isOpen && "-rotate-45 -translate-y-[7px]",
+						hamburgerButtonColor || "bg-white"
 					)
 				)}
 			></span>

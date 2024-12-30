@@ -8,8 +8,11 @@ import HeroImage from "./_components/HeroImage";
 
 export default function Hero() {
 	return (
-		<section className="relative bg-deep_blue pt-[130px] xl:pt-[178px] text-white md:pt-[178px] pb-[380px] min-h-screen md:min-h-[80vh] lg:min-h-screen overflow-hidden sm:pb-[420px]  md:pb-[280px] lg:pb-[320px] xl:pb-[400px] flex flex-col">
-			<div className="container relative px-4 mx-auto z-20">
+		<section
+			id="home"
+			className="relative bg-deep_blue pt-[130px] xl:pt-[178px] text-white md:pt-[178px] pb-[380px] min-h-screen md:min-h-[80vh] lg:min-h-screen overflow-hidden sm:pb-[420px]  md:pb-[280px] lg:pb-[320px] xl:pb-[400px] flex flex-col"
+		>
+			<div className="container relative z-20 px-4 mx-auto">
 				<div className="flex flex-col max-w-lg gap-8 mx-auto sm:items-center sm:gap-5 sm:text-center sm:max-w-xl lg:max-w-3xl xl:max-w-4xl md:max-w-2xl">
 					<div>
 						<FadeUp delay={0.1} className="md:hidden">
@@ -38,7 +41,7 @@ export default function Hero() {
 					</FadeUp>
 					<FadeUp
 						delay={0.5}
-						className="w-full sm:justify-center flex"
+						className="flex w-full sm:justify-center"
 					>
 						<CTAButton />
 					</FadeUp>

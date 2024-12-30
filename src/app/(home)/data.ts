@@ -91,3 +91,24 @@ export const teamMembers = [
 		linkedIn: "https://www.linkedin.com/in/kuro-souza-okpofabri-3a423a16/",
 	},
 ];
+
+export const flagshipContent = {
+	slp: {
+		description:
+			"As a Speech-Language therapist your therapy sessions with our extensive collection of engaging resources, can make learning fun, interactive, and effective for children. Our platform provides a diverse range of tools designed to suit various therapy needs and learning styles",
+		points: [
+			"Video Resources: Bring concepts to life with dynamic video content curated by experienced Speech and Language Therapists. These videos provide visual and auditory stimulation, making it easier for children to develop speech and language skills in an enjoyable and relatable way.",
+			"Flashcards: Utilize our colorful, easy-to-use flashcards for articulation practice, vocabulary building, and sound recognition. These flashcards are perfect for structured sessions or quick, on-the-go learning activities",
+			"Interactive Activities: Keep children engaged with hands-on activities and self-led exercises that encourage active participation and skill reinforcement. From games to storytelling prompts, our activities are designed to enhance communication skills while keeping therapy sessions lively",
+		],
+	},
+	schools: {
+		description:
+			"Talktu helps schools provide a comprehensive, engaging, and effective speech therapy program to students in need. With our diverse collection of resources, educators and school therapists can personalize therapy to meet the unique needs of each child, fostering better communication skills and academic readiness.",
+		points: [
+			"Curriculum-Aligned Resources: Our platform offers a variety of resources that align with educational curricula, making it easier to integrate speech therapy into your school’s daily activities. From phonics practice to language comprehension exercises, Talktu supports students’ speech development across all learning stages.",
+			"Progress Tracking: With Talktu, schools can monitor students’ progress through real-time tracking tools that allow teachers and therapists to measure improvements and adjust therapy plans as needed. This ensures every child receives the support they need to succeed.",
+			"Collaborative Platform: Talktu enables collaboration between educators, therapists, and parents, ensuring a unified approach to each child’s therapy. Our platform helps create a cohesive support system that empowers all stakeholders to contribute to the child’s development.",
+		],
+	},
+};

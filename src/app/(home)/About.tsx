@@ -24,7 +24,7 @@ export default function About() {
 	}, [activeCard]);
 
 	return (
-		<section className="px-4 pt-[123px] lg:px-8 pb-[157px]">
+		<section id="about" className="px-4 pt-[123px] lg:px-8 pb-[157px]">
 			<div className="container space-y-14 md:space-y-[89px] max-w-[1202px]">
 				<div className="flex flex-col">
 					<MaskText
@@ -54,7 +54,7 @@ export default function About() {
 							experience in Audiology, Speech-Language Therapy,
 							Early Child Education, Special Education, Software
 							Engineering, Machine Learning, Data Engineering,
-							Business Operations and Project Management.
+							Business Operations, and Project Management.
 						</FadeUp>
 						<FadeUp delay={0.3}>
 							With a collective vision to build an impactful

@@ -1,15 +1,25 @@
 "use client";
-import Image from "next/image";
-import MaskText from "./_components/animated components/MaskText";
-import FadeUp from "./_components/animated components/FadeUp";
 import { motion, useInView, Variants } from "framer-motion";
+import Image from "next/image";
 import { useRef } from "react";
-import { twMerge } from "tailwind-merge";
-import clsx from "clsx";
+import FadeUp from "./_components/animated components/FadeUp";
+import MaskText from "./_components/animated components/MaskText";
 import CTAButton from "./_components/CTAButton";
+
+const cardVariants: Variants = {
+	offscreen: {
+		y: 300,
+		opacity: 0.1,
+	},
+	onscreen: {
+		y: 0,
+		opacity: 1,
+	},
+};
 
 export default function WhyTalktuSection() {
 	const ref = useRef(null);
+
 	const isInView = useInView(ref, {
 		once: true,
 	});
@@ -44,123 +54,135 @@ export default function WhyTalktuSection() {
 					</FadeUp>
 				</div>
 				<div className="bg-[#D6EDF6] px-4 py-14  md:px-8 md:pb-14 md:pt-20 lg:py-[100px] xl:py-[112px] rounded-3xl md:rounded-[47px] overflow-hidden">
-					<div className=" flex flex-col items-center md:grid md:grid-cols-2 max-w-[704px] mx-auto lg:max-w-none lg:flex lg:flex-row xl:w-fit">
+					<motion.div
+						ref={ref}
+						className=" flex flex-col items-center md:grid md:grid-cols-2 max-w-[704px] mx-auto lg:max-w-none lg:flex lg:flex-row xl:w-fit"
+					>
 						<motion.div
-							ref={ref}
-							initial={{ y: 800, rotate: -4 }}
-							animate={{ y: 0, rotate: -4 }}
+							initial="offscreen"
+							animate={isInView ? "onscreen" : "offscreen"}
+							variants={cardVariants}
 							transition={{
-								type: "tween",
+								type: "spring",
+								delay: 0.3,
 							}}
-							className="bg-[#F8C741] flex flex-col rounded-[18px] text-deep_blue min-h-[300px] pt-8 relative overflow-hidden max-w-[376px] lg:max-w-[414px] -rotate-[4deg] px-4 md:px-6 lg:flex-1 lg:-rotate-[4.26deg] lg:min-h-[400px] lg:pt-12 xl:min-h-[456px] xl:px-[38px] hover:rotate-0 transition-all ease-in-out duration-150"
 						>
-							<div className="relative z-20 space-y-4">
-								<div className="text-xl font-bold lg:text-2xl xl:text-[2rem] xl:leading-[2.5rem]">
-									Affordable Access to Exceptional Speech
-									Therapy
+							<motion.div className="bg-[#F8C741] flex flex-col rounded-[18px] text-deep_blue min-h-[300px] pt-8 relative overflow-hidden max-w-[376px] lg:max-w-[414px] -rotate-[4deg] px-4 md:px-6 lg:flex-1 lg:-rotate-[4.26deg] lg:min-h-[400px] lg:pt-12 xl:min-h-[456px] xl:px-[38px] hover:rotate-0 transition-all ease-in-out duration-150">
+								<div className="relative z-20 space-y-4">
+									<div className="text-xl font-bold lg:text-2xl xl:text-[2rem] xl:leading-[2.5rem]">
+										Affordable Access to Exceptional Speech
+										Therapy
+									</div>
+									<p className="lg:text-xl xl:text-2xl">
+										With Talktu, we make high-quality speech
+										therapy attainable for children by
+										offering affordable, personalized online
+										activities curated by specialists
+									</p>
 								</div>
-								<p className="lg:text-xl xl:text-2xl">
-									With Talktu, we make high-quality speech
-									therapy attainable for children by offering
-									affordable, personalized online activities
-									curated by specialists
-								</p>
-							</div>
-							<Image
-								src={"/images/card-bg-1.svg"}
-								alt="illustration"
-								width={100}
-								height={100}
-								className="w-full absolute -top-[10.56rem] -right-[6.25rem] lg:-top-[6.56rem] lg:-right-[6.25rem] xl:w-[370px] xl:-top-[6.56rem] xl:-right-[8.5rem]"
-							/>
-							<Image
-								src={"/images/card-bg-1.svg"}
-								alt="illustration"
-								width={100}
-								height={100}
-								className="absolute top-0 w-full lg:left-0"
-							/>
-							<Image
-								src={"/images/card-bg-1.svg"}
-								alt="illustration"
-								width={100}
-								height={100}
-								className="w-full absolute -bottom-[13.56rem] -left-[6.56rem] lg:-bottom-[6.56rem] lg:-left-[6.25rem] xl:w-[300px] xl:-bottom-[5.56rem] xl:-left-[4.25rem]"
-							/>
+								<Image
+									src={"/images/card-bg-1.svg"}
+									alt="illustration"
+									width={100}
+									height={100}
+									className="w-full absolute -top-[10.56rem] -right-[6.25rem] lg:-top-[6.56rem] lg:-right-[6.25rem] xl:w-[370px] xl:-top-[6.56rem] xl:-right-[8.5rem]"
+								/>
+								<Image
+									src={"/images/card-bg-1.svg"}
+									alt="illustration"
+									width={100}
+									height={100}
+									className="absolute top-0 w-full lg:left-0"
+								/>
+								<Image
+									src={"/images/card-bg-1.svg"}
+									alt="illustration"
+									width={100}
+									height={100}
+									className="w-full absolute -bottom-[13.56rem] -left-[6.56rem] lg:-bottom-[6.56rem] lg:-left-[6.25rem] xl:w-[300px] xl:-bottom-[5.56rem] xl:-left-[4.25rem]"
+								/>
+							</motion.div>
 						</motion.div>
 						<motion.div
-							ref={ref}
-							initial={{ y: 800, rotate: 4 }}
-							animate={{ y: 0, rotate: 4 }}
+							initial="offscreen"
+							animate={isInView ? "onscreen" : "offscreen"}
+							variants={cardVariants}
 							transition={{
-								type: "tween",
+								type: "spring",
+								delay: 0.4,
 							}}
-							className="bg-[#3C7AEF] flex flex-col rounded-[18px] text-deep_blue min-h-[300px] pt-8 relative overflow-hidden max-w-[376px] lg:max-w-[414px] text-white rotate-[4deg] px-4 md:px-6 lg:flex-1 lg:min-h-[400px] lg:pt-12 xl:min-h-[456px] xl:px-[38px] hover:rotate-0 transition-all ease-in-out duration-150"
 						>
-							<div className="relative z-20 space-y-4">
-								<div className="text-xl font-bold lg:text-2xl xl:text-[2rem] xl:leading-[2.5rem]">
-									Expert-Curated Resources & Self-Led
-									Activities
+							<motion.div className="bg-[#3C7AEF] flex flex-col rounded-[18px] text-deep_blue min-h-[300px] pt-8 relative overflow-hidden max-w-[376px] lg:max-w-[414px] text-white rotate-[4deg] px-4 md:px-6 lg:flex-1 lg:min-h-[400px] lg:pt-12 xl:min-h-[456px] xl:px-[38px] hover:rotate-0 transition-all ease-in-out duration-150">
+								<div className="relative z-20 space-y-4">
+									<div className="text-xl font-bold lg:text-2xl xl:text-[2rem] xl:leading-[2.5rem]">
+										Expert-Curated Resources & Self-Led
+										Activities
+									</div>
+									<p className="lg:text-xl xl:text-2xl opacity-[94%]">
+										You can access high-quality,
+										pre-recorded resources curated by
+										board-certified Speech and Language
+										Therapists, to guide your child through
+										self-led activities at their own pace.
+									</p>
 								</div>
-								<p className="lg:text-xl xl:text-2xl opacity-[94%]">
-									You can access high-quality, pre-recorded
-									resources curated by board-certified Speech
-									and Language Therapists, to guide your child
-									through self-led activities at their own
-									pace.
-								</p>
-							</div>
-							<Image
-								src={"/images/card-bg-2.svg"}
-								alt="illustration"
-								width={100}
-								height={100}
-								className="absolute top-0 w-full lg:h-full"
-							/>
+								<Image
+									src={"/images/card-bg-2.svg"}
+									alt="illustration"
+									width={100}
+									height={100}
+									className="absolute top-0 w-full lg:h-full"
+								/>
+							</motion.div>
 						</motion.div>
 						<motion.div
-							ref={ref}
-							initial={{ y: 800, rotate: -2.46 }}
-							animate={{ y: 0, rotate: -2.46 }}
+							initial="offscreen"
+							animate={isInView ? "onscreen" : "offscreen"}
+							variants={cardVariants}
 							transition={{
-								type: "tween",
+								type: "spring",
+								delay: 0.5,
 							}}
-							className="bg-[#43CCFF] flex flex-col rounded-[18px] text-deep_blue min-h-[300px] pt-8 relative overflow-hidden max-w-[376px] lg:max-w-[414px] rotate-[-4deg] md:rotate-[2deg] md:translate-x-1/2 md:-translate-y-5 px-4 md:px-6 lg:translate-x-0 lg:translate-y-0 lg:flex-1 lg:-rotate-[2.46deg] lg:min-h-[400px] lg:pt-12 xl:min-h-[456px] xl:px-[38px] hover:rotate-0 transition-all ease-in-out duration-150"
 						>
-							<div className="relative z-20 space-y-4">
-								<div className="text-xl font-bold lg:text-2xl xl:text-[2rem] xl:leading-[2.5rem]">
-									Convenient, Anywhere Access to Therapy
+							<motion.div>
+								<div className="bg-[#43CCFF] flex flex-col rounded-[18px] text-deep_blue min-h-[300px] pt-8 relative overflow-hidden max-w-[376px] lg:max-w-[414px] rotate-[-4deg] md:rotate-[2deg] md:translate-x-1/2 md:-translate-y-5 px-4 md:px-6 lg:translate-x-0 lg:translate-y-0 lg:flex-1 lg:-rotate-[2.46deg] lg:min-h-[400px] lg:pt-12 xl:min-h-[456px] xl:px-[38px] hover:rotate-0 transition-all ease-in-out duration-150">
+									<div className="relative z-20 space-y-4">
+										<div className="text-xl font-bold lg:text-2xl xl:text-[2rem] xl:leading-[2.5rem]">
+											Convenient, Anywhere Access to
+											Therapy
+										</div>
+										<p className="lg:text-xl xl:text-2xl opacity-[94%]">
+											Talktu lets children take sessions
+											from the comfort of their homes or
+											any location, easily fitting their
+											sessions to their daily routines.
+										</p>
+									</div>
+									<Image
+										src={"/images/card-bg-3.svg"}
+										alt="illustration"
+										width={100}
+										height={100}
+										className="w-full absolute -top-[10.56rem] -right-[6.25rem] lg:-top-[6.56rem] lg:-right-[6.25rem] xl:w-[370px] xl:-top-[6.56rem] xl:-right-[8.5rem]"
+									/>
+									<Image
+										src={"/images/card-bg-3.svg"}
+										alt="illustration"
+										width={100}
+										height={100}
+										className="absolute top-0 w-full lg:left-0"
+									/>
+									<Image
+										src={"/images/card-bg-3.svg"}
+										alt="illustration"
+										width={100}
+										height={100}
+										className="w-full absolute -bottom-[13.56rem] -left-[6.56rem] lg:-bottom-[6.56rem] lg:-left-[6.25rem] xl:w-[300px] xl:-bottom-[5.56rem] xl:-left-[4.25rem]"
+									/>
 								</div>
-								<p className="lg:text-xl xl:text-2xl opacity-[94%]">
-									Talktu lets children take sessions from the
-									comfort of their homes or any location,
-									easily fitting their sessions to their daily
-									routines.
-								</p>
-							</div>
-							<Image
-								src={"/images/card-bg-3.svg"}
-								alt="illustration"
-								width={100}
-								height={100}
-								className="w-full absolute -top-[10.56rem] -right-[6.25rem] lg:-top-[6.56rem] lg:-right-[6.25rem] xl:w-[370px] xl:-top-[6.56rem] xl:-right-[8.5rem]"
-							/>
-							<Image
-								src={"/images/card-bg-3.svg"}
-								alt="illustration"
-								width={100}
-								height={100}
-								className="absolute top-0 w-full lg:left-0"
-							/>
-							<Image
-								src={"/images/card-bg-3.svg"}
-								alt="illustration"
-								width={100}
-								height={100}
-								className="w-full absolute -bottom-[13.56rem] -left-[6.56rem] lg:-bottom-[6.56rem] lg:-left-[6.25rem] xl:w-[300px] xl:-bottom-[5.56rem] xl:-left-[4.25rem]"
-							/>
+							</motion.div>
 						</motion.div>
-					</div>
+					</motion.div>
 				</div>
 			</div>
 		</section>

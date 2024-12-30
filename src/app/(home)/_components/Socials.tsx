@@ -49,7 +49,7 @@ export default function Socials() {
 				</svg>
 			</Link>
 			<Link
-				href="/"
+				href="https://youtube.com/@talktuspeech?si=9zF0pIi5AM7u4If2"
 				target="_blank"
 				rel="noreferrer"
 				className="p-3 rounded-full bg-[#152D5B] group min-[375px]:p-4 flex items-center border border-[#193B7B]"
@@ -69,13 +69,13 @@ export default function Socials() {
 						stroke-width="1.80406"
 						stroke-linecap="round"
 						stroke-linejoin="round"
-						// className="transition-all duration-300 ease-in-out group-hover:fill-sunglow-main"
+						className="transition-all duration-300 ease-in-out group-hover:stroke-sunglow-main"
 					/>
 					<path
 						d="M1 10.3691V8.671C1 5.19658 1 3.45939 2.08659 2.34162C3.17319 1.22386 4.88387 1.17548 8.30523 1.07871C9.92648 1.03286 11.5826 1 13 1C14.4174 1 16.0736 1.03286 17.6948 1.07871C21.1161 1.17548 22.8268 1.22386 23.9134 2.34162C25 3.45939 25 5.19658 25 8.671V10.3691C25 13.8435 25 15.5807 23.9134 16.6984C22.8268 17.8162 21.1162 17.8646 17.6949 17.9614C16.0736 18.0072 14.4174 18.0401 13 18.0401C11.5826 18.0401 9.9264 18.0072 8.30512 17.9614C4.88381 17.8646 3.17316 17.8162 2.08658 16.6984C1 15.5807 1 13.8435 1 10.3691Z"
 						stroke="white"
 						stroke-width="1.80406"
-						// className="transition-all duration-300 ease-in-out group-hover:fill-sunglow-main"
+						className="transition-all duration-300 ease-in-out group-hover:stroke-sunglow-main"
 					/>
 				</svg>
 			</Link>
