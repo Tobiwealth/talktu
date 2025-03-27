@@ -6,10 +6,11 @@ interface ModalProps {
 	activityDetails: {
 		description: string;
 		instruction: string;
-	}
+	};
+	activityNumber: number;
 }
 
-const ActivityModal: React.FC<ModalProps> = ({  handleClick, activityDetails }) => {
+const ActivityModal: React.FC<ModalProps> = ({  handleClick, activityDetails, activityNumber }) => {
 
 	//console.log(activityDetails)
 	return (
@@ -17,7 +18,7 @@ const ActivityModal: React.FC<ModalProps> = ({  handleClick, activityDetails }) 
 			<div className="flex flex-col items-center gap-[46px] w-full max-w-[678px] px-8 md:px-16 lg:px-[76px] bg-[#112349] rounded-[35px] pb-12">
 				<div className="bg-[#518AF5] rounded-b-[32px] w-fit px-16 md:px-24 py-3">
 					<p className="text-white font-nunito font-bold text-xl md:text-2xl">
-						Lesson 1
+						Activity {activityNumber}
 					</p>
 				</div>
 				<div className="font-nunito text-white text-center">
@@ -26,12 +27,12 @@ const ActivityModal: React.FC<ModalProps> = ({  handleClick, activityDetails }) 
 						{activityDetails?.description}
 					</p>
 				</div>
-				<div className="font-nunito text-white text-center">
+				{/*<div className="font-nunito text-white text-center">
 					<h3 className="font-bold text-2xl">Goal</h3>
 					<p className="font-normal text-base pt-1">
 						{activityDetails?.instruction}
 					</p>
-				</div>
+				</div>*/}
 				<div className="flex justify-center items-center">
 					<Button
 						title="Start"

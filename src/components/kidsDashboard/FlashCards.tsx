@@ -27,6 +27,7 @@ const FlashCards: React.FC<FlashCardsProps> = ({activities, day}) => {
 	const router = useRouter();
 	const [openModal, setOpenModal] = useState(false);
 	const [clickedId, setClickedId] = useState<string | null>(null);
+	const [activityIndex, setActivityIndex] = useState<number>(0)
 	const [activityDetails, setActivityDetails] = useState({
 		description: '',
 		instruction: ''
@@ -35,7 +36,7 @@ const FlashCards: React.FC<FlashCardsProps> = ({activities, day}) => {
 	    "/images/flashcard_cover1.svg", "/images/flashcard_cover2.svg",
 	    "/images/flashcard_cover3.svg", "/images/flashcard_cover4.svg"
 	]
-	const handleClick = async(id:string) => {
+	const handleClick = async(id:string, index:number) => {
 		if (!token ) return;
 		try{
             const response = await axios.get(`/activities/${id}`,
@@ -52,6 +53,7 @@ const FlashCards: React.FC<FlashCardsProps> = ({activities, day}) => {
             })
             setOpenModal(true);
             setClickedId(id)
+            setActivityIndex(index)
 		}catch(err){
 			console.error(err);
 		}
@@ -85,13 +87,13 @@ const FlashCards: React.FC<FlashCardsProps> = ({activities, day}) => {
 					    />
 					    <p className="font-nunito font-semibold text-xl text-white pt-2 pb-5">Activity {i+1}</p>
 					    <button 
-					        onClick={() => handleClick(item.activityId)} 
+					        onClick={() => handleClick(item.activityId, i+1)} 
 					        className="font-nunito font-semibold text-sm text-deep_blue bg-neutral-200 rounded-[12px] h-[42.51px] w-full"
 					    >Start</button>
 					</div>))}
 				</div>
 			</div>
-			{openModal && <ActivityModal handleClick={handleRouting} activityDetails={activityDetails}/>}
+			{openModal && <ActivityModal handleClick={handleRouting} activityDetails={activityDetails} activityNumber={activityIndex}/>}
 		</div>
 	)
 }

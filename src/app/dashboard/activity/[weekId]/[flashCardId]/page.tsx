@@ -58,7 +58,8 @@ const FlashCard = ({ params }: { params: { flashCardId: string } }) => {
 
     const flashcardDetails = useMemo(() => {
 	    if (!activity?.resources) return null;
-	    return activity.resources[currentIndex] || null;
+	    const reversedIndex = activity.resources.length - 1 - currentIndex;
+	    return activity.resources[reversedIndex] || null;
     }, [activity, currentIndex]);
 
 	const speakText = useCallback(
@@ -216,12 +217,15 @@ const FlashCard = ({ params }: { params: { flashCardId: string } }) => {
 						    />
 					    }
 					</div>}
-					<div className="flex flex-col items-center justify-center gap-10">
+					<div className="flex flex-col items-center justify-center px-5 gap-10">
+					    <p className="bg-[#11244842] p-4 rounded-[14px] w-full md:w-1/2 text-center border-[1px] border-[#112448] font-nunito font-medium text-base md:text-xl text-sunglow-main">
+							{activity?.instruction}
+						</p>
 						<button 
 						    onClick={handleNext}
 						    className="text-deep_blue font-nunito font-bold text-base bg-sunglow-main h-[3.5rem] w-[10.5rem] rounded-[12px] buttonshadow2"
 						>
-							{currentIndex === (activity?.resources?.length ?? 0) ? "Finish" : "Next"}
+							{currentIndex === (activity?.resources?.length ?? 0)-1 ? "Finish" : "Next"}
 						</button>
 					</div>
 				</div>
