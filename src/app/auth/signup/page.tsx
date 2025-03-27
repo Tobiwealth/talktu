@@ -38,13 +38,14 @@ export default function SignUp() {
 	const [errMsg, setErrMsg] = useState<string>("");
 	const router = useRouter();
 	const [activeTab, setActiveTab] = useState(tabs[0].id);
-	const inputRef = useRef<HTMLInputElement>(null);
 
 	useEffect(() => {
-		if (inputRef.current) {
-			inputRef.current.focus();
+		const urlParams = new URLSearchParams(window.location.search);
+		const userParam = urlParams.get("user");
+		if (userParam && tabs.some((tab) => tab.id === userParam)) {
+			setActiveTab(userParam);
 		}
-	}, [activeTab]);
+	}, []);
 
 	const handleFormSubmit = async (data: FormData) => {
 		const formData = {
@@ -76,7 +77,7 @@ export default function SignUp() {
 				setErrMsg("No Server Response");
 			} else if (axiosError?.status === 403) {
 				setErrMsg(
-					"You do not have permission to create an admin account"
+					"You do not have permission to create an account"
 				);
 			} else {
 				setErrMsg("Sign up Failed");

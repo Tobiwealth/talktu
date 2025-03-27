@@ -1,25 +1,34 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 type AuthStore = {
-  token: string;
+  name: string;
   email: string;
   userId: string;
-  addAuth: (token:string, userId:string) => void;
+  addAuth: (name:string, userId:string) => void;
   addEmail: (email:string) => void;
   clearAuth: () => void;
 };
 
-export const useAuthStore = create<AuthStore>((set) => ({
-    token: '',
-    userId: '',
-    email: 'tobi@gmail.com',
-	  addAuth: (token, userId) => {
-        set({ token, userId }); // Directly update the token
-    },
-    clearAuth: () => {
-        set({ token: '' }); // Clear the token
-    },
-    addEmail: (email) => {
-        set({ email }); // Directly update the token
-    },
-}));
+export const useAuthStore = create(
+  persist<AuthStore>(
+    (set) => ({
+      name: "",
+      userId: "",
+      email: "",
+      addAuth: (name, userId) => {
+        set({ name, userId });
+      },
+      clearAuth: () => {
+        set({ name: "", userId: "", email: "" }); // Clear both name and userId
+        useAuthStore.persist.clearStorage();
+      },
+      addEmail: (email) => {
+        set({ email });
+      },
+    }),
+    {
+      name: "auth-storage", // Key for localStorage
+    }
+  )
+);

@@ -1,6 +1,10 @@
 import CTAButton from "./CTAButton";
+import Image from 'next/image'
 
 export default function MidFeaturesSection() {
+	const images = [
+	    "/images/subdowncover1.svg", "/images/subdowncover2.svg", 
+	]
 	return (
 		<div className="bg-retro_blue-100 gap-6 flex flex-col items-center md:p-4 lg:p-8 rounded-[20px]">
 			<div className="space-y-8">
@@ -17,12 +21,20 @@ export default function MidFeaturesSection() {
 								Money on different educational materials and
 								schools for your kid
 							</p>
-							<div className="bg-neutral-200 h-[252px] rounded-[13px] animate-pulse"></div>
+							<div className="bg-retro_blue-300 flex justify-center items-center overflow-hidden h-[252px] rounded-[13px] animate-pulse">
+								<Image
+									src={images[index]}
+									width={280}
+									height={180}
+									alt="subscription cover"
+									className={index === 1 ? "p-4": ""}
+								/>
+							</div>
 						</div>
 					))}
 				</div>
 			</div>
-			<CTAButton href="#plans" />
+			<CTAButton handleClick={() => console.log("yes")} />
 		</div>
 	);
 }

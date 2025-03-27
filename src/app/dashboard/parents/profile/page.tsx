@@ -1,15 +1,119 @@
 'use client'
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import Image from 'next/image'
 import kid_avatar from '../../../../../public/icons/kid_avatar.svg'
 import { AiOutlinePlus } from "react-icons/ai";
-import Button from '@/components/Button'
+import ChildProfile from '@/components/parentDashboard/profile/ChildProfile'
+import axios from "@/api/useAxios";
+import { getCookie } from "cookies-next";
+
+type Children = {
+	_id: string;
+	nickname: string;
+	fullName: string;
+}
 
 const Profile = () => {
+	const token = getCookie("token");
+	const [addNewChild, setAddNewChild] = useState<boolean>(false);
+	const [children, setChildren] = useState<Children[]>([])
+	const [editedName, setEditedName] = useState<string>("")
+	const [currentChild, setCurrentChild] = useState<Children>({
+		_id: "",
+		nickname: "",
+		fullName: "",
+	});
+	const [form, setForm] = useState({
+		nickname: "",
+		fullName: ""
+	})
+
+	const handleChildAvatar = async(child:Children) => {
+		setAddNewChild(false)
+		setCurrentChild(child)
+		setEditedName(child.fullName);
+	}
+
+	const getChildren = async() => {
+		try{
+			const response = await axios.get(
+				`/children`,
+				{
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: `Bearer ${token}`,
+					},
+				}
+			);
+			// console.log("fetch children",response.data.data)
+			const extractedChildren = response.data.data.map(({ _id, fullName, nickname }: any) => ({
+				_id,
+				fullName,
+				nickname,
+            }));
+			setChildren(extractedChildren)
+			setCurrentChild(extractedChildren[0]);
+			setEditedName(extractedChildren[0].fullName);
+		}catch(err){
+			console.error(err);
+		}
+	}
+
+	const createChild = async() => {
+		if(form.fullName === "" || form.nickname === "") return;
+		try{
+			const response = await axios.post(
+				"children",
+				JSON.stringify(form),
+				{
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: `Bearer ${token}`,
+					},
+					// withCredentials: true
+				}
+			);
+			// console.log(response.data)
+		}catch(err){
+			console.error(err);
+		}
+	}
+	const updateChild = async() => {
+		if(editedName === "")return;
+		try{
+			const response = await axios.patch(
+				`/children/${currentChild._id}`,
+				{fullName: editedName},
+				{
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: `Bearer ${token}`,
+					},
+					// withCredentials: true
+				}
+			);
+			//console.log(response.data)
+		}catch(err){
+			console.error(err);
+		}
+	}
+
+	useEffect(() => {
+		if(!token) return;
+		getChildren();
+	}, [addNewChild])
+
+
 	return (
 		<div className="w-full min-h-screen px-8 pb-16 mt-8 lg:mt-28 lg:px-0 lg:pr-8">
-			<div className="flex gap-4">
-				<div className="flex flex-col justify-center items-center gap-2 border-[2px] border-retro_blue-main bg-[#112349] p-4 rounded-[8px]">
+			<div className="flex gap-4 overflow-auto">
+				{ children?.map((item, i) =>(<div key={i} 
+				    onClick={() => handleChildAvatar(item)}
+				    className={`
+				    	flex flex-col justify-center items-center gap-2 bg-[#112349] p-4 rounded-[8px] 
+				    	${!addNewChild && currentChild._id === item._id ? "border-[2px] border-retro_blue-main" : ""}
+				    `}
+				>
 					<Image
 						src={kid_avatar}
 						width={70}
@@ -18,50 +122,24 @@ const Profile = () => {
 						alt="profile"
 						className="rounded-full"
 				    />
-				    <p className="text-sm font-semibold text-white font-nunito">Sammy</p>
-				</div>
-				<div className="flex flex-col justify-center items-center gap-2 bg-[#112349] p-4 rounded-[8px]">
-					<div  className="border-[3px] border-[#0E357E] p-3 rounded-full bg-[#15294F] w-[70px] h-[70px] flex justify-center items-center">
+				    <p className="text-sm font-semibold text-white font-nunito">{item?.nickname}</p>
+				</div>))}
+				<div className={`flex flex-col justify-center items-center gap-2 bg-[#112349] p-4 rounded-[8px] ${addNewChild ? "border-[2px] border-retro_blue-main": " "}`}>
+					<div onClick={() => setAddNewChild(true)}  className="border-[3px] border-[#0E357E] p-3 rounded-full bg-[#15294F] w-[70px] h-[70px] flex justify-center items-center">
 					    <AiOutlinePlus className="text-3xl text-retro_blue-main" />
 					</div>
 				    <p className="text-sm font-semibold text-white font-nunito">Add a child</p>
 				</div>
 			</div>
-			<div className="font-nunito rounded-[16px] bg-[#112349] mt-5 p-8 md:w-full lg:w-[90%] xl:w-[80%] flex flex-col gap-6">
-				<h3 className="text-lg font-semibold text-white md:text-xl">Edit Profile</h3>
-				<div className="flex flex-col items-center justify-center w-fit gap-2">
-					<Image
-						src={kid_avatar}
-						width={70}
-						height={70}
-						quality={100}
-						alt="profile"
-						className="rounded-full"
-				    />
-				    <p className="font-nunito font-medium text-xs text-retro_blue-main bg-[#15294F] border-[1px] border-[#2D4675] rounded-[9px] py-1 px-[10px]">Change Avatar</p>
-				</div>
-				<div className="flex flex-col gap-5">
-					<div className="flex flex-col gap-2">
-						<label className="text-base font-medium text-retro_blue-700" htmlFor="username">Username</label>
-						<input 
-						    className="bg-[#15294F] border-[1px] border-[#2D4675] rounded-[12px] h-[3.125rem] placeholder:text-sm placeholder:text-neutral-500 px-4 text-retro_blue-700 focus:border-[2px] focus:outline-none focus:border-retro_blue-main" 
-						    type="text"
-						    placeholder="Sammy"
-						    name="username"
-						/>
-					</div>
-					<div className="flex flex-col mb-3 gap-2">
-						<label className="text-base font-medium text-retro_blue-700" htmlFor="fullname">Full Name</label>
-						<input 
-						    className="bg-[#15294F] border-[1px] border-[#2D4675] rounded-[12px] h-[3.125rem] placeholder:text-sm placeholder:text-neutral-500 px-4 text-retro_blue-700 focus:border-[2px] focus:outline-none focus:border-retro_blue-main" 
-						    type="text"
-						    placeholder="Sam Keating"
-						    name="fullname"
-						/>
-					</div>
-					<Button title="Update" buttonClass="w-[168px] h-[42.51px] font-semibold text-deep_blue text-sm" onClick={() => console.log("")}/>
-				</div>
-			</div>
+			<ChildProfile 
+			    readonly={!addNewChild} 
+			    nickname={addNewChild ? form.nickname : currentChild.nickname} 
+			    fullName={addNewChild ? form.fullName : editedName}
+			    form={form}
+			    setForm={setForm}
+			    setEditedName={setEditedName}
+			    handleClick={addNewChild ? createChild : updateChild}
+			/>
 		</div>
 	)
 }

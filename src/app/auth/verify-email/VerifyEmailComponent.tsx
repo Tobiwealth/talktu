@@ -1,9 +1,8 @@
 "use client";
 import RegistrationLayout from "@/components/auth/RegistrationLayout";
-import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
-import axios from '@/api/useAxios'
+import axios from "@/api/useAxios";
 
 const otpLength = 6;
 export default function VerifyEmailComponent() {
@@ -12,6 +11,8 @@ export default function VerifyEmailComponent() {
 	const router = useRouter();
 	const searchParams = useSearchParams();
 	const email = searchParams.get("email");
+	const [isVerifying, setIsVerifying] = useState(false);
+	const [isResending, setIsResending] = useState(false);
 
 	useEffect(() => {
 		if (!email) {
@@ -68,7 +69,7 @@ export default function VerifyEmailComponent() {
 		e.preventDefault();
 		const paste = e.clipboardData.getData("Text");
 		const newOtp = [...otp];
-		
+
 		// Only take first otpLength characters from pasted text
 		const pasteLength = Math.min(paste.length, otpLength);
 		for (let i = 0; i < pasteLength; i++) {
@@ -85,33 +86,37 @@ export default function VerifyEmailComponent() {
 		}
 	};
 
-	const onOtpSubmit = async(token: string) => {
+	const onOtpSubmit = async (token: string) => {
+		setIsVerifying(true);
 		const verificationData = {
 			action: "verifySignupShort",
 			value: {
 				user: { email },
-				token
-			}
+				token,
+			},
 		};
-		
+
 		console.log(verificationData);
 
 		try {
-	        const response = await axios.post('/auth-management',
-	            JSON.stringify(verificationData),
-	            {
-	                headers: { 'Content-Type': 'application/json' }
-	                // withCredentials: true
-	            }
-	        );
-	        console.log(response.data);
-	        router.push('/auth/login');
-	    } catch (err) {
-	        console.log(err);
-	    }
+			const response = await axios.post(
+				"/auth-management",
+				JSON.stringify(verificationData),
+				{
+					headers: { "Content-Type": "application/json" },
+					// withCredentials: true
+				}
+			);
+			console.log(response.data);
+			router.push("/auth/login");
+		} catch (err) {
+			console.log(err);
+		} finally {
+			setIsVerifying(false);
+		}
 	};
 
-	const handleSubmit = async(e: React.FormEvent) => {
+	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		const token = otp.join("");
 		if (token.length === otpLength) {
@@ -119,23 +124,27 @@ export default function VerifyEmailComponent() {
 		}
 	};
 
-	const handleResendVerification = async() => {
+	const handleResendVerification = async () => {
+		setIsResending(true);
 		try {
-	        const response = await axios.post('/auth-management',
-	            JSON.stringify({
-				    "action": "resendVerifySignup",
-				    "value": { "email": email }
+			const response = await axios.post(
+				"/auth-management",
+				JSON.stringify({
+					action: "resendVerifySignup",
+					value: { email: email },
 				}),
-	            {
-	                headers: { 'Content-Type': 'application/json' }
-	                // withCredentials: true
-	            }
-	        );
-	        console.log(response.data);
-	    } catch (err) {
-	        console.log(err);
-	    }
-	}
+				{
+					headers: { "Content-Type": "application/json" },
+					// withCredentials: true
+				}
+			);
+			console.log(response.data);
+		} catch (err) {
+			console.log(err);
+		} finally {
+			setIsResending(false);
+		}
+	};
 
 	return (
 		<RegistrationLayout>
@@ -169,17 +178,30 @@ export default function VerifyEmailComponent() {
 							))}
 						</div>
 						<div className="space-y-4">
-							<button type="submit" className="form-btn w-full">
-								Verify
+							<button
+								type="submit"
+								disabled={isVerifying}
+								className="w-full form-btn disabled:opacity-70 disabled:cursor-not-allowed"
+							>
+								{isVerifying ? (
+									<div className="w-6 h-6 mx-auto border-2 rounded-full border-deep_blue border-t-transparent animate-spin" />
+								) : (
+									"Verify"
+								)}
 							</button>
 							<p className="text-sm text-center text-neutral-600">
 								Didn&apos;t receive code?{" "}
 								<button
 									type="button"
 									onClick={handleResendVerification}
-									className="font-medium text-retro_blue-main hover:underline"
+									disabled={isResending}
+									className="font-medium text-retro_blue-main hover:underline disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:no-underline"
 								>
-									Resend
+									{isResending ? (
+										<span className="inline-block w-4 h-4 align-middle border-2 rounded-full border-retro_blue-main border-t-transparent animate-spin" />
+									) : (
+										"Resend"
+									)}
 								</button>
 							</p>
 						</div>

@@ -1,5 +1,5 @@
 'use client'
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Image from 'next/image'
 import {useRouter, usePathname} from 'next/navigation'
 import Link from 'next/link'
@@ -13,10 +13,19 @@ import { LuHome } from "react-icons/lu";
 import { MdOutlinePeopleAlt } from "react-icons/md";
 import { MdOutlineMenu } from "react-icons/md";
 import { LiaTimesSolid } from "react-icons/lia";
+import { HiOutlineLogout } from "react-icons/hi";
+import {useChildStore} from '@/store/childStore'
+import {useAuthStore} from '@/store/authStore'
+import {useActivitiesStore} from '@/store/activitiesStore'
+import { deleteCookie } from 'cookies-next';
 
 
 
 const KidsNavbar = () => {
+	const name = useChildStore((state) => state.childProfile?.nickname)
+	const clearAuth = useAuthStore((state) => state.clearAuth)
+	const clearActivities = useActivitiesStore((state) => state.clearActivities )
+	const clearChild = useChildStore((state) => state.clearChild)
 	const router = useRouter()
 	const pathname = usePathname()
 	const [closeMobile, setCloseMobile] = useState<boolean>(false);
@@ -25,6 +34,18 @@ const KidsNavbar = () => {
 		setCloseMobile(false)
 	}
 	let currentPage = "dashboard"
+
+	const handleLogout = () => {
+		deleteCookie("token");
+		clearAuth();
+		clearChild();
+		clearActivities();
+		window.location.reload();
+	}
+	const handleRedirect = () => {
+		router.push('/dashboard/parents/profile')
+	}
+
 
 	return (
 		<nav className="sticky top-0 z-[99999] h-20 lg:h-24 ">
@@ -71,9 +92,18 @@ const KidsNavbar = () => {
 							alt="Logo"
 							className=""
 				        />
-				        <p className="text-sm font-semibold font-nunito text-retro_blue-main">Sammy</p>
+				        <p className="text-sm font-semibold font-nunito text-retro_blue-main">{name}</p>
 					</div>
-					<button onClick={() => router.push('/dashboard/parents/profile')} className="text-white font-nunito font-medium text-sm flex justify-center items-center gap-1 bg-retro_blue-main h-[2.25rem] w-[7.8rem] rounded-[9px] shadowbox3"><MdOutlinePeopleAlt className="text-white text-xl"/>For Parents</button>
+					<button 
+					    onClick={pathname.startsWith("/dashboard/parents") ? handleLogout : handleRedirect} 
+					    className="text-white font-nunito font-medium text-sm flex justify-center items-center gap-1 bg-retro_blue-main h-[2.25rem] w-[7.8rem] rounded-[9px] shadowbox3"
+					>   {
+						    pathname.startsWith("/dashboard/parents") ?
+					            <><HiOutlineLogout className="text-white text-xl" /> Log Out</>
+					            :
+					            <><MdOutlinePeopleAlt className="text-white text-xl"/> For Parents</>
+					    }
+					</button>
 				</div>
 			</div>
 		    {/*mobile view*/}
@@ -148,9 +178,23 @@ const KidsNavbar = () => {
 									alt="Logo"
 									className=""
 						        />
-						        <p className="text-sm font-semibold font-nunito text-retro_blue-main">Sammy</p>
+						        <p className="text-sm font-semibold font-nunito text-retro_blue-main">{name}</p>
 							</div>
-							<button onClick={() => handleMobileClick("dashboard/parents/profile")} className="text-white font-nunito font-medium text-sm flex justify-center items-center gap-1 bg-retro_blue-main h-[2.25rem] w-[7.8rem] rounded-[9px] shadowbox3"><MdOutlinePeopleAlt className="text-white text-xl"/>For Parents</button>
+							<button 
+							    onClick={() => {
+							    	pathname.startsWith("/dashboard/parents") ? 
+							    	    handleLogout() :
+							    	    handleMobileClick("dashboard/parents/profile")
+							    }} 
+							    className="text-white font-nunito font-medium text-sm flex justify-center items-center gap-1 bg-retro_blue-main h-[2.25rem] w-[7.8rem] rounded-[9px] shadowbox3"
+							>
+							    {
+							        pathname.startsWith("/dashboard/parents") ?
+						            <><HiOutlineLogout className="text-white text-xl" /> Log Out</>
+						            :
+						            <><MdOutlinePeopleAlt className="text-white text-xl"/> For Parents</>
+					            }
+							</button>
 						</div>
 					</div>
 				</div>

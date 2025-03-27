@@ -13,7 +13,14 @@ const OnboardingOptions: React.FC<OnboardingOptionsProps> = ({onboardingStatusOp
 	return(
 		<div className="flex flex-col justify-between px-6 py-3 py-4 lg:flex-row lg:items-center gap-4 lg:gap-0">
 		    <div className="flex items-center gap-4">
-		    	<div className={`w-[22px] h-[22px] lg:w-[26px] lg:h-[26px] border-[2px] border-[#518AF5] rounded-[100%] flex justify-center items-center ${onboardingStatusOption ? "bg-[#518AF5]" : "bg-white"}`}><FaCheck className="text-sm text-white lg:text-base "/></div>
+		    	<div 
+		    	    className={`
+		    	    	w-[22px] h-[22px] lg:w-[26px] lg:h-[26px] border-[2px] border-[#518AF5] rounded-[100%] 
+		    	    	flex justify-center items-center ${onboardingStatusOption ? "bg-[#518AF5]" : "bg-white"}
+		    	    `}
+		    	>
+		    	    <FaCheck className="text-sm text-white lg:text-base "/>
+		    	</div>
 		        <div className=" font-nunito">
 		    	    <h3 className={`font-semibold text-base ${onboardingStatusOption ? "line-through text-[#2065E6]" : "#1E293B"}`}>{title}</h3>
 		    	    <div className={`font-normal text-sm ${onboardingStatusOption ? "line-through text-[#2065E6]" : "#64748B"}`}>{details}</div>

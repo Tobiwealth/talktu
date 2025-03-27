@@ -5,18 +5,18 @@ import { twMerge } from "tailwind-merge";
 
 interface CTAButtonProps {
 	className?: string;
-	href: string;
+	handleClick: () => void;
 }
 
-export default function CTAButton({ className, href }: CTAButtonProps) {
+export default function CTAButton({ className, handleClick }: CTAButtonProps) {
 	return (
-		<Link
-			href={href}
+		<button
+			onClick={handleClick}
 			className={twMerge(
 				clsx("sub-btn max-w-[186px] text-center max-md:py-2", className)
 			)}
 		>
 			Get Started
-		</Link>
+		</button>
 	);
 }

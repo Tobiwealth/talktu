@@ -1,5 +1,5 @@
 import React from 'react'
-import WeeklyAssessment from '@/components/kidsDashboard/WeeklyAssessment'
+// import WeeklyAssessment from '@/components/kidsDashboard/WeeklyAssessment'
 
 const ModuleProgress = () => {
 	const list = [1,2,3,4,5,6,7]
@@ -7,7 +7,7 @@ const ModuleProgress = () => {
 		<div className="justify-center hidden mt-10 lg:flex gap-10">
 		    <div className="w-[372px] flex flex-col items-center bg-[#04122E]">
 		        <h2 className="w-full font-nunito font-medium text-2xl text-white text-center bg-[#0A1835] rounded-t-[21px] py-4">Learning Path</h2>
-			    <div className="p-4"><WeeklyAssessment/></div>
+			    {/*<div className="p-4"><WeeklyAssessment/></div>*/}
 			</div>
 			<div className="bg-[#112349] rounded-[28px] px-10 ">
 				<h3 className="py-6 pr-32 text-2xl font-medium text-white font-nunito">Showing an overview of your child’s progress in the Module</h3>

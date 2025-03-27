@@ -94,7 +94,7 @@ export default function VerifyEmail() {
 				}
 			);
 			console.log(response.data);
-			router.push("/auth/login");
+			router.push("/auth/forgot-password/reset");
 		} catch (err) {
 			console.log(err);
 		}

@@ -24,7 +24,7 @@ export default function BottomFeaturesSection() {
 					))}
 				</div>
 			</div>
-			<CTAButton href="/dashboard" />
+			<CTAButton handleClick={() => console.log("yes")} />
 		</div>
 	);
 }

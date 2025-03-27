@@ -1,3 +1,4 @@
+'use client'
 import NavHeader from "@/components/NavHeader";
 import BottomFeaturesSection from "@/components/subscription/BottomFeaturesSection";
 import MidFeaturesSection from "@/components/subscription/MidFeaturesSection";
@@ -5,7 +6,10 @@ import PlanSection from "@/components/subscription/PlanSection";
 import TopFeaturesSection from "@/components/subscription/TopFeaturesSection";
 import Image from "next/image";
 
-export default function Subscription() {
+export default function Subscription({ params }: { params: { subscriberId: string } }) {
+	const {subscriberId} = params;
+
+	console.log(subscriberId)
 	return (
 		<div className="relative flex flex-col overflow-hidden bg-retro_blue-100">
 			<NavHeader backLink />
@@ -23,7 +27,7 @@ export default function Subscription() {
 					<TopFeaturesSection />
 					<MidFeaturesSection />
 					<BottomFeaturesSection />
-					<PlanSection />
+					<PlanSection subscriberId={subscriberId}/>
 				</div>
 			</div>
 

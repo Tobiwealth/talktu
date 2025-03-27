@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "../Navbar";
-import FlagshipSection from "../FlagshipSection";
+import FlagshipSection from "./_components/FlagshipSection";
 import Footer from "../Footer";
 import Hero from "./_components/Hero";
 

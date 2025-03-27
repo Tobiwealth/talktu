@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const onboardingFlow = [
@@ -25,13 +26,15 @@ export default function OnboardingFlow() {
 			<div className="content space-y-[35px] max-[1400px]:scale-[0.9] max-[1300px]:scale-[0.85]">
 				<div className="space-y-[30px] max-w-[510px]">
 					{/* Logo */}
-					<Image
-						src={"/images/logo.svg"}
-						alt="talktu"
-						width={100}
-						height={100}
-						className="w-24"
-					/>
+					<Link href={"/"}>
+						<Image
+							src={"/images/logo.svg"}
+							alt="talktu"
+							width={100}
+							height={100}
+							className="w-24"
+						/>
+					</Link>
 					<div className="space-y-[18px]">
 						<h1 className="text-3xl font-bold text-white font-nunitosans">
 							Start Your Child&apos;s Personalized Speech Therapy

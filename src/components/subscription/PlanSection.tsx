@@ -3,7 +3,13 @@
 import { useState } from "react";
 import CTAButton from "./CTAButton";
 import Plan from "./Plan";
+import axios from '@/api/useAxios'
+import { useRouter } from 'next/navigation'
+import { getCookie } from 'cookies-next';
 
+interface Props {
+	subscriberId: string;
+}
 const plans = [
 	{ name: "Monthly", price: 10000 },
 	{
@@ -14,8 +20,35 @@ const plans = [
 	{ name: "Yearly", price: 10000 },
 ];
 
-export default function PlanSection() {
+export default function PlanSection ({subscriberId}:Props) {
+	const router = useRouter()
 	const [selectedPlan, setSelectedPlan] = useState<string>("Quarterly");
+	const token = getCookie('token');
+
+
+	const handleSubscription = async() => {
+		try {
+            const response = await axios.post('subscriptions',
+                JSON.stringify({
+					"subscriberId": subscriberId,
+					"userType": "child",
+					"planCode": "PLN_x8t5j7f5d7bllx6"
+                }),
+                {
+                    headers: { 
+                    	'Content-Type': 'application/json',
+                    	'Authorization':`Bearer ${token}` 
+                    }
+                }
+            );
+            console.log(response.data);
+            router.push(response.data.authorization_url);
+
+        } catch (err) {
+            console.log(err)
+        }
+	}
+	console.log("subscriberId",subscriberId)
 
 	return (
 		<div
@@ -42,7 +75,7 @@ export default function PlanSection() {
 				</div>
 			</div>
 			<div className="flex justify-center">
-				<CTAButton href="#plans" />
+				<CTAButton handleClick={handleSubscription} />
 			</div>
 		</div>
 	);

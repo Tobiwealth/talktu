@@ -1,14 +1,15 @@
 "use client";
-import { on } from "events";
+import axios from "@/api/useAxios";
+import GoogleSignInButton from "@/components/auth/GoogleSignInButton";
+import { useAuthStore } from "@/store/authStore";
+import { AxiosError } from "axios";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useRef, useState } from "react";
-import { useForm } from "react-hook-form";
-import axios from "@/api/useAxios";
-import { useAuthStore } from "@/store/authStore";
 import { useRouter } from "next/navigation";
-import { AxiosError } from 'axios';
-
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { setCookie } from "cookies-next";
+import { useChildStore } from "@/store/childStore";
 
 interface FormData {
 	email: string;
@@ -16,9 +17,12 @@ interface FormData {
 }
 
 export default function Login() {
-    const addAuth = useAuthStore((state) => state.addAuth);
-    const [errMsg, setErrMsg] = useState<string>("");
-	const router = useRouter()
+	const addAuth = useAuthStore((state) => state.addAuth);
+	const addChild = useChildStore((state) => state.addChild);
+	const [errMsg, setErrMsg] = useState<string>("");
+	const [isLoading, setIsLoading] = useState(false);
+	const [isGoogleLoading, setIsGoogleLoading] = useState(false);
+	const router = useRouter();
 	const {
 		register,
 		handleSubmit,
@@ -26,36 +30,79 @@ export default function Login() {
 	} = useForm<FormData>();
 
 	const onSubmit = handleSubmit(async (data) => {
-		console.log(data);
+		setIsLoading(true);
+		setErrMsg("");
 		try {
-            const response = await axios.post('/authentication',
-                JSON.stringify({
-                	strategy:'local', 
-                	email: data.email, 
-                	password: data.password 
-                }),
-                {
-                    headers: { 'Content-Type': 'application/json' }
-                    // withCredentials: true
-                }
-            );
-            console.log(response.data.accessToken);
-            await addAuth(response.data.accessToken, response.data.user._id);
-            router.push(`/onboarding?user=${response.data.user.role}`)
-        } catch (err) {
-        	const axiosError = err as AxiosError;
-            console.log(axiosError);
-            if (!axiosError?.response) {
-                setErrMsg('No Server Response');
-            } else if (axiosError?.status === 400) {
-                setErrMsg('Missing Username or Password');
-            } else if (axiosError?.status === 401) {
-                setErrMsg('Unauthorized');
-            } else {
-                setErrMsg('Login Failed');
-            }
-        }
+			const response = await axios.post(
+				"/authentication",
+				JSON.stringify({
+					strategy: "local",
+					email: data.email,
+					password: data.password,
+				}),
+				{
+					headers: { "Content-Type": "application/json" },
+					// withCredentials: true
+				}
+			);
+			console.log(response.data.accessToken);
+			console.log(response.data);
+			await addAuth(response.data.user.name, response.data.user._id);
+			if(response.data?.user?.children?.length > 0){
+				console.log("there is a child")
+				addChild({childId: response.data.user?.children[0]})
+			}
+			setCookie("token", response.data.accessToken, {
+				maxAge: 3600,
+			});
+			const res = await axios.get("/onboarding/status", {
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${response.data.accessToken}`,
+				},
+				// withCredentials: true
+			});
+			console.log("onboard",res.data);
+			if (res.data.onboarded === "completed") {
+				router.push("/dashboard");
+			} else {
+				router.push(
+					`/onboarding?user=${encodeURIComponent(
+						response.data.user.role
+					)}&childId=${encodeURIComponent(
+						response?.data?.user?.children?.[0] ?? null
+					)}`
+				);
+			}
+		} catch (err) {
+			const axiosError = err as AxiosError;
+			console.log(axiosError);
+			if (!axiosError?.response) {
+				setErrMsg("No Server Response");
+			} else if (axiosError?.status === 400) {
+				setErrMsg("Missing Username or Password");
+			} else if (axiosError?.status === 401) {
+				setErrMsg("Unauthorized");
+			} else {
+				setErrMsg("Login Failed");
+			}
+		} finally {
+			setIsLoading(false);
+		}
 	});
+
+	const handleGoogleSignIn = async () => {
+		setIsGoogleLoading(true);
+		try {
+			// TODO: Implement Google sign-in
+			console.log("Google sign-in clicked");
+			await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate API call
+		} catch (error) {
+			console.error("Google signin error:", error);
+		} finally {
+			setIsGoogleLoading(false);
+		}
+	};
 
 	return (
 		<div className="flex flex-col w-screen min-h-screen bg-retro_blue-100">
@@ -78,7 +125,11 @@ export default function Login() {
 							Enter your email address and password to continue
 						</p>
 					</div>
-					{errMsg && <p className="font-nunito font-normal text-sm text-[#DC143C]">{errMsg}</p>}
+					{errMsg && (
+						<p className="font-nunito font-normal text-sm text-[#DC143C]">
+							{errMsg}
+						</p>
+					)}
 					<form onSubmit={onSubmit} className="space-y-6">
 						<div className="space-y-4">
 							<div className="form-field">
@@ -134,11 +185,21 @@ export default function Login() {
 						</div>
 
 						<button
-							className="block text-center form-btn"
+							className="block text-center form-btn disabled:opacity-70 disabled:cursor-not-allowed"
 							type="submit"
+							disabled={isLoading}
 						>
-							Sign In
+							{isLoading ? (
+								<div className="w-6 h-6 mx-auto border-2 rounded-full border-deep_blue border-t-transparent animate-spin" />
+							) : (
+								"Sign In"
+							)}
 						</button>
+						<GoogleSignInButton
+							text="Sign in with Google"
+							onClick={handleGoogleSignIn}
+							isLoading={isGoogleLoading}
+						/>
 					</form>
 					<div className="space-y-2 text-xs text-center sm:text-sm text-neutral-600">
 						<div className="pr-2">
@@ -150,12 +211,12 @@ export default function Login() {
 								Sign up
 							</Link>
 						</div>
-						{/* <Link
+						<Link
 							href="/auth/forgot-password"
-							className="pr-2 underline"
+							className="pr-2 hover:underline"
 						>
 							Forgot your password?
-						</Link> */}
+						</Link>
 					</div>
 				</div>
 

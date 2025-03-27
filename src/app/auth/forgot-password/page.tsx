@@ -23,7 +23,26 @@ export default function ForgotPassword() {
 
 	const onSubmit = handleSubmit(async (data) => {
         console.log(data);
-        router.push(`/auth/forgot-password/verify-email`);
+        try{
+        	const response = await axios.post(
+				"/auth-management",
+				JSON.stringify({
+				    action: "sendResetPwd",
+				    value: {
+				        email: data.email
+				    }
+                }),
+				{
+					headers: { "Content-Type": "application/json" },
+					// withCredentials: true
+				}
+			);
+			console.log(response.data);
+
+        }catch(err){
+        	console.error(err);
+        }
+        // router.push(`/auth/forgot-password/verify-email`);
 	});
 
 	return (

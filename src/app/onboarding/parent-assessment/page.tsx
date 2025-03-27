@@ -12,6 +12,7 @@ import axios from '@/api/useAxios'
 import {useChildStore} from '@/store/childStore'
 import {useAuthStore} from '@/store/authStore'
 import {useAssessmentResponseStore} from '@/store/assessmentResponseStore'
+import { getCookie } from 'cookies-next';
 
 interface Q{
 	hasFollowUp: boolean;
@@ -43,7 +44,7 @@ type AssessmentResponse = {
 
 
 const ParentAssessment = () => {
-	const token = useAuthStore((state) => state.token);
+	const token = getCookie('token');
 	const userId = useAuthStore((state) => state.userId);
 	const [step, setStep] = useState<number>(1);
 	const [level, setLevel] = useState<number>(1);
@@ -96,7 +97,7 @@ const ParentAssessment = () => {
 			setStep(step + 1);
 			setLevel(1);
 		}
-		console.log('level',currentLevel)
+		// console.log('level',currentLevel)
 	}
 
 	const handleCloseMobile = () => {
@@ -118,7 +119,7 @@ const ParentAssessment = () => {
             console.log(err);
         }
 	}
-	console.log('asest response', assessmentResponse);
+	//console.log('asest response', assessmentResponse);
 
 	return (
 		<main>
@@ -166,7 +167,7 @@ const ParentAssessment = () => {
 					</div>
 				</div>
 			</div>
-			{!startAssessment && openClosingModal && <ClosingModal assessmentId={assessmentId}/>}
+			{!startAssessment && children?.childId && openClosingModal && <ClosingModal childId={children.childId}/>}
 		</main>
 	)
 }

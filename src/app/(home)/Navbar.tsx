@@ -7,12 +7,13 @@ import HamburgerButton from "./_components/HamburgerButton";
 import MobileMenu from "./_components/MobileMenu";
 import { twMerge } from "tailwind-merge";
 import clsx from "clsx";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
 	{ title: "Home", path: "/" },
 	{ title: "About", path: "/#about" },
-	{ title: "For SLTs", path: "/slts-and-schools/" },
-	{ title: "For Schools", path: "/slts-and-schools/" },
+	{ title: "For SLTs", path: "/for-slts" },
+	{ title: "For Schools", path: "/for-schools" },
 ];
 
 interface NavbarProps {
@@ -29,6 +30,7 @@ export default function Navbar({
 	hamburgerButtonColor,
 }: NavbarProps) {
 	const [isOpen, setIsOpen] = useState(false);
+	const pathname = usePathname();
 
 	const toggleMenu = () => setIsOpen(!isOpen);
 	return (
@@ -77,7 +79,9 @@ export default function Navbar({
 								<Link
 									href={link.path}
 									className={twMerge(
-										"p-2 transition-colors duration-200 ease-in-out cursor-pointer hover:text-sunglow-main"
+										"p-2 transition-colors duration-200 ease-in-out cursor-pointer hover:text-sunglow-main",
+										pathname === link.path &&
+											"text-sunglow-main"
 									)}
 								>
 									{link.title}

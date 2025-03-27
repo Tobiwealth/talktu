@@ -7,7 +7,7 @@ import About from "./(home)/About";
 import GettingStartedSection from "./(home)/GettingStartedSection";
 import Footer from "./(home)/Footer";
 import VideoSection from "./(home)/VideoSection";
-import FlagshipSection from "./(home)/FlagshipSection";
+import FlagshipSection from "./(home)/for-schools/_components/FlagshipSection";
 
 export default function Home() {
 	return (

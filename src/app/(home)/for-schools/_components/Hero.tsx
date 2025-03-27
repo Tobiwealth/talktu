@@ -5,8 +5,8 @@ import MaskText from "../../_components/animated components/MaskText";
 
 export default function Hero() {
 	return (
-		<section className="mt-[70px] md:mt-[98px] text-white h-screen overflow-hidden flex items-center bg-hero-banner bg-deep_blue bg-cover bg-no-repeat bg-center relative">
-			<div className="bg-black/[0.49] absolute inset-0 z-10"></div>
+		<section className="mt-[70px] md:mt-[98px] text-white h-screen overflow-hidden flex items-center bg-deep_blue bg-cover bg-no-repeat bg-center relative">
+			{/* <div className="bg-black/[0.49] absolute inset-0 z-10"></div> */}
 			<div className="container px-4 mx-auto relative z-20">
 				<div className="flex flex-col gap-8 mx-auto sm:items-center sm:gap-5 sm:text-center">
 					<div>
@@ -28,16 +28,16 @@ export default function Hero() {
 					<FadeUp delay={0.4}>
 						<p className="max-w-lg text-lg font-nunitosans sm:mx-auto lg:text-xl md:max-w-2xl sm:mb-4">
 							Make therapy fun and impactful with Talktu’s tools.
-							Designed for SLTs and Schools, our platform empowers
-							children to build communication skills through
-							engaging and interactive activities.
+							Designed for Schools, our platform empowers children
+							to build communication skills through engaging and
+							interactive activities.
 						</p>
 					</FadeUp>
 					<FadeUp
 						delay={0.5}
 						className="flex w-full sm:justify-center"
 					>
-						<CTAButton />
+						<CTAButton href="/auth/signup?user=school" />
 					</FadeUp>
 				</div>
 			</div>
