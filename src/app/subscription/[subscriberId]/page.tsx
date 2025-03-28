@@ -9,7 +9,7 @@ import Image from "next/image";
 export default function Subscription({ params }: { params: { subscriberId: string } }) {
 	const {subscriberId} = params;
 
-	console.log(subscriberId)
+	//console.log(subscriberId)
 	return (
 		<div className="relative flex flex-col overflow-hidden bg-retro_blue-100">
 			<NavHeader backLink />

@@ -10,18 +10,7 @@ import {useActivitiesStore} from '@/store/activitiesStore'
 import axios from '@/api/useAxios'
 import { getCookie } from 'cookies-next';
 
-// import { useAuthStore } from "@/store/authStore";
 
-// type Activity = {
-//   activityID: string;
-//   resources: string[];
-// };
-
-// type ActivitiesType = {
-//     dayOfWeek: number;
-//     activities: Activity[];
-//     theme: string;
-// }[];
 type Activity = {
   activityId: string;
   order: number;
@@ -57,17 +46,17 @@ const Dashboard = () => {
 	const [imageUrl, setImageUrl] = useState<string>("")
 	const list = [1,2,3,4,5,6]
 	const images = [
-	    "/images/rounded_lion.svg", "/images/dash_image.svg", "/images/Pointing_to_Objects_and_Pictures.svg",
-	    "/images/Identifying_and_Naming_Common_Objects.svg", "/images/Descriptive_Concepts.svg"
+	    "/images/rounded_lion.svg", "/images/dash_image.svg", "/images/dash_image2.svg",
+	    "/images/dash_image3.svg", "/images/dash_image4.svg","/images/dash_image5.svg"
 	]
 	const position = [
-	                    '-translate-x-10 sl:-translate-x-16 md:-translate-x-0 lg:-translate-x-3 lg:pt-10', '-translate-x-[90px] sl:-translate-x-[115px] md:-translate-x-[170px] lg:-translate-x-[155px]', 'translate-x-[70px] sl:translate-x-12 md:-translate-x-[210px] lg:translate-x-24', 'translate-x-16 sl:translate-x-12 md:translate-x-10 lg:translate-x-44', 
-	                    '-translate-x-[70px] sl:-translate-x-[90px] md:translate-x-[130px] lg:-translate-x-[60px]', '-translate-x-16 sl:-translate-x-20 md:-translate-x-4 lg:-translate-x-32',
+	                    '-translate-x-12 sl:-translate-x-16 md:-translate-x-0 lg:-translate-x-3 lg:pt-10', '-translate-x-[85px] sl:-translate-x-[102px] md:-translate-x-[170px] lg:-translate-x-[155px]', 'translate-x-[90px] sl:translate-x-[76px] md:-translate-x-[210px] lg:translate-x-[100px]', 'translate-x-10 sl:translate-x-6 md:translate-x-10 lg:translate-x-44', 
+	                    '-translate-x-[95px] sl:-translate-x-[108px] md:translate-x-[130px] lg:-translate-x-[60px]', '-translate-x-16 sl:-translate-x-20 md:-translate-x-4 lg:-translate-x-32',
 	                    'translate-x-[108px] sl:translate-x-[88px] md:-translate-x-48 lg:translate-x-44', 'translate-x-12 sl:translate-x-6 md:-translate-x-[55px] lg:translate-x-[138px]', 
 	                    '-translate-x-[68px] sl:-translate-x-[88px] md:translate-x-[114px] lg:-translate-x-[74px]', '-translate-x-28 sl:-translate-x-32 md:translate-x-32 lg:-translate-x-52', 'translate-x-2 sl:-translate-x-8 lg:-translate-x-[95px]'
 	                ]
 	const wordPosition = [
-	                    '-translate-x-[70px] sl:-translate-x-24 md:-translate-x-10 lg:-translate-x-12', '-translate-x-[65px] sl:-translate-x-[88px] md:-translate-x-44 lg:-translate-x-24', 'translate-x-24 sl:translate-x-20 md:-translate-x-32 lg:translate-x-48', 'translate-x-10 sl:translate-x-4 md:translate-x-32 lg:translate-x-36', 
+	                    '-translate-x-[70px] sl:-translate-x-24 md:-translate-x-10 lg:-translate-x-12', '-translate-x-[65px] sl:-translate-x-[88px] md:-translate-x-44 lg:-translate-x-24', 'translate-x-24 sl:translate-x-20 md:-translate-x-32 lg:translate-x-44', 'translate-x-10 sl:translate-x-4 md:translate-x-32 lg:translate-x-36', 
 	                    '-translate-x-[88px] sl:-translate-x-28 md:translate-x-32 lg:-translate-x-24', '-translate-x-8 sl:-translate-x-12 md:-translate-x-20 lg:-translate-x-12',
 	                    'translate-x-[93px] sl:translate-x-[70px] md:-translate-x-36 lg:translate-x-52', '-translate-x-0 sl:-translate-x-4 md:translate-x-16 lg:translate-x-24', 
 	                    '-translate-x-[106px] sl:-translate-x-32 md:translate-x-40 lg:-translate-x-32', '-translate-x-[100px] sl:-translate-x-32 md:translate-x-16 lg:-translate-x-48', 'translate-x-5 sl:translate-x-0 md:-translate-x-28 lg:-translate-x-4'
@@ -100,19 +89,8 @@ const Dashboard = () => {
 				//     console.log("Using cached activities from Zustand");
 				//     return; 
 				// }
-				console.log("tryyyyy")
-				console.log(childId, activities)
-				// const response = await axios.post(
-				// 	"/ai/learning-plans/activities-generation",
-				//     {
-				//     	childId:childId
-				//     },
-	   //              {
-	   //                  headers: { 
-	   //                  	'Authorization':`Bearer ${token}`
-	   //                  }
-	   //              }
-	   //          );
+				// console.log("tryyyyy")
+				// console.log(childId, activities)
 	            const response = await axios.get(`/learning-tracks?childId=${childId}`,
 	                {
 	                    headers: { 
@@ -120,7 +98,7 @@ const Dashboard = () => {
 	                    }
 	                }
 	            );
-	            console.log("response",response.data.data[0].weeks)
+	            //console.log("response",response.data.data[0].weeks)
 	            addActivities(response.data.data[0].weeks[0].days)
 	            setActivities(response.data.data[0].weeks)
 	            setError("")
@@ -131,9 +109,9 @@ const Dashboard = () => {
 		}
 		fetchActivities()
 	}, [token, childId])
-	console.log("child id", childId)
+	//console.log("child id", childId)
 	// console.log("activities", activities)
-	console.log(token)
+	//console.log(token)
 
 
 	return (
@@ -191,7 +169,7 @@ const Dashboard = () => {
 				    />
 				</div>	
 			</div>
-			<p className="opacity-0 font-nunito font-semibold text-base md:text-xl text-white pt-4 text-center lg:text-left ml-12 sl:ml-0 lg:ml-24">Theme for the day</p>
+			<p className="font-nunito font-semibold text-base md:text-xl text-white pt-4 text-center lg:text-left ml-12 sl:ml-0 lg:ml-24">Day 1</p>
 			<div className="">
 				{activities[0]?.days.map((item, i) =>{ if(i > 0) return <div key={i}>
 					<div className={`mt-32 lg:mt-56 ${position[i-1]} `}>
@@ -200,12 +178,12 @@ const Dashboard = () => {
 						    className="hidden md:block p-1 rounded-[100%] md:border-[10px] md:border-[#243B67] cursor-pointer"
 						>
 							<Image
-								src={images[1]}
+								src={images[i]}
 								width={184.72}
 								height={184.72}
 								quality={100}
 								alt="dashboard image"
-								className=""
+								className={i > 2 ? "scale-125" : ""}
 						    />
 					    </div>   
 					    <div 
@@ -213,16 +191,16 @@ const Dashboard = () => {
 					        className="md:hidden p-1 rounded-[100%] border-[5px] border-[#243B67] cursor-pointer"
 					    >							
 					        <Image
-								src={images[1]}
+								src={images[i]}
 								width={98.84}
 								height={98.84}
 								quality={100}
 								alt="dashboard image"
-								className=" "
+								className={i > 2 ? "scale-125" : ""}
 						    />
 						</div> 
 				    </div>
-				    <p className={`opacity-0 font-nunito font-semibold text-xs md:text-xl text-white pt-4 ${wordPosition[i-1]}`}>Theme for the day</p>
+				    <p className={`font-nunito font-semibold text-xs md:text-xl text-white pt-4 text-center ${wordPosition[i-1]}`}>Day {i+1}</p>
 				</div>})}
 			</div>
 			<StarComponent/>

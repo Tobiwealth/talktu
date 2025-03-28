@@ -82,7 +82,7 @@ export default function VerifyEmail() {
 			},
 		};
 
-		console.log(verificationData);
+		//console.log(verificationData);
 
 		try {
 			const response = await axios.post(
@@ -93,10 +93,10 @@ export default function VerifyEmail() {
 					// withCredentials: true
 				}
 			);
-			console.log(response.data);
+			//console.log(response.data);
 			router.push("/auth/forgot-password/reset");
 		} catch (err) {
-			console.log(err);
+			console.error(err);
 		}
 	};
 

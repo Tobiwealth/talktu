@@ -43,7 +43,7 @@ export const teamMembers = [
 		imgSmall: "/images/sarah.png",
 		imgBig: "/images/sarah-lg.png",
 		name: "Sarah Andino",
-		role: "Founder / CEO",
+		role: "Co-Founder / CEO",
 		bio: [
 			"My name is Sarah Andino, and I am the Founder of Talktu. I have a 14-year-old nephew who is on the spectrum and has struggled with communication his entire life. My sister could not get access to specialists and speech therapists to enable her to manage his uniqueness and develop his communication.",
 			"Over time he did not make much improvement in his communication. This is why I started my journey to equip parents with the knowledge and resources to build their children’s communication skills regardless of their financial class or location. My goal is to make speech therapy more accessible for children anywhere.",

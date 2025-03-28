@@ -75,18 +75,15 @@ const AssessmentResponse = ({ params }: { params: { childId: string } }) => {
 	                    }
 	                }
 	            );   
-	            console.log("nickname",res.data.nickname)
+	            //console.log("nickname",res.data.nickname)
 	            setChildNickname(res.data.nickname)
 	        } catch (err) {
-	            console.log(err);
+	            //console.log(err);
 	        }
 	    }
 	    fetchAssessmentReport();
 	}, [])
 
-	console.log(childId, assessmentReport)
-	console.log("nickname",childNickname)
-	console.log(assessmentReport)
 
 
 	return (

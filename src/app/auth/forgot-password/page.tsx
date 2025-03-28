@@ -22,7 +22,7 @@ export default function ForgotPassword() {
 	} = useForm<FormData>();
 
 	const onSubmit = handleSubmit(async (data) => {
-        console.log(data);
+        //console.log(data);
         try{
         	const response = await axios.post(
 				"/auth-management",
@@ -37,7 +37,7 @@ export default function ForgotPassword() {
 					// withCredentials: true
 				}
 			);
-			console.log(response.data);
+			//console.log(response.data);
 
         }catch(err){
         	console.error(err);

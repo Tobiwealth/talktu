@@ -1,8 +1,9 @@
 import Link from "next/link";
-import React from "react";
+import React, {useState} from "react";
 import { useForm } from "react-hook-form";
 import GoogleSignInButton from "../GoogleSignInButton";
 import axios from "@/api/useAxios";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
 interface SignupFormData {
 	name: string;
@@ -16,8 +17,9 @@ interface SignupFormProps {
 }
 
 export default function SignupForm({ onSubmit, formType }: SignupFormProps) {
-	const [isLoading, setIsLoading] = React.useState(false);
-	const [isGoogleLoading, setIsGoogleLoading] = React.useState(false);
+	const [isLoading, setIsLoading] = useState(false);
+	const [isGoogleLoading, setIsGoogleLoading] = useState(false);
+	const [showPassword, setShowpassword] = useState<boolean>(false);
 
 	const {
 		register,
@@ -42,7 +44,7 @@ export default function SignupForm({ onSubmit, formType }: SignupFormProps) {
 		try {
 			setIsGoogleLoading(true);
 			// TODO: Implement Google sign-in
-			console.log("Google sign-in clicked");
+			//console.log("Google sign-in clicked");
 			const response = await axios.get(
 				"/oauth/google",
 				{
@@ -159,20 +161,28 @@ export default function SignupForm({ onSubmit, formType }: SignupFormProps) {
 								and should contain numbers and symbols
 							</div>
 						</div>
-						<input
-							id="password"
-							{...register("password", {
-								required: "Password is required",
-								pattern: {
-									value: /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/,
-									message:
-										"Password must be at least 8 characters long and contain numbers and symbols",
-								},
-							})}
-							type="password"
-							placeholder="Create a password"
-							className="input-box"
-						/>
+						<div className="flex flex-col pb-4">
+							<input
+								id="password"
+								{...register("password", {
+									required: "Password is required",
+									pattern: {
+										value: /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/,
+										message:
+											"Password must be at least 8 characters long and contain numbers and symbols",
+									},
+								})}
+								type={showPassword ? "text" : "password"}
+								placeholder="Create a password"
+								className="input-box"
+							/>
+							<div className="self-end mr-4 -mt-[36px] z-50">
+								{ showPassword ?
+									<FaRegEyeSlash size={20} onClick={() => setShowpassword(false)}/>:
+								    <FaRegEye size={20} onClick={() => setShowpassword(true)}/>
+							    }
+							</div>
+						</div>
 						{errors.password && (
 							<p className="mt-1 text-sm text-red-500">
 								{errors.password.message}
@@ -215,11 +225,11 @@ export default function SignupForm({ onSubmit, formType }: SignupFormProps) {
 						</>
 					)}
 				</button>
-				<GoogleSignInButton
+				{/*<GoogleSignInButton
 					text="Sign up with Google"
 					onClick={handleGoogleSignIn}
 					isLoading={isGoogleLoading}
-				/>
+				/>*/}
 				<div className="space-y-2 text-xs text-center sm:text-sm text-neutral-600">
 					<div className="pr-2">
 						Already have an account?{" "}

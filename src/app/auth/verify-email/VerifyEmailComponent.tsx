@@ -96,7 +96,7 @@ export default function VerifyEmailComponent() {
 			},
 		};
 
-		console.log(verificationData);
+		//console.log(verificationData);
 
 		try {
 			const response = await axios.post(
@@ -107,10 +107,10 @@ export default function VerifyEmailComponent() {
 					// withCredentials: true
 				}
 			);
-			console.log(response.data);
+			//console.log(response.data);
 			router.push("/auth/login");
 		} catch (err) {
-			console.log(err);
+			console.error(err);
 		} finally {
 			setIsVerifying(false);
 		}
@@ -138,9 +138,9 @@ export default function VerifyEmailComponent() {
 					// withCredentials: true
 				}
 			);
-			console.log(response.data);
+			//console.log(response.data);
 		} catch (err) {
-			console.log(err);
+			//console.log(err);
 		} finally {
 			setIsResending(false);
 		}

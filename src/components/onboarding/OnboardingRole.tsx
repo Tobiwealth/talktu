@@ -68,7 +68,7 @@ const OnboardingRole = () => {
 					// withCredentials: true
 				}
 	        )
-	        console.log(res.data)
+	        //console.log(res.data)
 	        await setOnboardingStatus(res.data)
 	        handleStep(res.data)
 			}catch(err){
@@ -78,9 +78,6 @@ const OnboardingRole = () => {
 		checkOnboardingStatus();
 	}, [childId])
 
-	console.log(currentStep)
-	console.log("onboard",onboardingStatus)
-	console.log(role, childId)
 
 	return (
 		<div className="bg-[#EEF3FE] py-20 pb-60 flex flex-col items-center gap-12 min-h-screen max-h-full px-5">

@@ -59,7 +59,12 @@ const FlashCard = ({ params }: { params: { flashCardId: string } }) => {
     const flashcardDetails = useMemo(() => {
 	    if (!activity?.resources) return null;
 	    const reversedIndex = activity.resources.length - 1 - currentIndex;
-	    return activity.resources[reversedIndex] || null;
+	    const videoIndex = activity?.resources.findIndex(item => item.type === "video")
+	    if(videoIndex === 0){
+	    	return activity.resources[currentIndex] || null;
+	    }else{
+	        return activity.resources[reversedIndex] || null;
+	    }
     }, [activity, currentIndex]);
 
 	const speakText = useCallback(
@@ -153,6 +158,7 @@ const FlashCard = ({ params }: { params: { flashCardId: string } }) => {
 
 
 	//console.log("flash card details", flashcardDetails)
+	//console.log(activity?.resources)
 
 
 	return (

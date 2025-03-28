@@ -29,7 +29,7 @@ export default function ResetPassword() {
 	const onSubmit = handleSubmit(async (data) => {
 		setIsLoading(true);
 		try {
-			console.log("Passwords match:", data);
+			//console.log("Passwords match:", data);
 			// TODO: Implement password reset API call here
 			await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate API call
 			router.push(`/auth/login`);

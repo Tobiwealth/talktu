@@ -26,7 +26,7 @@ export default function CreateChildProfile() {
 	} = useForm<FormData>();
 
 	const onSubmit = handleSubmit(async (data) => {
-		console.log(data);
+		//console.log(data);
 
 		try {
 			const response = await axios.post(
@@ -40,7 +40,7 @@ export default function CreateChildProfile() {
 					// withCredentials: true
 				}
 			);
-			console.log(response.data);
+			//console.log(response.data);
 			await addChild({
 				fullName: response?.data.fullName,
 				nickname: response?.data?.nickname,
@@ -52,7 +52,7 @@ export default function CreateChildProfile() {
 				`/onboarding?user=parent&childId=${response?.data?._id}`
 			);
 		} catch (err) {
-			console.log(err);
+			console.error(err);
 		}
 	});
 

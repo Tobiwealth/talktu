@@ -37,7 +37,7 @@ const StepComponent: React.FC<stepProps> = ({stepTitle, step,level, stepHeading,
 	const handleRating = (rate:number) => { //this function sets the rating for the rating questions
 		if(rate && setRating){
 			setRating(rate)
-			console.log(rate);
+			//console.log(rate);
 		}
 	}
 
@@ -51,7 +51,7 @@ const StepComponent: React.FC<stepProps> = ({stepTitle, step,level, stepHeading,
 		onClick();
 	}
 
-	console.log(step,level)
+	//console.log(step,level)
 
 
 	return (

@@ -10,6 +10,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { setCookie } from "cookies-next";
 import { useChildStore } from "@/store/childStore";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
 interface FormData {
 	email: string;
@@ -22,6 +23,7 @@ export default function Login() {
 	const [errMsg, setErrMsg] = useState<string>("");
 	const [isLoading, setIsLoading] = useState(false);
 	const [isGoogleLoading, setIsGoogleLoading] = useState(false);
+	const [showPassword, setShowpassword] = useState<boolean>(false);
 	const router = useRouter();
 	const {
 		register,
@@ -45,11 +47,11 @@ export default function Login() {
 					// withCredentials: true
 				}
 			);
-			console.log(response.data.accessToken);
-			console.log(response.data);
+			//console.log(response.data.accessToken);
+			//console.log(response.data);
 			await addAuth(response.data.user.name, response.data.user._id);
 			if(response.data?.user?.children?.length > 0){
-				console.log("there is a child")
+				//console.log("there is a child")
 				addChild({childId: response.data.user?.children[0]})
 			}
 			setCookie("token", response.data.accessToken, {
@@ -62,7 +64,7 @@ export default function Login() {
 				},
 				// withCredentials: true
 			});
-			console.log("onboard",res.data);
+			//console.log("onboard",res.data);
 			if (res.data.onboarded === "completed") {
 				router.push("/dashboard");
 			} else {
@@ -76,7 +78,7 @@ export default function Login() {
 			}
 		} catch (err) {
 			const axiosError = err as AxiosError;
-			console.log(axiosError);
+			//console.log(axiosError);
 			if (!axiosError?.response) {
 				setErrMsg("No Server Response");
 			} else if (axiosError?.status === 400) {
@@ -95,7 +97,7 @@ export default function Login() {
 		setIsGoogleLoading(true);
 		try {
 			// TODO: Implement Google sign-in
-			console.log("Google sign-in clicked");
+			//console.log("Google sign-in clicked");
 			await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate API call
 		} catch (error) {
 			console.error("Google signin error:", error);
@@ -162,20 +164,28 @@ export default function Login() {
 										symbols
 									</div>
 								</div>
-								<input
-									id="password"
-									{...register("password", {
-										required: "Password is required",
-										pattern: {
-											value: /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/,
-											message:
-												"Password must be at least 8 characters long and contain numbers and symbols",
-										},
-									})}
-									type="password"
-									placeholder="Enter password"
-									className="input-box"
-								/>
+								<div className="flex flex-col pb-4">
+									<input
+										id="password"
+										{...register("password", {
+											required: "Password is required",
+											pattern: {
+												value: /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/,
+												message:
+													"Password must be at least 8 characters long and contain numbers and symbols",
+											},
+										})}
+										type={showPassword ? "text" : "password"}
+										placeholder="Enter password"
+										className="input-box"
+									/>
+									<div className="self-end mr-4 -mt-[36px] z-50">
+										{ showPassword ?
+											<FaRegEyeSlash size={20} onClick={() => setShowpassword(false)}/>:
+										    <FaRegEye size={20} onClick={() => setShowpassword(true)}/>
+									    }
+									</div>
+								</div>
 								{errors.password && (
 									<p className="mt-1 text-sm text-red-500">
 										{errors.password.message}
@@ -195,11 +205,11 @@ export default function Login() {
 								"Sign In"
 							)}
 						</button>
-						<GoogleSignInButton
+						{/*<GoogleSignInButton
 							text="Sign in with Google"
 							onClick={handleGoogleSignIn}
 							isLoading={isGoogleLoading}
-						/>
+						/>*/}
 					</form>
 					<div className="space-y-2 text-xs text-center sm:text-sm text-neutral-600">
 						<div className="pr-2">

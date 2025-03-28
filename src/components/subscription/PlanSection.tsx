@@ -41,14 +41,14 @@ export default function PlanSection ({subscriberId}:Props) {
                     }
                 }
             );
-            console.log(response.data);
+            //console.log(response.data);
             router.push(response.data.authorization_url);
 
         } catch (err) {
-            console.log(err)
+            console.error(err)
         }
 	}
-	console.log("subscriberId",subscriberId)
+	//console.log("subscriberId",subscriberId)
 
 	return (
 		<div

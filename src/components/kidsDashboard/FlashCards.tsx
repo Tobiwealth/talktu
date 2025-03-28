@@ -78,7 +78,7 @@ const FlashCards: React.FC<FlashCardsProps> = ({activities, day}) => {
 				<div className="flex flex-col lg:grid grid-cols-2 justify-between items-center gap-6 ">
 				    {activities.map((item,i) => (<div key={item?.activityId} className="p-4 bg-[#112349] rounded-[16px]">
 					    <Image 
-					        src={i+1 > images.length ? images[0]: images[i]} 
+					        src={images[(Number(day)-1)%4]} 
 					        width={310} 
 					        height={177} 
 					        quality={100} 

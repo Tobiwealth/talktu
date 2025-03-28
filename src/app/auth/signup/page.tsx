@@ -53,7 +53,7 @@ export default function SignUp() {
 			...data,
 		};
 
-		console.log("Form submitted:", formData);
+		//console.log("Form submitted:", formData);
 		const { name, role, email, password } = formData;
 		try {
 			const response = await axios.post(
@@ -64,7 +64,7 @@ export default function SignUp() {
 					// withCredentials: true
 				}
 			);
-			console.log(response.data);
+			//console.log(response.data);
 			router.push(
 				`/auth/verify-email?email=${encodeURIComponent(
 					response.data.email
@@ -72,7 +72,7 @@ export default function SignUp() {
 			);
 		} catch (err) {
 			const axiosError = err as AxiosError;
-			console.log(axiosError);
+			//console.log(axiosError);
 			if (!axiosError?.response) {
 				setErrMsg("No Server Response");
 			} else if (axiosError?.status === 403) {

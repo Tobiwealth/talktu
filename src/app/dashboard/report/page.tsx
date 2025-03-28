@@ -55,9 +55,9 @@ const Report = () => {
 	const [childNickname, setChildNickname] = useState<string>("")
 
 	useEffect(() => {
-		console.log("chold id processing", childId)
+		//console.log("chold id processing", childId)
 		const fetchAssessmentReport = async() => {
-			console.log("chold id processing", childId)
+			//console.log("chold id processing", childId)
 			try {
 	            const response = await axios.get(`/assessment-reports/?childId=${childId}`,
 	                {
@@ -78,18 +78,18 @@ const Report = () => {
 	                    }
 	                }
 	            );   
-	            console.log("nickname",res.data.nickname)
+	            //console.log("nickname",res.data.nickname)
 	            setChildNickname(res.data.nickname)
 	        } catch (err) {
-	            console.log(err);
+	            //console.log(err);
 	        }
 	    }
 	    fetchAssessmentReport();
 	}, [childId])
 
-	console.log("assessment",assessmentReport)
-	console.log('child nick',childNickname)
-	console.log('child id',childId)
+	//console.log("assessment",assessmentReport)
+	//console.log('child nick',childNickname)
+	//console.log('child id',childId)
 
 	return (
 		<div className="h-full min-h-screen px-4 py-12">

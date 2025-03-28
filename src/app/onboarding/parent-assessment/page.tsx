@@ -83,11 +83,11 @@ const ParentAssessment = () => {
 	                    }
 	                }
 	            );
-	            console.log(response.data);
+	            //console.log(response.data);
 	            handleCloseMobile()
 
 	        } catch (err) {
-	            console.log(err)
+	            console.error(err)
 	            return;
 	        }
 		}
@@ -116,7 +116,7 @@ const ParentAssessment = () => {
             setAssessmentId(response?.data._id)
             setStartAssessment(true)
         } catch (err) {
-            console.log(err);
+            console.error(err);
         }
 	}
 	//console.log('asest response', assessmentResponse);
