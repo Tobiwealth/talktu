@@ -179,7 +179,7 @@ export default function Login() {
 										placeholder="Enter password"
 										className="input-box"
 									/>
-									<div className="self-end mr-4 -mt-[36px] z-50">
+									<div className="self-end mr-4 -mt-[36px] text-neutral-600 z-50">
 										{ showPassword ?
 											<FaRegEyeSlash size={20} onClick={() => setShowpassword(false)}/>:
 										    <FaRegEye size={20} onClick={() => setShowpassword(true)}/>

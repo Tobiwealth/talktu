@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Nunito, Nunito_Sans, Figtree } from "next/font/google";
 import "./globals.css";
+import { siteConfig } from '@/constant/config';
 // import {Provider} from 'react-redux';
 // import store from '@/store/index';
 // import Providers from "./providers/Providers";
@@ -18,7 +19,7 @@ const nunito = Nunito({
 const nunitosans = Nunito_Sans({
 	subsets: ["latin"],
 	variable: "--font-nunitosans",
-	weight: ["300", "400", "500", "600", "700", "800"],
+	weight: ["400", "700"],
 	display: "swap",
 });
 const figtree = Figtree({
@@ -28,8 +29,39 @@ const figtree = Figtree({
 });
 
 export const metadata: Metadata = {
-	title: "Talktu",
-	description: "Guide your child to start personalized online speech therapy now",
+	metadataBase: new URL("https://talktu.co"),
+    title: {
+	    default: siteConfig.title,
+	    template: `%s | ${siteConfig.title}`,
+    },
+    description: siteConfig.description,
+    icons: {
+	    icon: [
+	        '/favicon.ico?v=4',
+	    ],
+	    apple: [
+	        '/apple-touch-icon.png?v=4',
+	    ],
+	    shortcut: [
+	        '/apple-touch-icon.png?v=4',
+	    ],
+    },
+    manifest: '/site.webmanifest',
+    openGraph: {
+	    url: siteConfig.url,
+	    title: siteConfig.title,
+	    description: siteConfig.description,
+	    siteName: siteConfig.title,
+	    images: ['/talktu.png'],
+	    type: 'website',
+	    locale: 'en_US',
+    },
+    twitter: {
+	    card: 'summary_large_image',
+	    title: siteConfig.title,
+	    description: siteConfig.description,
+	    images: ['/talktu.png'],
+    },
 };
 
 export default function RootLayout({

@@ -183,8 +183,8 @@ const config: Config = {
 			fontFamily: {
 				figtree: ["var(--font-figtree)", "system-ui"],
 				inter: ["var(--font-inter)", "sans-serif"],
-				nunito: ["var(--font-nunito)", "san-serif"],
-				nunitosans: ["var(--font-nunitosans)", "san-serif"],
+				nunito: ["var(--font-nunito)", "sans-serif"],
+				nunitosans: ["var(--font-nunitosans)", "sans-serif"],
 				//jakarta: ["Plus Jakarta Sans", "sans-serif"],
 			},
 

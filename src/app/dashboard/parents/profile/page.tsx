@@ -11,6 +11,8 @@ type Children = {
 	_id: string;
 	nickname: string;
 	fullName: string;
+	gender: string;
+	birthdate: string;
 }
 
 const Profile = () => {
@@ -22,10 +24,14 @@ const Profile = () => {
 		_id: "",
 		nickname: "",
 		fullName: "",
+		gender: "",
+		birthdate: ""
 	});
 	const [form, setForm] = useState({
 		nickname: "",
-		fullName: ""
+		fullName: "",
+		gender: "",
+		birthdate: ""
 	})
 
 	const handleChildAvatar = async(child:Children) => {
@@ -45,11 +51,13 @@ const Profile = () => {
 					},
 				}
 			);
-			// console.log("fetch children",response.data.data)
-			const extractedChildren = response.data.data.map(({ _id, fullName, nickname }: any) => ({
+			//console.log("fetch children",response.data.data)
+			const extractedChildren = response.data.data.map(({ _id, fullName, nickname, gender, birthdate }: any) => ({
 				_id,
 				fullName,
 				nickname,
+				gender,
+				birthdate
             }));
 			setChildren(extractedChildren)
 			setCurrentChild(extractedChildren[0]);
@@ -73,7 +81,8 @@ const Profile = () => {
 					// withCredentials: true
 				}
 			);
-			// console.log(response.data)
+			//console.log(response.data)
+			window.location.reload();
 		}catch(err){
 			console.error(err);
 		}
@@ -104,13 +113,14 @@ const Profile = () => {
 	}, [addNewChild])
 
 
+
 	return (
 		<div className="w-full min-h-screen px-8 pb-16 mt-8 lg:mt-28 lg:px-0 lg:pr-8">
 			<div className="flex gap-4 overflow-auto">
 				{ children?.map((item, i) =>(<div key={i} 
 				    onClick={() => handleChildAvatar(item)}
 				    className={`
-				    	flex flex-col justify-center items-center gap-2 bg-[#112349] p-4 rounded-[8px] 
+				    	flex flex-col justify-center items-center gap-2 bg-[#112349] p-4 rounded-[8px] min-w-[102px]
 				    	${!addNewChild && currentChild._id === item._id ? "border-[2px] border-retro_blue-main" : ""}
 				    `}
 				>
@@ -124,7 +134,7 @@ const Profile = () => {
 				    />
 				    <p className="text-sm font-semibold text-white font-nunito">{item?.nickname}</p>
 				</div>))}
-				<div className={`flex flex-col justify-center items-center gap-2 bg-[#112349] p-4 rounded-[8px] ${addNewChild ? "border-[2px] border-retro_blue-main": " "}`}>
+				<div className={`flex flex-col justify-center items-center gap-2 bg-[#112349] p-4 rounded-[8px] min-w-[110px] ${addNewChild ? "border-[2px] border-retro_blue-main": " "}`}>
 					<div onClick={() => setAddNewChild(true)}  className="border-[3px] border-[#0E357E] p-3 rounded-full bg-[#15294F] w-[70px] h-[70px] flex justify-center items-center">
 					    <AiOutlinePlus className="text-3xl text-retro_blue-main" />
 					</div>
@@ -135,6 +145,8 @@ const Profile = () => {
 			    readonly={!addNewChild} 
 			    nickname={addNewChild ? form.nickname : currentChild.nickname} 
 			    fullName={addNewChild ? form.fullName : editedName}
+			    gender={addNewChild ? form.gender : currentChild.gender}
+			    birthdate={addNewChild ? form.birthdate : currentChild.birthdate}
 			    form={form}
 			    setForm={setForm}
 			    setEditedName={setEditedName}
